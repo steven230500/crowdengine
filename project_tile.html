@@ -1,0 +1,76 @@
+{% comment %} LÓGICA DE SEGURIDAD TOTAL {% endcomment %} {% assign
+hidden_project = false %} {% if current_profile == blank or current_profile.id
+== blank %} {% assign hidden_project = true %} {% assign destination_path =
+"/users/sign_in" %} {% else %} {% comment %} Si hay sesión, verificamos si es
+dueño {% endcomment %} {% if hidden_project_template_ids contains
+project.project_template.id and current_profile.id != project.owner.id %} {%
+assign hidden_project = true %} {% comment %} Aquí puedes poner una URL de
+'contacto' o dejar la del proyecto para que pida permiso internamente {%
+endcomment %} {% assign destination_path = project.home_path %} {% else %} {%
+assign destination_path = project.home_path %} {% endif %} {% endif %}
+
+<div
+  id="project-id-{{ project.id }}"
+  class="grid-item-wrap {{ project.category.name | replace: ' ', '_' | replace: '+', 'plus' | remove: '.' | remove: '(' | remove: ')' }}"
+>
+  <div class="project-card {% if hidden_project %}is-locked{% endif %}">
+    <div
+      class="card-image"
+      style="background-image:url('{{ project.image_link_big }}')"
+    >
+      {% include 'project_banner' %} {% if hidden_project %}
+      <div class="lock-overlay">
+        <i class="fa fa-lock"></i>
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="card-body">
+      {% if hidden_project %}
+      <div class="card-info-top restricted-content">
+        <h3 class="card-title">Contenido Protegido</h3>
+        <p class="restricted-text">
+          {% if current_profile == blank %} Inicie sesión para ver los detalles
+          de esta oportunidad. {% else %} Debe completar su perfil o solicitar
+          acceso para ver esta inversión. {% endif %}
+        </p>
+      </div>
+      {% else %}
+      <div class="card-info-top">
+        <h3 class="card-title">{{ project.title }}</h3>
+        {% capture time_string %}{{ project.actual_time_left }}{% endcapture %}
+        {% assign time_translated = time_string | replace: 'days', 'días' |
+        replace: 'day', 'día' %}
+        <p class="card-teaser">{{ project.teaser }}</p>
+      </div>
+
+      <div class="card-metrics-container">
+        <ul class="card-stats-list">
+          <li><span class="dot-green"></span> Tiempo: {{ time_translated }}</li>
+          <li>
+            <span class="dot-green"></span> Meta: {{ project.pretty_max_raise }}
+          </li>
+          <li>
+            <span class="dot-green"></span> Fondeado: {{
+            project.pretty_current_funding }}
+          </li>
+        </ul>
+        <div class="category-label">
+          {{ project.category.name | default: "Oportunidad" }}
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="card-footer-action">
+        <a
+          href="{{ destination_path }}"
+          class="btn-main-action {% if hidden_project %}btn-locked{% endif %}"
+        >
+          {% if hidden_project %} {% if current_profile == blank %} Iniciar
+          sesión {% else %} Solicitar acceso {% endif %} {% else %} Quiero
+          invertir {% endif %}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

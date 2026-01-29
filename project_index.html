@@ -1,0 +1,271 @@
+{% case status %} {% when "Featured deals" %}{% capture status %}{% t
+project.index.filters.featured_projects %}{% endcapture %} {% when "Popular"
+%}{% capture status %}{% t project.index.filters.popular %}{% endcapture %} {%
+when "Most funded" %}{% capture status %}{% t project.index.filters.most_funded
+%}{% endcapture %} {% when "Ending soon" %}{% capture status %}{% t
+project.index.filters.ending_soon %}{% endcapture %} {% when "Successful" %}{%
+capture status %}{% t project.index.filters.successful %}{% endcapture %} {%
+when "Latest" %}{% capture status %}{% t project.index.filters.latest %}{%
+endcapture %} {% endcase %} {% include 'project_tile_css' %} {% for project in
+projects %}{% if forloop.index == 1 %}{% capture headline_img %}{{
+project.image_link_big }}{% endcapture %}{% endif %}{% endfor %}
+
+<section class="hero-invest">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <h1>
+        Invierte en <br />
+        bienes raíces desde <br />
+        <span>$10,000 pesos.</span>
+      </h1>
+      <p class="hero-subtitle">
+        Obtén rendimientos de hasta <strong>19% anual</strong><br />
+        invirtiendo en proyectos respaldados por garantías inmobiliarias
+      </p>
+      <a href="/projects" class="btn-hero">Quiero invertir</a>
+    </div>
+    <div class="hero-visual">
+      <img
+        src="{{ 'img-persona-m2c.png' | asset_url }}"
+        alt="Hero Image"
+        class="hero-image"
+      />
+    </div>
+  </div>
+</section>
+
+<section class="how-it-works">
+  <div class="container">
+    <h2 class="how-title">
+      ¿Cómo funciona el <span>crowdfunding inmobiliario</span>?
+    </h2>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-icon">
+          <img
+            src="{{ 'icon1.svg' | asset_url }}"
+            alt="Evaluación"
+            loading="lazy"
+          />
+        </div>
+        <h4>Evaluación del Proyecto</h4>
+        <p>
+          Evaluamos cada proyecto a nivel legal, técnico y financiero para
+          asegurar su viabilidad.
+        </p>
+      </div>
+      <div class="how-card">
+        <div class="how-icon">
+          <img
+            src="{{ 'icon2.svg' | asset_url }}"
+            alt="Publicación"
+            loading="lazy"
+          />
+        </div>
+        <h4>Publicación para Invertir</h4>
+        <p>
+          Los proyectos aprobados se publican en la plataforma para que puedas
+          invertir desde $10,000 pesos.
+        </p>
+      </div>
+      <div class="how-card">
+        <div class="how-icon">
+          <img
+            src="{{ 'icon3.svg' | asset_url }}"
+            alt="Rendimientos"
+            loading="lazy"
+          />
+        </div>
+        <h4>Rendimientos Periódicos</h4>
+        <p>
+          Recibe pagos periódicos de intereses durante el plazo de tu inversión.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="works-page" class="pt80 pb130">
+  <div class="container">
+    <div class="row text-center">
+      <div class="portfolio">
+        <ul class="portfolio-filters">
+          <li data-filter="*">Show All</li>
+          {% assign target_categories = "En fondeo,Entrega de Ganancias,Caso de
+          éxito" | split: "," %} {% for category in available.categories %} {%
+          if target_categories contains category.name %}
+          <li
+            data-filter=".{{ category.name | replace: ' ', '_' | replace: '+', 'plus' | remove: '.' | remove: '(' | remove: ')' }}"
+          >
+            {{ category.name }}
+          </li>
+          {% endif %} {% endfor %}
+        </ul>
+
+        {% if projects.size > 0 %}
+        <div class="projects-simple-grid">
+          {% for project in projects %} {% if project.title != "Acreditacion" %}
+          {% include 'project_tile' %} {% endif %} {% endfor %}
+        </div>
+        {% else %}
+        <p>{% t project.index.no_results %}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* TUS ESTILOS ORIGINALES (HERO Y HOW IT WORKS) */
+  .hero-invest {
+    background: #ffffff;
+    padding: 80px 20px 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .hero-grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+  .hero-text {
+    flex: 1 1 450px;
+  }
+  .hero-text h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    color: #000a13;
+    line-height: 1.15;
+  }
+  .hero-text h1 span {
+    color: #0052cc;
+    font-weight: 700;
+  }
+  .hero-subtitle {
+    margin-top: 20px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #555;
+    max-width: 520px;
+  }
+  .hero-subtitle strong {
+    color: #0052cc;
+  }
+  .btn-hero {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 14px 32px;
+    background: #0052cc;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  .hero-visual {
+    flex: 1 1 430px;
+    text-align: center;
+  }
+  .hero-visual img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+  }
+
+  .how-it-works {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px 30px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .how-it-works::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f5f9fc;
+    z-index: -1;
+  }
+  .how-title {
+    font-size: 2.2rem;
+    font-weight: 500;
+    color: #000912;
+    margin-bottom: 50px;
+  }
+  .how-title span {
+    color: #00398e;
+    font-weight: 600;
+  }
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  .how-card {
+    padding: 30px 25px;
+    border-radius: 14px;
+    background: #fff;
+    transition: transform 0.3s;
+  }
+  .how-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+    border-radius: 12px;
+    background: #e6f0ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0052cc;
+  }
+  .how-card h4 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #6dcaf8;
+    margin-bottom: 10px;
+  }
+  .how-card p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  /* NUEVO GRID PARA PROYECTOS (SOLUCIONA SOLAPAMIENTO) */
+  .projects-simple-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+  }
+
+  #works-page {
+    padding-top: 80px;
+    padding-bottom: 240px;
+  }
+
+  @media (max-width: 992px) {
+    .hero-grid {
+      flex-direction: column;
+      text-align: center;
+      gap: 40px;
+    }
+    .how-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="text-center">{% include 'pagination' %}</div>
+    </div>
+  </div>
+</section>
