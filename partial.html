@@ -1,0 +1,225 @@
+<!-- START /partials/_signup_email.html -->
+
+<style>
+    .users-registrations-new .register-form label {
+        color: #172c50 !important;
+        font-weight: 700 !important;
+        font-size: 14px !important;
+        margin-bottom: 6px !important;
+    }
+
+    .users-registrations-new .register-form input::placeholder,
+    .users-registrations-new .register-form select::placeholder {
+        color: #9ca3af !important;
+    }
+
+    .users-registrations-new .register-footer {
+        margin-top: 14px;
+        text-align: center;
+        color: #6b7280;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .users-registrations-new .register-footer a {
+        color: #2563eb;
+        font-weight: 800;
+        text-decoration: none;
+    }
+
+    .users-registrations-new .register-footer a:hover {
+        text-decoration: underline;
+    }
+
+    .users-registrations-new .register-checkbox label {
+        color: #6b7280 !important;
+        /* texto normal en gris */
+        font-weight: 500 !important;
+    }
+
+    .users-registrations-new .register-checkbox a {
+        color: #2563eb !important;
+        /* links en azul */
+        font-weight: 700 !important;
+        text-decoration: none;
+    }
+
+    .users-registrations-new .register-checkbox a:hover {
+        text-decoration: underline;
+    }
+
+    .users-registrations-new .login-regulation {
+        margin: 16px auto 10px;
+        padding: 18px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        max-width: 380px;
+        width: 100%;
+        background: #f5f7fb;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        border-radius: 12px;
+    }
+
+    .users-registrations-new .regulation-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: #e0ecff;
+        color: #2563eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+    }
+
+    .users-registrations-new .regulation-text {
+        font-size: 15px;
+        color: #374151;
+        text-align: left;
+        line-height: 1.2;
+    }
+
+    .users-registrations-new .regulation-text strong {
+        font-size: 17px;
+        font-weight: 800;
+        color: #2563eb;
+    }
+</style>
+
+<div>
+    {% form_for new_user %}
+    {% include 'form_errors' %}
+
+    <div class="form-grid">
+        <div class="form-group">
+            <label>Nombres <i class="fa fa-asterisk text-danger"></i></label>
+            <input type="text" class="form-control" name="user[first_name]" value="{{ user_first_name }}"
+                placeholder="Ej. Juan Carlos">
+        </div>
+
+        <div class="form-group">
+            <label>Apellidos <i class="fa fa-asterisk text-danger"></i></label>
+            <input type="text" class="form-control" name="user[last_name]" value="{{ user_last_name }}"
+                placeholder="Ej. Pérez López">
+        </div>
+
+        <div class="form-group">
+            <label>Correo electrónico <i class="fa fa-asterisk text-danger"></i></label>
+            <input type="email" class="form-control" name="user[email]" value="{{ user_email }}"
+                placeholder="ejemplo@correo.com">
+        </div>
+
+        <div class="form-group">
+            <label>Confirmar correo electrónico <i class="fa fa-asterisk text-danger"></i></label>
+            <input type="email" class="form-control" name="user[email_confirmation]" placeholder="ejemplo@correo.com">
+            <div id="ea-feedback" class="text-danger"></div>
+        </div>
+
+        <div class="form-group full">
+            <label>Contraseña <i class="fa fa-asterisk text-danger"></i></label>
+            <input type="password" class="form-control" id="user_password_signup" name="user[password]"
+                placeholder="••••••••">
+        </div>
+
+        <div class="form-group full">
+            <label>Confirmar contraseña <i class="fa fa-asterisk text-danger"></i></label>
+            <input type="password" class="form-control" id="user_password_signup_confirm" name="user[password_confirm]"
+                placeholder="••••••••">
+            <span id="pw_confirmation" class="text-danger"></span>
+        </div>
+
+        {% if site.require_country_on_signup %}
+        <div class="form-group full">
+            <label>País <i class="fa fa-asterisk text-danger"></i></label>
+
+            <section data-widget="select-menu">
+                {% capture select_country %}Seleccione un país{% endcapture %}
+                {% assign element_id = 'user_country_signup' %}
+                {% assign element_name = 'user[country]' %}
+                {% assign element_options = available.countries %}
+
+                {% if user_country and user_country != '' %}
+                {% assign selected_value = user_country %}
+                {% else %}
+                {% assign selected_value = 'Mexico' %}
+                {% endif %}
+
+                {% assign initial_value = select_country %}
+                {% include 'dropdown' %}
+            </section>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="checkbox register-checkbox">
+        <label>
+            <input type="checkbox" id="terms_checkbox" name="user[agreed_to_site_terms]">
+            Acepto recibir comunicaciones electrónicas relativas a mi actividad en este portal y acepto las
+            <a href="https://m2crowd.com/aviso-de-privacidad/" target="_blank">Condiciones de uso</a> &amp;
+            <a href="https://m2crowd.com/aviso-de-privacidad/" target="_blank">Política de privacidad</a>*
+        </label>
+    </div>
+
+    <div class="register-required">
+        <i class="fa fa-asterisk text-danger"></i> Campos requeridos
+    </div>
+
+    {% if site.has_recaptcha %}
+    {{ recaptcha_tags }}
+    {% endif %}
+
+    <button type="submit" id="signUp" class="btn btn-primary" disabled>
+        Continuar
+    </button>
+
+    <div class="register-footer">
+        ¿Ya tienes cuenta?
+        <a href="/users/sign_in">Inicia sesión</a>
+    </div>
+
+    <div class="login-regulation">
+        <div class="regulation-icon">✓</div>
+        <div class="regulation-text">
+            Plataforma regulada por<br>
+            <strong>CNBV</strong>
+        </div>
+    </div>
+
+    {% endform_for %}
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const password = document.getElementById('user_password_signup');
+        const confirm = document.getElementById('user_password_signup_confirm');
+        const feedback = document.getElementById('pw_confirmation');
+        const submit = document.getElementById('signUp');
+        const terms = document.getElementById('terms_checkbox');
+
+        function validate() {
+            const passwordsFilled = password.value && confirm.value;
+            const passwordsMatch = password.value === confirm.value;
+            const termsAccepted = terms.checked;
+
+            if (!passwordsFilled) {
+                feedback.textContent = '';
+            } else if (!passwordsMatch) {
+                feedback.textContent = 'Las contraseñas no coinciden';
+            } else {
+                feedback.textContent = '';
+            }
+
+            submit.disabled = !(passwordsFilled && passwordsMatch && termsAccepted);
+        }
+
+        password.addEventListener('input', validate);
+        confirm.addEventListener('input', validate);
+        terms.addEventListener('change', validate);
+
+        validate();
+    });
+</script>
+
+<!-- END /partials/_signup_email.html -->

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1200 1200">
+  <!-- Generator: Adobe Illustrator 30.1.0, SVG Export Plug-In . SVG Version: 2.1.1 Build 136)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #fff;
+      }
+
+      .st1 {
+        fill: url(#Degradado_sin_nombre_4);
+      }
+    </style>
+    <linearGradient id="Degradado_sin_nombre_4" data-name="Degradado sin nombre 4" x1="127.2" y1="600" x2="1072.8" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f58dc"/>
+      <stop offset=".99" stop-color="#1caaff"/>
+    </linearGradient>
+  </defs>
+  <rect class="st1" x="127.2" y="127.2" width="945.59" height="945.59" rx="133.81" ry="133.81"/>
+  <g>
+    <g>
+      <rect class="st0" x="302.68" y="470.24" width="127.84" height="412.99"/>
+      <path class="st0" d="M365.99,416.16c41.76,0,75.59-34.15,75.59-76.23s-33.84-76.2-75.59-76.2-75.59,34.12-75.59,76.2,33.83,76.23,75.59,76.23Z"/>
+    </g>
+    <path class="st0" d="M634.88,666.44c0-58.06,26.72-92.65,77.89-92.65,47,0,69.6,33.2,69.6,92.65v216.79h127.24v-261.49c0-110.62-62.71-164.11-150.26-164.11s-124.46,68.24-124.46,68.24v-55.63h-122.63v412.99h122.63v-216.79Z"/>
+  </g>
+</svg>

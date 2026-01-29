@@ -1,0 +1,170 @@
+<!-- START /partials/_project_tile_css.html -->
+<style>
+  /* ===============================
+   CARD MODERNA – FIX DEFINITIVO
+================================ */
+
+  /* ===============================
+   CARD BASE
+================================ */
+
+  .project-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+    width: 100%;
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+
+  /* ===============================
+   IMAGE
+================================ */
+
+  .card-image {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  /* ===============================
+   BODY
+================================ */
+
+  .card-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    box-sizing: border-box;
+  }
+
+  .card-body h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  /* ===============================
+   DESCRIPTION – TRUNCATE FIX
+================================ */
+
+  .card-description {
+    font-size: 6px !important;
+    color: #4a4a4a;
+    margin-bottom: 12px;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /* 🔥 exacto en todas */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .project-card .card-description,
+  .project-card .card-description p,
+  .project-card .card-description span,
+  .project-card .card-description * {
+    font-size: 11px;
+    line-height: 1.35;
+    color: #4a4a4a;
+  }
+
+  /* truncate real */
+  .project-card .card-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+
+
+  /* ===============================
+   STATS
+================================ */
+
+  .card-stats {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 12px 0;
+  }
+
+  .card-stats li {
+    font-size: 5px;
+    margin-bottom: 4px;
+  }
+
+  /* ===============================
+   BUTTON – ALWAYS BOTTOM
+================================ */
+
+  .btn-invest {
+    margin-top: auto;
+    /* 🔥 CLAVE */
+    align-self: stretch;
+
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+
+    background: #0b5ed7;
+    color: #fff;
+    border-radius: 24px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .btn-invest:hover {
+    text-decoration: none;
+    opacity: .95;
+  }
+
+  .btn-invest.btn-locked {
+    background: #6c757d;
+  }
+
+  /* ===============================
+   HIDDEN PROJECT
+================================ */
+
+  .project-card--hidden .card-image {
+    filter: grayscale(100%);
+  }
+
+  /* overlay */
+
+  .card-lock-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .85));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+  }
+
+  .card-lock-overlay .lock-icon {
+    font-size: 5px;
+    margin-bottom: 8px;
+  }
+
+  .card-lock-overlay .lock-text {
+    font-size: 5px;
+    font-weight: 600;
+  }
+
+  /* elimina espacio muerto cuando hidden */
+  .project-card--hidden .card-body {
+    justify-content: flex-end;
+  }
+</style>
+<!-- END /partials/_project_tile_css.html -->

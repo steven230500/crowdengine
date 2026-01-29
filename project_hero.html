@@ -1,0 +1,30 @@
+<!-- START /partials/_project_hero.html -->
+<section id="hero" class="hero-fullwidth parallax no-print"
+    data-overlay-dark="{% if project.background_type == 'Dark'%}6{% elsif project.background_type == 'Medium' %}4{% elsif project.background_type == 'Light' %}2{% endif %}">
+    <div class="background-image">
+        <img src="{{ project_images[0] }}" alt="#">
+    </div>
+    <div class="container">
+        <div class="row">
+            {% include 'project_next' %}
+            <div class="appear col-md-6 project_lead_box">
+                <h4 class="no-print no-page-break-after "><i class="fa fa-tag"> </i> {{ project.category.name }}</h4>
+                <h1 class="page-break-after project-h1"><strong>{{ project.title }}</strong></h1>
+                <a href="#about" class="btn btn-lg btn-primary btn-scroll no-print" data-aos="fade-right"
+                    data-aos-delay="1200">{% t project.menu.overview_short %}</a>
+                {% if project.direct_uploads.size >= 1 %}
+                <a href="#documents" class="btn btn-lg btn-primary btn-scroll no-print" data-aos="fade-left"
+                    data-aos-delay="1350">{% t project.menu.documents %}</a>
+                {% endif %}
+            </div>
+            <div class="appear col-md-6 proj_data_box no-print">
+                {% include 'project_data'%}
+                {% if project.template.is_social_sharing_enabled %}
+                {% include 'social_media_buttons' %}
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- END /partials/_project_hero.html -->

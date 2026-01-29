@@ -1,0 +1,959 @@
+/* Add Custom CSS Here */
+
+/* ===== 1) Ocultar sidebar viejo ===== */
+.sidebar-col {
+    display: none !important;
+}
+
+/* 2) El contenido ocupa todo el ancho */
+.project-body-row>.col-md-10 {
+    width: 100% !important;
+}
+
+.project-body {
+    width: 100% !important;
+    float: none !important;
+}
+
+/* ===== 3) Tabs proyecto (pill) ===== */
+.project-tabs {
+    background: #f5f9fc;
+    padding: 22px 0;
+}
+
+.project-tabs__wrap {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.project-tab {
+    white-space: nowrap;
+    padding: 12px 18px;
+    border-radius: 12px;
+    text-decoration: none !important;
+    font-weight: 600;
+    font-size: 14px;
+    color: #6b7280;
+    transition: all .15s ease;
+}
+
+.project-tab:hover {
+    color: #172c50;
+    background: #f3f6ff;
+}
+
+.project-tab.is-active {
+    background: #0A3A8D;
+    color: #ffffff !important;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
+/*Hide other checkout profiles */
+
+.individual-form-container.profile-form-container {
+    display: none;
+}
+
+label[for="invest-company"] {
+    display: none !important;
+}
+
+label[for="invest-ira"] {
+    display: none !important;
+}
+
+label[for="invest-joint"] {
+    display: none !important;
+}
+
+/* ===============================
+   M2CROWD – DESIGN SYSTEM
+   =============================== */
+
+:root {
+    --brand-primary: #0A3A8D;
+    --brand-secondary: #1E63D5;
+    --ui-blue-light: #EAF2FF;
+
+    --white: #FFFFFF;
+    --gray-light: #F5F7FA;
+    --gray-medium: #6B7280;
+    --gray-dark: #111827;
+
+    --success-green: #22C55E;
+
+    --font-base: "Montserrat", sans-serif;
+}
+
+
+html {
+    font-size: 16px !important;
+}
+
+*:not(.fa) {
+    font-family: "Montserrat", sans-serif !important;
+}
+
+body.projects-index .background-image {
+    background-image: theme-url('https://web.m2crowd.com/projects/assets/img/hero.webp') !important;
+}
+
+.navbar-brand img {
+    max-height: 50px;
+    max-width: none;
+}
+
+.nav-small .navbar-brand img {
+    max-height: 45px;
+}
+
+.well-inner {
+    border: 1px solid #eee;
+    border-radius: 3px;
+    padding: 20px;
+    background: #f3f3f3;
+}
+
+.text-interest-indicate {
+    margin-left: 30px;
+    list-style-type: disc;
+}
+
+.text-interest-indicate li {
+    color: #fff;
+    line-height: 1em;
+}
+
+.headerm2 {
+    height: 87px;
+}
+
+.headerm2 .menu-right {
+    height: 100%;
+}
+
+.headerm2 .container {
+    height: 100% !important;
+}
+
+.headerm2 #navbar {
+    height: 100% !important;
+}
+
+.no-hero {
+    height: 87px;
+}
+
+.manage-btn {
+    top: 97px;
+}
+
+.menu-right>li>a {
+    padding: 0 23px;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.menu-right>li>a:not(.sign_buttons):before {
+    content: " ";
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    opacity: 0;
+    bottom: 16%;
+    left: 0;
+    display: block;
+    background-color: var(--main-color);
+    transform: translateY(-20px);
+    /* center horizontally */
+    transition: all 0.25s ease-out;
+}
+
+.menu-right>li>a:hover::before {
+    transform: translateY(-10px);
+    opacity: 1;
+}
+
+.menu-right li a.sign_buttons {
+    background: #3CD36D;
+    padding: 20px 20px;
+    border-radius: 5px !important;
+    display: block !important;
+    height: 70px !important;
+    color: #FFF;
+    margin-top: 10px;
+}
+
+.menu-right .dropdown-menu {
+    background-color: var(--main-color);
+}
+
+section#hero {
+    height: 733px;
+}
+
+.headerm2 {
+    box-shadow: none !important;
+}
+
+.background-image {
+    background-position: top left !important;
+    background-repeat: no-repeat;
+    background-size: cover !important;
+}
+
+.hero-content {
+    margin-left: 0px;
+}
+
+.hero_home {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.hero_home .appear {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 10px;
+}
+
+.hero_home .appear h2,
+.hero_home .appear h3 {
+    color: var(--main-color);
+}
+
+.hero_home .appear h2 {
+    font-weight: 700;
+    font-size: 45px;
+}
+
+.hero_home .appear h3 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.footer-container {
+    background: #002c81;
+    color: white;
+}
+
+.footer.style-1 ul li a {
+    color: white;
+    font-size: 25px;
+}
+
+.tile-banner.pending {
+    background: #19A8F3;
+}
+
+.tile-banner.successful {
+    background: #3DD46C;
+}
+
+.tile-banner.running {
+    background: #022C82;
+}
+
+.project-tile-container p.title {
+    font-weight: 700;
+}
+
+.project-h1 {
+    color: #002C86;
+}
+
+.footer p {
+    color: white;
+}
+
+.footer-links-container a {
+    font-size: 16px;
+    font-weight: 800;
+    margin: 0px;
+    text-align: start;
+    color: white;
+    width: 100%;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.footer-links-container a:hover {
+    color: #45D371;
+}
+
+.social-networks {
+    text-align: start
+}
+
+.divisory-line {
+    border: 0;
+    border-top: 2px solid white;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.bold-text {
+    font-size: 16px;
+    font-weight: 800;
+    margin: 0px;
+}
+
+.light-text {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.buro-text {
+    color: #19a8f3 !important;
+    font-family: "Arial", sans-serif !important;
+    font-style: italic;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.green-link {
+    color: #45d371;
+}
+
+.green-link:hover {
+    color: #45d371;
+}
+
+.project-body-row h2 {
+    font-family: "Montserrat", sans-serif !important;
+    font-weight: 700;
+    color: var(--main-color);
+}
+
+#submit {
+    border-radius: 5px !important;
+}
+
+.well {
+    background-color: #9cd7f6;
+}
+
+@media (max-width: 991px) {
+    .headerm2 #navbar {
+        height: auto !important;
+    }
+
+    .menu-right>li>a {
+        height: 40px;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .menu-right>li>a::before {
+        display: none !important;
+        content: none !important;
+    }
+
+    .menu-right {
+        margin-top: 0px;
+    }
+
+    .nav li.dropdown a i {
+        padding: 0px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px !important;
+        padding-top: 10px;
+    }
+
+    .fa-check:before {
+        display: none !important;
+    }
+
+    .headerm2 {
+        height: 57px;
+    }
+
+    .menu-right li a.sign_buttons {
+        height: 60px !important;
+    }
+}
+
+
+.wallet_balance {
+
+    font-weight: bold;
+}
+
+
+
+.siq_bR {
+    bottom: 80px !important;
+    right: 10px;
+}
+
+
+#provision_address_2 {
+    display: none;
+}
+
+input[type=checkbox],
+input[type=radio] {
+    height: auto;
+}
+
+
+.form-check-label.disclosure {
+    display: none;
+}
+
+.form-check-input {
+    height: 19px;
+}
+
+
+.cart-data.shares {
+    display: none !important;
+}
+
+.cart-data.share-price {
+    display: none !important;
+}
+
+
+.large-select {
+    font-size: 18px;
+    padding: 1px;
+    width: 100%;
+    border: 2px solid #4CAF50;
+    border-radius: 6px;
+    background-color: white;
+    cursor: pointer;
+}
+
+
+
+/* ================================
+   LOGIN V2 – M2CROWD
+   Solo /users/sessions/new
+================================ */
+
+/* Scope principal */
+.users-sessions-new {
+    background: #ffffff;
+}
+
+/* Wrapper */
+.users-sessions-new .login-v2 {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 15px;
+}
+
+/* Card principal */
+.users-sessions-new .login-card {
+    background: #fcfafd;
+    max-width: 850px;
+    width: 100%;
+    padding: 40px 35px 35px;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+    text-align: center;
+}
+
+/* ================================
+   TÍTULOS
+================================ */
+
+.users-sessions-new .login-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #0b1f3b;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0;
+}
+
+.users-sessions-new .login-title strong {
+    font-size: 36px;
+    font-weight: 800;
+    color: #0a3ea6;
+    margin-left: 6px;
+    /* separación real */
+    display: inline-block;
+}
+
+.users-sessions-new .login-subtitle {
+    font-size: 29px;
+    font-weight: 600;
+    color: #172c50;
+    line-height: 1.2;
+    margin-bottom: 16px;
+}
+
+/* Descripción */
+.users-sessions-new .login-description {
+    font-size: 15px;
+    color: #172c50;
+    line-height: 1.6;
+    margin-bottom: 28px;
+    max-width: 390px;
+    width: 100%;
+    margin: 0 auto 28px;
+}
+
+/* ================================
+   FORM
+================================ */
+
+.users-sessions-new .login-form {
+    text-align: left;
+    max-width: 380px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Label */
+.users-sessions-new .login-form label,
+.users-sessions-new .login-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #0b1f3b;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.users-sessions-new .login-label span {
+    color: #2563eb;
+}
+
+/* Inputs (ganan a Bootstrap) */
+.users-sessions-new .login-form .form-control,
+.users-sessions-new .login-form input[type="email"],
+.users-sessions-new .login-form input[type="text"],
+.users-sessions-new .login-form input[type="password"] {
+    width: 100%;
+    height: 48px;
+    border-radius: 10px;
+    border: 1px solid #dbe1ee;
+    padding: 0 14px;
+    font-size: 15px;
+    transition: all 0.2s ease;
+    margin-bottom: 0;
+}
+
+
+.users-sessions-new .fa-asterisk {
+    font-size: 6px;
+    /* ajusta a gusto */
+    vertical-align: top;
+}
+
+
+.users-sessions-new .login-form input::placeholder {
+    color: #9ca3af;
+}
+
+.users-sessions-new .login-form input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Fix duplicado login-step */
+.users-sessions-new .login-step-1>.login-step-1 {
+    margin: 0;
+    padding: 0;
+}
+
+/* ================================
+   BOTONES
+================================ */
+
+.users-sessions-new .login-form .btn,
+.users-sessions-new .login-form .btn-primary,
+.users-sessions-new .login-form button,
+.users-sessions-new .login-form input[type="submit"] {
+    width: 100%;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #2563eb, #1d4ed8);
+    border: none;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 16px;
+    transition: all 0.2s ease;
+}
+
+.users-sessions-new .login-form .btn:hover,
+.users-sessions-new .login-form button:hover,
+.users-sessions-new .login-form input[type="submit"]:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+}
+
+/* ================================
+   TEXTOS PEQUEÑOS
+================================ */
+
+.users-sessions-new .login-required {
+    font-size: 15px;
+    color: #2563eb;
+    margin-top: 10px;
+}
+
+.users-sessions-new .login-security {
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.5;
+    margin-top: 10px;
+}
+
+/* ================================
+   REGISTRO
+================================ */
+
+.users-sessions-new .login-register {
+    margin-top: 20px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.users-sessions-new .login-register a {
+    color: #2563eb;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.users-sessions-new .login-register a:hover {
+    text-decoration: underline;
+}
+
+/* ================================
+   CNBV
+================================ */
+
+.users-sessions-new .login-regulation {
+    margin: 28px auto;
+    padding: 20px 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+
+    max-width: 380px;
+    width: 100%;
+
+    background: #f5f7fb;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+
+.users-sessions-new .regulation-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #e0ecff;
+    color: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.users-sessions-new .regulation-text {
+    font-size: 15px;
+    color: #374151;
+    text-align: left;
+}
+
+.users-sessions-new .regulation-text strong {
+    font-size: 17px;
+    font-weight: 700;
+    color: #2563eb;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 480px) {
+    .users-sessions-new .login-card {
+        padding: 30px 22px;
+    }
+
+    .users-sessions-new .login-subtitle {
+        font-size: 22px;
+    }
+}
+
+
+
+/* ================================
+   REGISTER V2 – M2CROWD
+   Solo /users/registrations/new
+================================ */
+
+.users-registrations-new {
+    background: #ffffff;
+}
+
+.users-registrations-new .register-v2 {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 15px;
+}
+
+.users-registrations-new .register-card {
+    background: #F5F7FA;
+    max-width: 900px;
+    width: 100%;
+    padding: 42px 38px;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .06);
+}
+
+.users-registrations-new .register-header {
+    text-align: center;
+    margin-bottom: 26px;
+}
+
+.users-registrations-new .register-welcome {
+    font-size: 22px;
+    font-weight: 600;
+    color: #0b1f3b;
+    text-transform: uppercase;
+}
+
+.users-registrations-new .register-welcome strong {
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--brand-primary);
+    margin-left: 6px;
+    display: inline-block;
+}
+
+.users-registrations-new .register-subtitle {
+    font-size: 32px;
+    font-weight: 600;
+    color: #172c50;
+    line-height: 1.05;
+    margin: 10px 0 12px;
+}
+
+.users-registrations-new .register-description {
+    font-size: 16px;
+    font-weight: 500;
+    color: #6b7280;
+    line-height: 1.6;
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.users-registrations-new .register-description strong {
+    color: #172c50;
+    font-weight: 600;
+}
+
+.users-registrations-new .register-form {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.users-registrations-new .register-form .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 18px;
+}
+
+.users-registrations-new .register-form .form-group {
+    margin-bottom: 0 !important;
+}
+
+.users-registrations-new .register-form .form-group.full {
+    grid-column: 1 / -1;
+}
+
+.users-registrations-new .register-form label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0b1f3b;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.users-registrations-new .register-form .fa-asterisk {
+    font-size: 7px;
+    vertical-align: top;
+}
+
+.users-registrations-new .register-form .form-control,
+.users-registrations-new .register-form input[type="email"],
+.users-registrations-new .register-form input[type="text"],
+.users-registrations-new .register-form input[type="password"],
+.users-registrations-new .register-form select {
+    width: 100%;
+    height: 48px;
+    border-radius: 10px;
+    border: 1px solid #dbe1ee;
+    padding: 0 14px;
+    font-size: 15px;
+    transition: all .2s ease;
+    margin-bottom: 0;
+    box-shadow: none;
+    background: #fff;
+}
+
+.users-registrations-new .register-form input::placeholder {
+    color: #9ca3af;
+}
+
+.users-registrations-new .register-form input:focus,
+.users-registrations-new .register-form select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, .15);
+}
+
+.users-registrations-new .register-form section[data-widget="select-menu"] {
+    width: 100%;
+}
+
+.users-registrations-new .register-privacy {
+    text-align: center;
+    max-width: 620px;
+    margin: 18px auto 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+}
+
+.users-registrations-new .register-privacy a {
+    color: var(--brand-primary);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.users-registrations-new .register-privacy a:hover {
+    text-decoration: underline;
+}
+
+.users-registrations-new .register-checkbox {
+    margin: 12px 0 12px;
+}
+
+.users-registrations-new .register-checkbox label {
+    display: block;
+    color: #6b7280 !important;
+    /* normal */
+    font-size: 14px;
+    font-weight: 500 !important;
+    line-height: 1.35;
+}
+
+.users-registrations-new .register-checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    vertical-align: top;
+    margin-top: 2px;
+}
+
+.users-registrations-new .register-checkbox a {
+    color: #2563eb !important;
+    font-weight: 700 !important;
+    text-decoration: none;
+}
+
+.users-registrations-new .register-checkbox a:hover {
+    text-decoration: underline;
+}
+
+.users-registrations-new .g-recaptcha,
+.users-registrations-new .recaptcha_tags,
+.users-registrations-new [id*="recaptcha"],
+.users-registrations-new .recaptcha {
+    display: block;
+    margin: 12px 0 10px;
+}
+
+.users-registrations-new .register-form #signUp,
+.users-registrations-new .register-form button[type="submit"],
+.users-registrations-new .register-form input[type="submit"],
+.users-registrations-new .register-form .btn.btn-primary {
+    width: 100%;
+    height: 64px !important;
+    border-radius: 12px !important;
+    border: none !important;
+    background: linear-gradient(90deg, #0A3A8D 0%, #1E63D5 55%, #3A8EF6 100%) !important;
+    color: #fff !important;
+    font-size: 20px !important;
+    font-weight: 800 !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+    margin: 14px 0 10px !important;
+    box-shadow: 0 16px 26px rgba(10, 58, 141, .22) !important;
+    transition: all .2s ease;
+}
+
+.users-registrations-new .register-form #signUp:hover,
+.users-registrations-new .register-form .btn.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 18px 30px rgba(10, 58, 141, .28) !important;
+}
+
+.users-registrations-new .register-required {
+    margin-top: 6px;
+    color: var(--brand-primary);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+@media (max-width: 720px) {
+    .users-registrations-new .register-card {
+        padding: 30px 22px;
+    }
+
+    .users-registrations-new .register-subtitle {
+        font-size: 30px;
+    }
+
+    .users-registrations-new .register-form .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 420px) {
+    .users-registrations-new .g-recaptcha {
+        transform: scale(.92);
+        transform-origin: top left;
+    }
+
+    .users-registrations-new .register-form #signUp,
+    .users-registrations-new .register-form .btn.btn-primary {
+        height: 58px !important;
+        font-size: 18px !important;
+    }
+}

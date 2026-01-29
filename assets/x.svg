@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1200 1200">
+  <!-- Generator: Adobe Illustrator 30.1.0, SVG Export Plug-In . SVG Version: 2.1.1 Build 136)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #fff;
+      }
+
+      .st1 {
+        fill: url(#Degradado_sin_nombre_5);
+      }
+    </style>
+    <linearGradient id="Degradado_sin_nombre_5" data-name="Degradado sin nombre 5" x1="127.2" y1="600" x2="1072.8" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f58dc"/>
+      <stop offset=".99" stop-color="#1caaff"/>
+    </linearGradient>
+  </defs>
+  <rect class="st1" x="127.2" y="127.2" width="945.59" height="945.59" rx="133.81" ry="133.81"/>
+  <g>
+    <path class="st0" d="M889.05,874.93l-226.2-328.61-25.57-37.16-161.8-235.07-13.41-19.48h-198.82l48.49,70.47,215.14,312.59,25.57,37.12,172.86,251.16,13.41,19.46h198.82l-48.49-70.47ZM762.34,900.42l-179.59-260.93-25.57-37.14-208.39-302.77h89.64l168.53,244.86,25.57,37.14,219.45,318.84h-89.64Z"/>
+    <polygon class="st0" points="557.18 602.35 582.76 639.5 552.44 674.78 319.83 945.4 262.46 945.4 526.87 637.66 557.18 602.35"/>
+    <polygon class="st0" points="913.6 254.6 662.85 546.32 632.53 581.58 606.96 544.44 637.28 509.15 807.13 311.45 856.24 254.6 913.6 254.6"/>
+  </g>
+</svg>

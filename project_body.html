@@ -1,0 +1,2015 @@
+<!-- START /partials/_project_body.html -->
+
+<!-- Tabs horizontales (nuevo) -->
+<!-- New Investment Hero Section -->
+<section class="project-invest-hero no-print">
+  <div class="container">
+    <div class="row display-flex-center">
+      <!-- Left: Hero Image -->
+      <div class="col-md-7 col-sm-12 mb-30-xs">
+        <div
+          class="project-hero-image"
+          style="background-image: url('{{ project_images[0] }}');"
+        ></div>
+      </div>
+
+      <!-- Right: Investment Card -->
+      <div class="col-md-5 col-sm-12">
+        <div class="invest-card">
+          <h2 class="invest-title">Invierte en este proyecto</h2>
+          <p class="invest-subtitle">
+            Accede a oportunidades de inversión inmobiliaria de forma segura y
+            regulada.
+          </p>
+
+          <!-- Stats Box -->
+          <div class="invest-stats-box">
+            <div class="stat-col border-right">
+              <div class="stat-highlight">
+                {{ project.percentage_raised | default: 0 | round }}%
+              </div>
+              <div class="stat-label">financiado</div>
+            </div>
+            <div class="stat-col">
+              <div class="stat-highlight">
+                {{ project.days_remaining | default: 0 }}
+              </div>
+              <div class="stat-label">días restantes</div>
+            </div>
+          </div>
+
+          <!-- Goals -->
+          <div class="invest-goals-row">
+            <div class="goal-col">
+              <div class="goal-amount">{{ project.min_goal | money }} MXN</div>
+              <div class="goal-label">Objetivo mínimo</div>
+            </div>
+            <div class="goal-col text-right">
+              <div class="goal-amount">{{ project.max_goal | money }} MXN</div>
+              <div class="goal-label">Objetivo máximo</div>
+            </div>
+          </div>
+
+          <!-- Input / CTA -->
+          <div class="invest-action-area">
+            <div class="invest-input-wrapper">
+              <span class="currency-symbol">$</span>
+              <!-- Placeholder visual only, actual logic via button -->
+              <input
+                type="number"
+                class="form-control invest-input"
+                placeholder="{{ project.min_investment | money }} MXN mínimo"
+                value=""
+                min="{{ project.min_investment }}"
+              />
+            </div>
+
+            <a
+              href="{{ project.checkout_path }}"
+              class="btn btn-invest btn-block"
+            >
+              Quiero invertir
+            </a>
+          </div>
+
+          <!-- Share -->
+          <!-- Share -->
+          <div class="invest-share-row">
+            <span class="share-label">Compartir</span>
+            <div class="share-icons">
+              <!-- X (Twitter) -->
+              <a
+                href="https://twitter.com/intent/tweet?text={{ project.title }}&url={{ project.url }}"
+                target="_blank"
+                class="share-icon-btn x-btn"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 1200 1200"
+                  width="40"
+                  height="40"
+                >
+                  <defs>
+                    <linearGradient
+                      id="grad_x"
+                      x1="127.2"
+                      y1="600"
+                      x2="1072.8"
+                      y2="600"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop offset="0" stop-color="#0f58dc" />
+                      <stop offset=".99" stop-color="#1caaff" />
+                    </linearGradient>
+                  </defs>
+                  <rect
+                    fill="url(#grad_x)"
+                    x="127.2"
+                    y="127.2"
+                    width="945.59"
+                    height="945.59"
+                    rx="133.81"
+                    ry="133.81"
+                  />
+                  <g>
+                    <path
+                      fill="#fff"
+                      d="M889.05,874.93l-226.2-328.61-25.57-37.16-161.8-235.07-13.41-19.48h-198.82l48.49,70.47,215.14,312.59,25.57,37.12,172.86,251.16,13.41,19.46h198.82l-48.49-70.47ZM762.34,900.42l-179.59-260.93-25.57-37.14-208.39-302.77h89.64l168.53,244.86,25.57,37.14,219.45,318.84h-89.64Z"
+                    />
+                    <polygon
+                      fill="#fff"
+                      points="557.18 602.35 582.76 639.5 552.44 674.78 319.83 945.4 262.46 945.4 526.87 637.66 557.18 602.35"
+                    />
+                    <polygon
+                      fill="#fff"
+                      points="913.6 254.6 662.85 546.32 632.53 581.58 606.96 544.44 637.28 509.15 807.13 311.45 856.24 254.6 913.6 254.6"
+                    />
+                  </g>
+                </svg>
+              </a>
+
+              <!-- Instagram -->
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                class="share-icon-btn ig-btn"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 1200 1200"
+                  width="40"
+                  height="40"
+                >
+                  <defs>
+                    <linearGradient
+                      id="grad_ig"
+                      x1="110.27"
+                      y1="600"
+                      x2="1055.86"
+                      y2="600"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop offset="0" stop-color="#0f58dc" />
+                      <stop offset=".99" stop-color="#1caaff" />
+                    </linearGradient>
+                  </defs>
+                  <rect
+                    fill="url(#grad_ig)"
+                    x="110.27"
+                    y="127.2"
+                    width="945.59"
+                    height="945.59"
+                    rx="133.81"
+                    ry="133.81"
+                  />
+                  <g>
+                    <path
+                      fill="#fff"
+                      d="M583.06,286.76c102.02,0,114.11.39,154.39,2.23,37.25,1.7,57.49,7.93,70.95,13.16,17.83,6.93,30.57,15.2,43.93,28.58,13.37,13.37,21.65,26.1,28.58,43.93,5.23,13.47,11.45,33.7,13.16,70.96,1.83,40.29,2.23,52.37,2.23,154.39s-.4,114.11-2.23,154.39c-1.7,37.26-7.93,57.49-13.16,70.95-6.93,17.84-15.21,30.57-28.58,43.94-13.37,13.37-26.1,21.65-43.93,28.58-13.47,5.24-33.7,11.46-70.95,13.16-40.29,1.83-52.36,2.22-154.39,2.22s-114.11-.39-154.4-2.22c-37.25-1.7-57.48-7.93-70.95-13.16-17.84-6.93-30.56-15.21-43.94-28.58-13.37-13.37-21.65-26.1-28.58-43.94-5.23-13.46-11.45-33.69-13.16-70.95-1.83-40.29-2.22-52.37-2.22-154.39s.39-114.11,2.22-154.39c1.7-37.26,7.93-57.49,13.16-70.96,6.93-17.83,15.21-30.55,28.58-43.93,13.37-13.37,26.1-21.65,43.94-28.58,13.46-5.24,33.7-11.46,70.95-13.16,40.29-1.84,52.38-2.23,154.4-2.23M583.06,217.91c-103.77,0-116.78.45-157.54,2.3-40.67,1.86-68.44,8.32-92.75,17.76-25.13,9.77-46.43,22.83-67.68,44.07-21.24,21.24-34.31,42.55-44.07,67.68-9.45,24.31-15.91,52.08-17.76,92.74-1.86,40.76-2.3,53.77-2.3,157.54s.43,116.78,2.3,157.54c1.85,40.67,8.31,68.44,17.76,92.74,9.76,25.12,22.82,46.44,44.07,67.68,21.24,21.24,42.55,34.31,67.68,44.07,24.31,9.44,52.08,15.9,92.75,17.76,40.76,1.86,53.77,2.3,157.54,2.3s116.78-.44,157.54-2.3c40.67-1.85,68.44-8.32,92.74-17.76,25.13-9.77,46.44-22.83,67.68-44.07,21.24-21.24,34.31-42.55,44.07-67.68,9.44-24.31,15.9-52.08,17.76-92.74,1.85-40.76,2.29-53.77,2.29-157.54s-.44-116.78-2.29-157.54c-1.86-40.67-8.32-68.44-17.76-92.74-9.77-25.12-22.83-46.44-44.07-67.68-21.24-21.25-42.55-34.31-67.68-44.07-24.3-9.44-52.08-15.9-92.74-17.76-40.76-1.85-53.77-2.3-157.54-2.3"
+                    />
+                    <path
+                      fill="#fff"
+                      d="M583.06,403.8c-108.36,0-196.21,87.84-196.21,196.21s87.85,196.21,196.21,196.21,196.21-87.85,196.21-196.21-87.84-196.21-196.21-196.21M583.06,727.36c-70.34,0-127.36-57.02-127.36-127.36s57.02-127.36,127.36-127.36,127.36,57.02,127.36,127.36-57.02,127.36-127.36,127.36"
+                    />
+                    <path
+                      fill="#fff"
+                      d="M832.88,396.04c0,25.32-20.53,45.86-45.85,45.86s-45.85-20.54-45.85-45.86,20.53-45.85,45.85-45.85,45.85,20.53,45.85,45.85"
+                    />
+                  </g>
+                </svg>
+              </a>
+
+              <!-- Facebook -->
+              <a
+                href="https://www.facebook.com/sharer/sharer.php?u={{ project.url }}"
+                target="_blank"
+                class="share-icon-btn fb-btn"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 1200 1200"
+                  width="40"
+                  height="40"
+                >
+                  <defs>
+                    <linearGradient
+                      id="grad_fb"
+                      x1="127.2"
+                      y1="600"
+                      x2="1072.8"
+                      y2="600"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop offset="0" stop-color="#0f58dc" />
+                      <stop offset=".99" stop-color="#1caaff" />
+                    </linearGradient>
+                  </defs>
+                  <rect
+                    fill="url(#grad_fb)"
+                    x="127.2"
+                    y="127.2"
+                    width="945.59"
+                    height="945.59"
+                    rx="133.81"
+                    ry="133.81"
+                  />
+                  <path
+                    fill="#fff"
+                    d="M527.96,885.78h115.09v-288.21h80.3l8.56-96.5h-88.86v-54.96c0-22.75,4.57-31.74,26.57-31.74h62.29v-100.15h-79.69c-85.64,0-124.26,37.72-124.26,109.91v76.94h-59.87v97.71h59.87v287Z"
+                  />
+                </svg>
+              </a>
+
+              <!-- Email -->
+              <a
+                href="mailto:?subject={{ project.title }}&body={{ project.url }}"
+                class="share-icon-btn email-btn"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 1200 1200"
+                  width="40"
+                  height="40"
+                >
+                  <defs>
+                    <linearGradient
+                      id="grad_mail"
+                      x1="127.2"
+                      y1="585.51"
+                      x2="1072.8"
+                      y2="585.51"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop offset="0" stop-color="#0f58dc" />
+                      <stop offset=".99" stop-color="#1caaff" />
+                    </linearGradient>
+                  </defs>
+                  <rect
+                    fill="url(#grad_mail)"
+                    x="127.2"
+                    y="112.72"
+                    width="945.59"
+                    height="945.59"
+                    rx="133.81"
+                    ry="133.81"
+                  />
+                  <g>
+                    <path
+                      fill="#fff"
+                      d="M923.62,321.67c7.6,0,14.8,1.77,21.21,4.9l-314.93,309.53c-10.76,10.57-28.26,10.57-39.01,0l-314.93-309.53c6.41-3.14,13.6-4.9,21.21-4.9h626.47Z"
+                    />
+                    <path
+                      fill="#fff"
+                      d="M972.02,800.96c0,26.69-21.71,48.4-48.4,48.4H297.15c-26.69,0-48.4-21.71-48.4-48.4v-430.89c0-8.51,2.22-16.51,6.09-23.46l315.66,310.24c10.71,10.53,24.88,16.32,39.89,16.32s29.18-5.8,39.89-16.32l315.66-310.24c3.87,6.96,6.09,14.95,6.09,23.46v430.89Z"
+                    />
+                  </g>
+                </svg>
+              </a>
+
+              <!-- LinkedIn -->
+              <a
+                href="https://www.linkedin.com/sharing/share-offsite/?url={{ project.url }}"
+                target="_blank"
+                class="share-icon-btn li-btn"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 1200 1200"
+                  width="40"
+                  height="40"
+                >
+                  <defs>
+                    <linearGradient
+                      id="grad_in"
+                      x1="127.2"
+                      y1="600"
+                      x2="1072.8"
+                      y2="600"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop offset="0" stop-color="#0f58dc" />
+                      <stop offset=".99" stop-color="#1caaff" />
+                    </linearGradient>
+                  </defs>
+                  <rect
+                    fill="url(#grad_in)"
+                    x="127.2"
+                    y="127.2"
+                    width="945.59"
+                    height="945.59"
+                    rx="133.81"
+                    ry="133.81"
+                  />
+                  <g>
+                    <g>
+                      <rect
+                        fill="#fff"
+                        x="302.68"
+                        y="470.24"
+                        width="127.84"
+                        height="412.99"
+                      />
+                      <path
+                        fill="#fff"
+                        d="M365.99,416.16c41.76,0,75.59-34.15,75.59-76.23s-33.84-76.2-75.59-76.2-75.59,34.12-75.59,76.2,33.83,76.23,75.59,76.23Z"
+                      />
+                    </g>
+                    <path
+                      fill="#fff"
+                      d="M634.88,666.44c0-58.06,26.72-92.65,77.89-92.65,47,0,69.6,33.2,69.6,92.65v216.79h127.24v-261.49c0-110.62-62.71-164.11-150.26-164.11s-124.46,68.24-124.46,68.24v-55.63h-122.63v412.99h122.63v-216.79Z"
+                    />
+                  </g>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Hero Section */
+  .project-invest-hero {
+    padding-top: 40px;
+    padding-bottom: 20px;
+    background: #fff;
+  }
+
+  .project-hero-image {
+    width: 100%;
+    height: 0;
+    padding-bottom: 85%;
+    /* Aspect Ratio approx */
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+  }
+
+  /* Invest Card */
+  .invest-card {
+    padding: 10px 10px 10px 30px;
+  }
+
+  .invest-title {
+    color: #0d1f40;
+    font-weight: 700;
+    font-size: 26px;
+    margin-bottom: 15px;
+    text-align: center;
+    margin-top: 0;
+  }
+
+  .invest-subtitle {
+    text-align: center;
+    color: #4b5563;
+    font-size: 15px;
+    margin-bottom: 30px;
+    line-height: 1.4;
+  }
+
+  /* Stats Box */
+  .invest-stats-box {
+    display: flex;
+    border: 1px solid #dbeafe;
+    border-radius: 16px;
+    padding: 20px 0;
+    margin-bottom: 25px;
+  }
+
+  .stat-col {
+    flex: 1;
+    text-align: center;
+    padding: 0 15px;
+  }
+
+  .stat-col.border-right {
+    border-right: 1px solid #dbeafe;
+  }
+
+  .stat-highlight {
+    color: #0099ff;
+    /* Bright Blue */
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 1.2;
+  }
+
+  .stat-label {
+    font-weight: 700;
+    color: #1f2937;
+    font-size: 16px;
+  }
+
+  /* Goals */
+  .invest-goals-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .goal-amount {
+    color: #0099ff;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .goal-label {
+    color: #000;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  /* Input & Button */
+  .invest-input-wrapper {
+    position: relative;
+    margin-bottom: 15px;
+  }
+
+  .invest-input-wrapper .currency-symbol {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    font-size: 18px;
+    color: #374151;
+    z-index: 2;
+  }
+
+  .invest-input {
+    background: #fff !important;
+    border: 1px solid #dbeafe !important;
+    border-radius: 8px !important;
+    height: 50px !important;
+    padding-left: 35px !important;
+    color: #374151 !important;
+    font-weight: 500;
+    font-size: 15px;
+    box-shadow: none !important;
+  }
+
+  .btn-invest {
+    background-color: #0077cd;
+    border-color: #0077cd;
+    border-radius: 25px;
+    color: #fff;
+    font-weight: 600;
+    padding: 12px;
+    font-size: 16px;
+    transition: all 0.2s;
+  }
+
+  .btn-invest:hover {
+    background-color: #0062aa;
+    color: #fff;
+  }
+
+  /* Share */
+  .invest-share-row {
+    margin-top: 30px;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .share-label {
+    font-weight: 600;
+    color: #374151;
+    font-size: 14px;
+  }
+
+  /* Share buttons override if needed */
+  .share-icons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .share-icon-btn svg {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.2s;
+  }
+
+  .share-icon-btn:hover svg {
+    transform: scale(1.15);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .invest-card {
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    .project-hero-image {
+      padding-bottom: 60%;
+    }
+
+    .invest-stats-box {
+      margin-bottom: 20px;
+    }
+  }
+</style>
+
+<section class="project-tabs no-print">
+  <div class="container">
+    <nav class="project-tabs__wrap" aria-label="Navegación del proyecto">
+      <a class="project-tab is-active" href="#image-section">Galería</a>
+      <a class="project-tab" href="#about">Descripción general de la oferta</a>
+
+      {% if project.direct_uploads.size >= 1 %}
+      <a class="project-tab" href="#documents">Documentos</a>
+      {% endif %} {% unless project.updates.size == 0 %}
+      <a class="project-tab" href="#update_section">Actualizaciones</a>
+      {% endunless %} {% unless all_comments.size == 0 %}
+      <a class="project-tab" href="#comment_section">Comentarios</a>
+      {% endunless %}
+    </nav>
+  </div>
+</section>
+
+<!-- Estilos embebidos para tabs y ocultar sidebar -->
+<style>
+  /* ===== Layout Cleanups ===== */
+  .project-body {
+    width: 100% !important;
+    max-width: 100% !important;
+    float: none !important;
+  }
+
+  /* ===== 3) Tabs proyecto (pill) ===== */
+  .project-tabs {
+    background: #f5f9fc;
+    padding: 22px 0;
+    margin-bottom: 0;
+    margin-top: 30px;
+    /* USER REQUEST: Margin Top */
+  }
+
+  .project-tabs__wrap {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Centered tabs */
+    gap: 14px;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .project-tab {
+    white-space: nowrap;
+    padding: 12px 18px;
+    border-radius: 12px;
+    text-decoration: none !important;
+    font-weight: 600;
+    font-size: 14px;
+    color: #6b7280;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .project-tab:hover {
+    color: #172c50;
+    background: #f3f6ff;
+    text-decoration: none !important;
+  }
+
+  .project-tab.is-active {
+    background: #0a3a8d;
+    color: #ffffff !important;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .project-tabs__wrap {
+      justify-content: flex-start;
+      padding: 10px;
+    }
+
+    .project-tab {
+      font-size: 13px;
+      padding: 10px 14px;
+    }
+  }
+</style>
+
+<div class="row project-body-row">
+  <div class="col-md-12">
+    <div class="col-md-12 col-sm-12 col-xs-12 project-body">
+      {% if project.has_video %}
+      <!-- Video -->
+      <section
+        class="pricing-1 no-print tab-content-section group-about"
+        id="video-section"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 mt50 mb50">
+              <div
+                class="video-container"
+                data-aos="fade-up"
+                data-aos-delay="150"
+              >
+                {% if project.video.provider == 'vimeo' %}
+                <div class="video-container">
+                  <iframe
+                    src="https://player.vimeo.com/video/{{ project.video.id_for_provider }}"
+                    frameborder="0"
+                    allow="fullscreen"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+                {% elsif project.video.provider == 'youtube' %}
+                <iframe
+                  src="https://www.youtube.com/embed/{{ project.video.id_for_provider }}?rel=0&autoplay=0"
+                  frameborder="0"
+                  allow="encrypted-media"
+                  allowfullscreen
+                ></iframe>
+
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {% endif %}
+
+      <section
+        class="pricing-1 no-print pt100 tab-content-section group-about"
+        id="esential-section"
+      >
+        <div class="container">
+          <!-- Commented out by user request
+                    <div class="col-md-12 text-center pb20">
+                        <h2 class="no-print">Datos de la Inversión</h2>
+                    </div>
+
+                    <div class="panel panel-primary">
+
+                        <div class="panel-body">
+                            <table class="table table-bordered table-striped table-condensed">
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Inversión minima</strong></td>
+                                        <td class="text-success"><strong>{{ project.pretty_minimum_investment
+                                                }}</strong></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><strong>Interés Total Estimado</strong></td>
+                                        <td class="text-success"><strong>{{ project.total_estimated_return }}%</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Interés Anual Estimado</strong></td>
+                                        <td class="text-success"><strong>{{ project.annual_yield }}%</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Nivel de Riesgo</strong></td>
+                                        <td>{{ project.risk_level }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Duración de Inversión</strong></td>
+                                        <td>{{ project.term_months_ }} meses</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Pago de Capital</strong></td>
+                                        <td>{{ project.principal_term_payment }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Pago de Intereses</strong></td>
+                                        <td>{{ project.interest_periodicity_payment }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    -->
+        </div>
+      </section>
+
+      <!-- Gallery -->
+      <!-- Gallery (Redesigned) -->
+      <section
+        class="pricing-1 no-print pt100 tab-content-section group-gallery"
+        id="image-section"
+      >
+        <div class="container">
+          <div class="row display-flex-center-md">
+            <!-- Left: Text Description -->
+            <div class="col-md-5 col-sm-12 text-center mb-40-xs">
+              <h2 class="gallery-title">Galeria</h2>
+              <div class="gallery-text">
+                <p>
+                  Explora la galería del proyecto y conoce su diseño,
+                  distribución y entorno. A través de estas imágenes podrás
+                  visualizar los espacios, los acabados y el avance del
+                  desarrollo en sus distintas etapas.
+                </p>
+                <p>
+                  La galería te brinda una visión clara del proyecto para que
+                  puedas evaluar su potencial y tomar decisiones de inversión de
+                  forma informada, dentro de un entorno seguro y regulado.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-md-7 col-sm-12">
+              {% if project.headline_image_urls.size > 6 %}
+              <div
+                id="gallery-carousel-isolated"
+                class="gallery-slider-custom"
+                style="display: block; width: 100%"
+              >
+                {% for image_url in project.headline_image_urls %}
+                <div class="gallery-img-wrapper">
+                  <a href="{{ image_url }}" data-lightbox="photos">
+                    <div
+                      class="gallery-img-bg"
+                      style="background-image: url('{{ image_url }}');"
+                    ></div>
+                  </a>
+                </div>
+                {% endfor %}
+              </div>
+
+              <!-- Custom Navigation Arrows (Component) -->
+              <div class="custom-carousel-nav">
+                <button class="custom-prev">
+                  <svg
+                    width="24px"
+                    height="24px"
+                    viewBox="-19.04 0 75.803 75.803"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g transform="translate(-624.082 -383.588)">
+                      <path
+                        d="M660.313,383.588a1.5,1.5,0,0,1,1.06,2.561l-33.556,33.56a2.528,2.528,0,0,0,0,3.564l33.556,33.558a1.5,1.5,0,0,1-2.121,2.121L625.7,425.394a5.527,5.527,0,0,1,0-7.807l33.556-33.559A1.5,1.5,0,0,1,660.313,383.588Z"
+                        fill="#333"
+                      />
+                    </g>
+                  </svg>
+                </button>
+                <button class="custom-next">
+                  <svg
+                    width="24px"
+                    height="24px"
+                    viewBox="-19.04 0 75.804 75.804"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g transform="translate(-831.568 -384.448)">
+                      <path
+                        d="M833.068,460.252a1.5,1.5,0,0,1-1.061-2.561l33.557-33.56a2.53,2.53,0,0,0,0-3.564l-33.557-33.558a1.5,1.5,0,0,1,2.122-2.121l33.556,33.558a5.53,5.53,0,0,1,0,7.807l-33.557,33.56A1.5,1.5,0,0,1,833.068,460.252Z"
+                        fill="#333"
+                      />
+                    </g>
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Initialize carousel inline -->
+              <script>
+                (function () {
+                  var initCarousel = function () {
+                    var carousel = jQuery("#gallery-carousel-isolated");
+                    if (
+                      typeof jQuery !== "undefined" &&
+                      jQuery.fn.owlCarousel &&
+                      carousel.length
+                    ) {
+                      // Add class dynamically to prevent auto-init
+                      carousel.addClass("owl-carousel");
+
+                      // Destroy if already initialized
+                      if (carousel.hasClass("owl-loaded")) {
+                        carousel.trigger("destroy.owl.carousel");
+                        carousel.removeClass("owl-loaded");
+                        carousel.find(".owl-stage-outer").children().unwrap();
+                      }
+
+                      carousel.owlCarousel({
+                        loop: true,
+                        margin: 20,
+                        center: false,
+                        items: 2,
+                        stagePadding: 0,
+                        nav: false,
+                        dots: true,
+                        autoplay: true,
+                        autoplayTimeout: 3000,
+                        autoplayHoverPause: true,
+                        smartSpeed: 800,
+                        responsive: {
+                          0: { items: 1, margin: 10 },
+                          768: { items: 2, margin: 20 },
+                          1200: { items: 2, margin: 30 },
+                        },
+                      });
+
+                      // Bind Custom Navigation Events
+                      jQuery(".custom-prev").click(function () {
+                        carousel.trigger("prev.owl.carousel");
+                      });
+                      jQuery(".custom-next").click(function () {
+                        carousel.trigger("next.owl.carousel");
+                      });
+                      // Trigger refresh to ensure sizes are correct
+                      setTimeout(function () {
+                        carousel.trigger("refresh.owl.carousel");
+                      }, 500);
+                    } else {
+                      setTimeout(initCarousel, 100);
+                    }
+                  };
+
+                  // Use window.load to ensure images/layout are fully ready
+                  if (document.readyState === "complete") {
+                    setTimeout(initCarousel, 100);
+                  } else {
+                    window.addEventListener("load", initCarousel);
+                  }
+                })();
+              </script>
+
+              <style>
+                /* Force width on carousel items to prevent collapse */
+                #gallery-carousel-isolated .gallery-img-wrapper {
+                  width: 100%;
+                  display: block;
+                }
+                #gallery-carousel-isolated .gallery-img-bg {
+                  width: 100%;
+                  display: block;
+                }
+
+                /* Allow arrows to sit outside */
+                #gallery-carousel-isolated {
+                  overflow: visible !important;
+                  z-index: 5;
+                  position: relative;
+                }
+
+                #gallery-carousel-isolated .owl-stage-outer {
+                  overflow: hidden !important;
+                  border-radius: 4px;
+                }
+
+                #gallery-carousel .owl-stage-outer {
+                  overflow: hidden !important; /* Keep images clipped/masked */
+                  border-radius: 4px; /* Optional rounded corners */
+                }
+
+                /* Custom Navigation Styles */
+                .custom-carousel-nav button {
+                  position: absolute;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  background: transparent; /* No background */
+                  border: none;
+                  width: 60px;
+                  height: 60px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  cursor: pointer;
+                  box-shadow: none; /* No shadow */
+                  z-index: 50;
+                  transition: all 0.3s ease;
+                  outline: none;
+                  padding: 0;
+                }
+
+                .custom-carousel-nav button:hover {
+                  transform: translateY(-50%) scale(1.1);
+                  opacity: 0.8;
+                  background: transparent;
+                }
+
+                .custom-prev {
+                  left: -30px; /* Overlap left edge */
+                }
+
+                .custom-next {
+                  right: -30px; /* Overlap right edge */
+                }
+
+                /* Mobile Adjustment */
+                @media (max-width: 768px) {
+                  .custom-carousel-nav button {
+                    width: 40px;
+                    height: 40px;
+                  }
+                  .custom-carousel-nav button svg {
+                    width: 24px;
+                    height: 24px;
+                  }
+                  .custom-prev {
+                    left: -10px;
+                  }
+                  .custom-next {
+                    right: -10px;
+                  }
+                }
+              </style>
+
+              {% else %}
+              <!-- Grid View -->
+              <div class="row">
+                {% for image_url in project.headline_image_urls limit:6 %}
+                <div class="col-xs-6 col-sm-6" style="margin-bottom: 40px">
+                  <div
+                    class="gallery-img-wrapper"
+                    style="max-width: 90%; margin: 0 auto"
+                  >
+                    <a href="{{ image_url }}" data-lightbox="photos">
+                      <div
+                        class="gallery-img-bg"
+                        style="background-image: url('{{ image_url }}');"
+                      ></div>
+                    </a>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <style>
+        /* Gallery Redesign Styles */
+        #image-section {
+          background: #fff;
+          padding-bottom: 80px;
+        }
+
+        .gallery-title {
+          font-size: 32px;
+          font-weight: 600;
+          margin-bottom: 30px;
+          color: #1f2937;
+        }
+
+        .gallery-text p {
+          font-size: 16px;
+          color: #4b5563;
+          line-height: 1.6;
+          margin-bottom: 20px;
+          text-align: center;
+          /* Centered as in the image seems centered relative to title */
+        }
+
+        .gallery-img-wrapper {
+          border-radius: 20px;
+          overflow: hidden;
+          /* For border radius masking */
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+          transition: transform 0.3s ease;
+        }
+
+        .gallery-img-wrapper:hover {
+          transform: translateY(-5px);
+        }
+
+        .gallery-img-bg {
+          width: 100%;
+          height: 0;
+          padding-bottom: 75%;
+          /* 4:3 Aspect Ratio */
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+
+        .display-flex-center-md {
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+        }
+
+        @media (max-width: 991px) {
+          .display-flex-center-md {
+            display: block;
+          }
+        }
+      </style>
+
+      <!-- About Us -->
+      <!-- About Us (Redesigned) -->
+      <section id="about" class="pt100 pb90 tab-content-section group-about">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+              <h2 class="about-topic">Acerca de</h2>
+              <h1 class="about-project-title">{{ project.title }}</h1>
+
+              <div class="about-description-wrapper">
+                <div
+                  id="new-augmented-description"
+                  class="block-content text-center"
+                >
+                  {{ project.augmented_description }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <style>
+        /* About Section Redesign */
+        .about-topic {
+          font-size: 24px;
+          /* A bit smaller than title */
+          color: #333;
+          margin-bottom: 5px;
+          margin-top: 0;
+          font-weight: 400;
+        }
+
+        .about-project-title {
+          font-size: 32px;
+          color: #0a3a8d;
+          /* Blue from previous elements */
+          font-weight: 700;
+          margin-top: 0;
+          margin-bottom: 40px;
+        }
+
+        .about-description-wrapper {
+          font-size: 16px;
+          line-height: 1.8;
+          color: #4b5563;
+        }
+
+        /* Ensure content inside description is centered if possible, 
+                   though user content might have its own formatting. 
+                   We try to enforce center alignment at the wrapper level. */
+        .block-content.text-center {
+          text-align: center;
+        }
+
+        .block-content.text-center p {
+          text-align: center;
+          margin-bottom: 20px;
+        }
+      </style>
+
+      {% unless project.use_of_proceeds == blank %}
+      <!-- Use of Proceeds -->
+      <!--
+				<section id="use_of_proceeds" class="hero-fullscreen2 pt100 pb90">
+					<div class="container">
+							<div class="row">
+								<div class="text-center">
+									<h2>{% t project.section_header.use_of_proceeds %}</h2>
+								</div>
+								<div class="block-content">
+									{{ project.augmented_use_of_proceeds }}
+								</div>
+							</div>
+					</div>
+				</section>
+				-->
+      {% endunless %} {% unless project.ownership_structure == blank %}
+      <!-- Ownership Structure -->
+      <!--
+				<section id="ownership_structure" class="hero-fullscreen2 pt100 pb90">
+					<div class="container">
+							<div class="row">
+								<div class="text-center">
+									<h2>{% t project.section_header.ownership_structure %}</h2>
+								</div>
+								<div class="block-content">
+									{{ project.augmented_ownership_structure }}
+								</div>
+							</div>
+					</div>
+				</section>
+				-->
+      {% endunless %} {% unless project.risks_disclosures == blank %}
+      <!-- Risks & Disclosures -->
+      <!--  <section id="risks_disclosures" class="hero-fullscreen2 pt100 pb90">
+					<div class="container">
+							<div class="row">
+								<div class="text-center">
+									<h2>{% t project.section_header.risks_and_disclosures %}</h2>
+								</div>
+								<div class="block-content">
+									{{ project.augmented_risks_disclosures }}
+								</div>
+							</div>
+					</div>
+				</section> -->
+      {% endunless %} {% unless project.previous_funding == blank %}
+      <!-- Previous Funding -->
+      <section
+        id="previous_funding"
+        class="hero-fullscreen2 pt100 pb90 tab-content-section group-about"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="text-center">
+              <h2>{% t project.section_header.previous_funding %}</h2>
+            </div>
+            <div class="block-content">
+              {{ project.augmented_previous_funding }}
+            </div>
+          </div>
+        </div>
+      </section>
+      {% endunless %} {% if project.direct_uploads.size >= 1 %}
+      <!-- Documents (Redesigned) -->
+      <section
+        id="documents"
+        class="pt80 pb80 no-print tab-content-section group-documents"
+        style="background: #f9fafb"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center mb-40">
+              <h2 class="doc-section-title">Documentación del proyecto</h2>
+              <p class="doc-section-subtitle">
+                Consulta la información clave antes de invertir
+              </p>
+            </div>
+          </div>
+
+          <div class="row display-flex-center-md">
+            <div class="col-md-10 col-md-offset-1">
+              <div class="row">
+                {% for upload in project.direct_uploads %}
+                <div class="col-md-6 col-sm-6 mb-30">
+                  <div class="doc-card">
+                    <div class="doc-icon">
+                      <!-- SVG PDF/File Icon -->
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 384 512"
+                        width="32"
+                        height="32"
+                      >
+                        <path
+                          fill="#0A3A8D"
+                          d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279.1 7c-4.5-4.5-10.6-7-17-7H256v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-4.2-13.1-3.9-2.7-11 .4-13.8 1.4 4.1 3.7 10.7 9.8 18 11.7z"
+                        />
+                      </svg>
+                    </div>
+                    <div class="doc-content">
+                      <h4 class="doc-title">{{ upload.name }}</h4>
+                      <p class="doc-desc">
+                        Detalles legales y condiciones de la inversión
+                      </p>
+                      <!-- Generic desc as fallback -->
+                      <a
+                        href="{{ upload.url }}"
+                        target="_blank"
+                        class="btn-doc-view"
+                      >
+                        Ver documento &rarr;
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {% endif %} {% if project.team_members.size >= 1 %}
+      <!-- Team -->
+      <section
+        id="team"
+        class="hero-fullscreen2 pt100 pb90 tab-content-section group-about"
+        data-toggle="tooltip"
+        data-placement="right"
+        data-original-title="Click and drag to move team members"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              {% assign project_title = project.title %}
+              <h2>{% t project.section_header.team with project_title %}</h2>
+              <p class="lead">{{ project.team_motto }}</p>
+              <!-- Interdisciplinary teams with <span class="color">big ideas</span>. Design and prototyping from day one.-->
+            </div>
+            {% include 'team_print' %}
+
+            <div
+              class="team-slider owl-carousel dark-pagination col-md-12 no-print"
+              autoplay="true"
+            >
+              {% for team_member in project.team_members %} {% include
+              'team_block' %} {% endfor %}
+            </div>
+          </div>
+        </div>
+      </section>
+      {% endif %} {% unless project.kpis == blank %}
+      <!-- KPIs -->
+      <section
+        id="kpis"
+        class="hero-fullscreen2 pt100 pb90 tab-content-section group-about"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="text-center">
+              <h2>{% t project.section_header.kpis %}</h2>
+            </div>
+            <div class="block-content">{{ project.augmented_kpis }}</div>
+          </div>
+        </div>
+      </section>
+      {% endunless %} {% unless project.press_mentions == blank %}
+      <!-- Press Mentions -->
+      <section
+        id="press_mentions"
+        class="hero-fullscreen2 pt100 pb90 tab-content-section group-about"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="text-center">
+              <h2>{% t project.section_header.press_mentions %}</h2>
+            </div>
+            {{ project.augmented_press_mentions }}
+          </div>
+        </div>
+      </section>
+      {% endunless %} {% unless project.advisors == blank %}
+      <!-- Advisors -->
+      <section
+        id="advisors"
+        class="hero-fullscreen2 pt100 pb90 tab-content-section group-about"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="text-center">
+              <h2>{% t project.section_header.advisors %}</h2>
+            </div>
+            <div class="block-content">{{ project.augmented_advisors }}</div>
+          </div>
+        </div>
+      </section>
+      {% endunless %} {% unless project.key_customers_partners == blank %}
+      <!-- Key Customers & Partners -->
+      <section
+        id="key_customers_partners"
+        class="hero-fullscreen2 pt100 pb90 tab-content-section group-about"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="text-center">
+              <h2>{% t project.section_header.customers_and_partners %}</h2>
+            </div>
+            <div class="block-content">
+              {{ project.augmented_key_customers_partners }}
+            </div>
+          </div>
+        </div>
+      </section>
+      {% endunless %} {% unless project.testimonials == blank %}
+      <!-- Testimonials -->
+      <section
+        id="testimonials"
+        class="hero-fullscreen2 pt100 pb90 tab-content-section group-about"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="text-center">
+              <h2>{% t project.section_header.testimonials %}</h2>
+            </div>
+            <div class="block-content">
+              {{ project.augmented_testimonials }}
+            </div>
+          </div>
+        </div>
+      </section>
+      {% endunless %}
+
+      <!--- Updates -->
+      <!--- Updates (Redesigned) -->
+      <section
+        id="update_section"
+        class="pt80 pb80 no-print tab-content-section group-updates {% if project.updates.size < 1 %}hidden{% endif %}"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <h2 class="section-title-blue">Actualizaciones</h2>
+              {% if project.updates.size == 0 %}
+              <p class="text-center mt30" style="color: #666; font-size: 16px">
+                Aún no hay actualizaciones.
+              </p>
+              {% else %}
+              <section>{% include 'project_updates' %}</section>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {% if project.show_stats == 'true' %}
+      <!-- Fun Facts -->
+      <section
+        id="fun-facts"
+        data-animate="true"
+        style="background: #000"
+        class="no-print tab-content-section group-about"
+      >
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-4 counter" data-aos="fade-up" data-aos-delay="0">
+              <h1
+                class="bold money-stat"
+                data-count="{{ project.current_funding }}"
+              ></h1>
+              <h5>Amount Funded</h5>
+            </div>
+            <div
+              class="col-sm-4 counter"
+              data-aos="fade-up"
+              data-aos-delay="150"
+            >
+              <h1
+                class="bold percent-stat"
+                data-count="{{ project.funding_progress }}"
+              ></h1>
+              <h5>Progress</h5>
+            </div>
+            <div
+              class="col-sm-4 counter"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <h1 class="bold" data-count="{{ project.supporters_count }}"></h1>
+              <h5>Investors</h5>
+            </div>
+            <!--
+										<div class="col-sm-3 counter" data-aos="fade-up" data-aos-delay="450">
+												<h1 class="bold" data-count="{{ project.time_left }}"></h1>
+												<h5>Days Left</h5>
+										</div> -->
+          </div>
+        </div>
+      </section>
+      {% endif %} {% if project.answered_questions.size > 0 %}
+      <!-- FAQ -->
+      <section
+        id="faq"
+        class="hero-fullscreen2 pt100 pb90 tab-content-section group-about"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <h2>{% t project.section_header.questions %}</h2>
+              <!-- <a href="{{ project.new_question_path }}" class="btn btn-default"><i></i> {% t project.manage.ask_question %}</a> -->
+            </div>
+            <section class="col-md-12">{% include 'project_faq' %}</section>
+          </div>
+        </div>
+      </section>
+      {% endif %} {% unless project.facebook == blank and project.twitter ==
+      blank and project.linkedin == blank and project.youtube == blank and
+      project.instagram == blank and project.google == blank and project.skype
+      == blank and project.telegram == blank %}
+      <!-- Get Connected -->
+      <section
+        id="connect"
+        class="parallax pt100 pb100 no-print tab-content-section group-about"
+        data-overlay-dark="{% if project.background_type == 'Dark'%}6{% elsif project.background_type == 'Medium' %}4{% elsif project.background_type == 'Light' %}2{% endif %}"
+      >
+        {% if project.headline_image_urls[0] %}
+        <div class="background-image project-bg">
+          <img src="{{ project.headline_image_urls[0] }}" alt="#" />
+        </div>
+        {% endif %}
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 mr-auto text-center">
+              <h2>{% t project.section_header.connect %}</h2>
+              <p class="lead">Get connected with us on social networks!</p>
+            </div>
+
+            <div class="col-md-12">
+              <ul class="connected-icons social-icons">
+                {% unless project.facebook == blank %}
+                <li class="connected-icon">
+                  <a target="_blank" href="{{ project.facebook }}">
+                    <i class="ion-social-facebook"></i>
+                    <h5>Facebook</h5>
+                    <p>Be Our Friend</p>
+                  </a>
+                </li>
+                {% endunless %} {% unless project.twitter == blank %}
+                <li class="connected-icon">
+                  <a target="_blank" href="{{ project.twitter }}">
+                    <i class="ion-social-twitter"></i>
+                    <h5>Twitter</h5>
+                    <p>Follow Us</p>
+                  </a>
+                </li>
+                {% endunless %} {% unless project.linkedin == blank %}
+                <li class="connected-icon">
+                  <a target="_blank" href="{{ project.linkedin }}">
+                    <i class="ion-social-linkedin"></i>
+                    <h5>LinkedIn</h5>
+                    <p>Connect with Us</p>
+                  </a>
+                </li>
+                {% endunless %} {% unless project.youtube == blank %}
+                <li class="connected-icon">
+                  <a target="_blank" href="{{ project.youtube }}">
+                    <i class="ion-social-youtube"></i>
+                    <h5>Youtube</h5>
+                    <p>Watch Our Videos</p>
+                  </a>
+                </li>
+                {% endunless %} {% unless project.instagram == blank %}
+                <li class="connected-icon">
+                  <a target="_blank" href="{{ project.instagram }}">
+                    <i class="ion-social-instagram"></i>
+                    <h5>Instagram</h5>
+                    <p>See Our Pictures</p>
+                  </a>
+                </li>
+                {% endunless %} {% unless project.skype == blank %}
+                <li class="connected-icon">
+                  <a target="_blank" href="{{ project.skype }}">
+                    <i class="ion-social-skype"></i>
+                    <h5>Skype</h5>
+                    <p>Get in Touch</p>
+                  </a>
+                </li>
+                {% endunless %} {% unless project.telegram == blank %}
+                <li class="connected-icon">
+                  <a target="_blank" href="{{ project.telegram }}">
+                    <i class="fa fa-telegram"></i>
+                    <h5>Telegram</h5>
+                    <p>Chat with Us</p>
+                  </a>
+                </li>
+                {% endunless %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      {% endunless %} {% unless all_comments.size > 0 %}
+      <!--- Comments (Redesigned) -->
+      <section
+        id="comment_section"
+        class="pt80 pb80 no-print tab-content-section group-comments"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+              <h2 class="section-title-blue mb-40">Comentarios</h2>
+
+              <!-- Notice Box for Non-Investors (Static representation based on image) -->
+              <div class="comment-notice-box">
+                <p>
+                  Debes ser inversionista en este proyecto para poder comentar.
+                </p>
+              </div>
+
+              <a href="#" class="btn btn-primary btn-comment-action">Enviar</a>
+
+              <section class="mt-40">
+                {% include 'project_discussion' %}
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+      {% endunless %}
+
+      <style>
+        /* Generic Section Styles */
+        .section-title-blue {
+          color: #1f2937;
+          font-size: 32px;
+          font-weight: 500;
+          margin-bottom: 20px;
+        }
+
+        /* Documents Styles */
+        .doc-section-title {
+          color: #0a3a8d;
+          font-size: 24px;
+          font-weight: 700;
+          margin-bottom: 10px;
+        }
+
+        .doc-section-subtitle {
+          color: #6b7280;
+          font-size: 14px;
+        }
+
+        .doc-card {
+          background: #fff;
+          border: 1px solid #e5e7eb;
+          border-radius: 12px;
+          padding: 20px;
+          display: flex;
+          align-items: flex-start;
+          gap: 15px;
+          transition: all 0.2s;
+          height: 100%;
+        }
+
+        .doc-card:hover {
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+          border-color: #0a3a8d;
+        }
+
+        .doc-icon svg {
+          flex-shrink: 0;
+        }
+
+        .doc-content {
+          flex: 1;
+        }
+
+        .doc-title {
+          font-size: 16px;
+          color: #0d1f40;
+          font-weight: 700;
+          margin: 0 0 5px 0;
+        }
+
+        .doc-desc {
+          font-size: 12px;
+          color: #6b7280;
+          margin-bottom: 15px;
+          line-height: 1.4;
+        }
+
+        .btn-doc-view {
+          display: inline-block;
+          background: #0077cd;
+          color: #fff !important;
+          font-size: 13px;
+          font-weight: 600;
+          padding: 8px 20px;
+          border-radius: 6px;
+          text-decoration: none;
+        }
+
+        .btn-doc-view:hover {
+          background: #0062aa;
+        }
+
+        /* Comments Styles */
+        .comment-notice-box {
+          border: 1px solid #dbeafe;
+          background: #fff;
+          border-radius: 8px;
+          padding: 20px;
+          text-align: center;
+          margin-bottom: 25px;
+        }
+
+        .comment-notice-box p {
+          color: #1f2937;
+          font-weight: 600;
+          font-size: 15px;
+          margin: 0;
+        }
+
+        .btn-comment-action {
+          background-color: #0077cd;
+          border-color: #0077cd;
+          padding: 10px 40px;
+          font-weight: 600;
+          border-radius: 8px;
+        }
+      </style>
+
+      <!-- Quotes -->
+      <!-- <section id="quotes" class="parallax pt100 pb90" data-overlay-dark="8">
+					<div class="background-image">
+							<img src="{{ 'bg-4.jpg' | asset_url }}" alt="#">
+					</div>
+					<div class="container">
+							<div class="row">
+
+									<div class="col-md-12">
+											<div class="quote-slider navigation-thin container white text-center" data-autoplay="true" data-speed="2000">
+													<div>
+															<h2>
+																	<i class="vossen-quote color"></i>
+																			They have <strong>Passion, Dedication,</strong> and Derek is the best Support Manager I've ever worked with.
+																	<i class="vossen-quote color"></i>
+															</h2>
+															<p class="label label-primary" style="color: #fff;">Test Person</p>
+													</div>
+													<div>
+															<h2>
+																	<i class="vossen-quote color"></i>
+																			They really <strong>know their shit.</strong>
+																	<i class="vossen-quote color"></i>
+															</h2>
+															<p class="label label-primary" style="color: #fff;">Test Guy</p>
+													</div>
+													<div>
+															<h2>
+																	<i class="vossen-quote color"></i>
+																			This platform made me <strong>loads of money</strong><br> and made it easy along the way.
+																	<i class="vossen-quote color"></i>
+															</h2>
+															<p class="label label-primary" style="color: #fff;">Test Dude</p>
+													</div>
+											</div>
+									</div>
+
+							</div>
+					</div>
+			</section> -->
+
+      <!-- Services -->
+      <!-- <section id="services" class="pt100 pb90">
+					<div class="container">
+							<div class="row">
+
+									<div class="col-md-12 text-center pb20" data-aos="fade-up">
+											<h2 class="">What We Do<br><strong>Our Capabilities</strong></h2>
+											<p class="lead">A highly skilled professional service with a <span class="color">creative touch</span>.</p>
+									</div>
+
+									<div class="col-md-4 col-sm-6 feature-left" data-aos="fade-up" data-aos-delay="50">
+											<i class="icon-telescope size-3x color"></i>
+											<i class="icon-telescope back-icon"></i>
+											<div class="feature-left-content">
+													<h4><strong>Graphic Design</strong><br>Crafting With Love</h4>
+													<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.</p>
+											</div>
+									</div>
+									<div class="col-md-4 col-sm-6 feature-left" data-aos="fade-up" data-aos-delay="200">
+											<i class="icon-circle-compass size-3x color"></i>
+											<i class="icon-circle-compass back-icon"></i>
+											<div class="feature-left-content">
+													<h4><strong>Modern Coding</strong><br>Crafting With Love</h4>
+													<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.</p>
+											</div>
+									</div>
+									<div class="col-md-4 col-sm-6 feature-left" data-aos="fade-up" data-aos-delay="350">
+											<i class="icon-genius size-3x color"></i>
+											<i class="icon-genius back-icon"></i>
+											<div class="feature-left-content">
+													<h4><strong>Web Optimization</strong><br>Lightning Fast</h4>
+													<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.</p>
+											</div>
+									</div>
+
+									<div class="col-md-4 col-sm-6 feature-left" data-aos="fade-up" data-aos-delay="750">
+											<i class="icon-layers size-3x color"></i>
+											<i class="icon-layers back-icon"></i>
+											<div class="feature-left-content">
+													<h4><strong>Brand Indentity</strong><br>Making a New You</h4>
+													<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.</p>
+											</div>
+									</div>
+									<div class="col-md-4 col-sm-6 feature-left" data-aos="fade-up" data-aos-delay="600">
+											<i class="icon-gears size-3x color"></i>
+											<i class="icon-gears back-icon"></i>
+											<div class="feature-left-content">
+													<h4><strong>24/7 Free Support</strong><br>Free Support</h4>
+													<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.</p>
+											</div>
+									</div>
+									<div class="col-md-4 col-sm-6 feature-left" data-aos="fade-up" data-aos-delay="450">
+											<i class="icon-globe size-3x color"></i>
+											<i class="icon-globe back-icon"></i>
+											<div class="feature-left-content">
+													<h4><strong>Having Fun</strong><br>Office Surfing</h4>
+													<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.</p>
+											</div>
+									</div>
+
+							</div>
+					</div>
+			</section> -->
+
+      <!-- Testimonials -->
+      <!-- <section id="testimonials" class="parallax pt100 pb90" data-overlay-dark="9">
+					<div class="background-image">
+							<img src="{{ 'bg-6.jpg' | asset_url }}" alt="#">
+					</div>
+					<div class="container" data-aos="fade-up">
+							<div class="row">
+
+									<div class="col-md-12 text-center pb20">
+											<h2>What Clients<br><strong>Say About Us</strong></h2>
+									</div>
+
+									<div class="col-md-12 text-center">
+
+											<div class="testimonials quote-icons" data-autoplay="false" data-speed="4000">
+
+													<!-- Testimonial One
+													<div>
+															<p>
+																	<i class="vossen-quote color"></i>
+																	This guys are amazing! They were so quick to respond and let me tell you, they are all knowing!<br><span class="color">I highly recommend</span> their themes! They are all about making their clients happy!
+																	<i class="vossen-quote color"></i>
+															</p>
+															<h5><strong>Jack Westbrook</strong></h5>
+															<p class="occupation">Product Designer</p>
+													</div>
+													<!-- Testimonial Two
+													<div>
+															<p>
+																	<i class="vossen-quote color"></i>
+																	I have purchased tens of templates from ThemeForest and this one is undoubtedly the best<br>I ever tried. <span class="color">Easy to edit,</span> nicely coded. You guys, you did a great job here!
+																	<i class="vossen-quote color"></i>
+															</p>
+															<h5><strong>Lindsay Swanson</strong></h5>
+															<p class="occupation">Web Designer</p>
+													</div>
+													<!-- Testimonial Three
+													<div>
+															<p>
+																	<i class="vossen-quote color"></i>
+																	This is one of the best themes that I bought on ThemeForest. It is well documented and <br>well coded but the best of all is the <span class="color">friendly and quick support</span> behind.
+																	<i class="vossen-quote color"></i>
+															</p>
+															<h5><strong>Jared Jackson</strong></h5>
+															<p class="occupation">UX Designer</p>
+													</div>
+
+											</div>
+
+									</div>
+
+							</div>
+					</div>
+			</section> -->
+
+      <!-- Clients -->
+      <!-- <section class="pt70 pb70">
+					<div class="container">
+							<div class="row">
+									<div class="clients-slider" data-autoplay="true" data-speed="4000">
+											<div><img src="{{ 'CE_Logo2copy.png' | asset_url }}" class=" " alt="#"></div>
+											<div><img src="{{ 'ominex-logo-email.png' | asset_url }}" class="img-responsive" alt="#"></div>
+											<div><img src="{{ 'ominex-logo-email.png' | asset_url }}" class="img-responsive" alt="#"></div>
+									</div>
+
+							</div>
+					</div>
+			</section> -->
+
+      <!-- Contact Info -->
+      <!-- <section class="parallax pt110 pb70" data-overlay-dark="8">
+					<div class="background-image">
+							<img src="{{ 'bg-8.jpg' | asset_url }}" alt="#">
+					</div>
+					<div class="container">
+							<div class="row">
+
+									<div class="col-md-12 details white text-center">
+											<div class="phone-number mb10">
+													<h1 class="bold">48-1516-2342</h1>
+											</div>
+											<div class="col-lg-12">
+													<h3>hello@<span class="color">domain.com</span></h3>
+													<h4>124 Central West, Manhattan, <span class="color">New York</span></h4>
+											</div>
+									</div>
+
+							</div>
+					</div>
+			</section>-->
+
+      <!-- Contact Form -->
+      <!-- <section id="contact" class="pt120 pb100">
+					<div class="container">
+							<div class="row">
+
+									<div class="col-md-12 text-center pb20" data-aos="fade-up">
+											<h2>Get In Touch<br><strong>Contact Us</strong></h2>
+											<p class="lead">We would like to <span class="color">hear from you</span></p>
+									</div>
+
+									<div class="col-md-8 col-md-offset-2 contact box-style" data-aos="fade-up" data-aos-delay="150">
+											<div id="message-info"></div>
+											<!-- Forms can be functional only on server. Upload to your server when testing.
+												{% form_for message %}
+												{% if form_errors %}
+													<div class='alert alert-danger'>
+														<h3>{% t simple_form.error_notification.default_message %}</h3>
+														<ul>
+															{% for error in form_errors %}
+																<li>{{ error }}</li>
+															{% endfor %}
+														</ul>
+														<div class="clear"></div>
+													</div>
+												{% endif %}
+												<div class='form-group {% if form.errors contains "name" %}has-error{% endif %}'>
+													<div class="col-sm-12">
+															<input id='message_name' name="message[name]" id="name" value='{% if message.name != nil %}{{ message.name }}{% else %}{{ current_user.name }}{% endif %}' class='form-control' placeholder="{% t page.contact.form.name %} *"/>
+													</div>
+												</div>
+												<div class='form-group {% if form.errors contains "email" %}has-error{% endif %}'>
+													<div class="col-sm-6">
+															<input id='message_email' name="message[email]" id="email" value='{% if message.email != nil %}{{ message.email }}{% else %}{{ current_user.email }}{% endif %}' class='form-control' placeholder="{% t page.contact.form.email %} *"/>
+													</div>
+												</div>
+												<div class='form-group'>
+													<div class="col-sm-6">
+															<input id='message_subject' name="message[subject]" value='{{ message.subject }}' class='form-control' placeholder='{% t page.contact.form.message_subject %}' />
+													</div>
+												</div>
+												<div class='form-group'>
+													<div class="col-sm-12">
+															<textarea name="message[body]" rows="9" id="message" placeholder="{% t page.contact.form.message %} *">{{ message.body }}</textarea>
+													</div>
+												</div>
+												<div class='form-group'>
+													<div class="col-md-12">
+															<input name="commit" type="submit" class="submit btn btn-lg btn-primary" id="submit" value="{% t page.contact.form.submit %}"/>
+													</div>
+												</div>
+												{% endform_for %}
+									</div>
+
+							</div>
+					</div>
+			</section> -->
+
+      <!-- Google Map -->
+      <!-- {% unless project.location == blank %}
+				<section
+						id="vossen-map"
+						data-map-address="{{ project.location }}"
+						data-marker-info="Come visit us today!<br>{{ project.location }}"
+						data-maps-api-key="AIzaSyBD3JE1T5ssqLMdfRgR1bErpuWNBtIMHbI"
+						data-map-zoom="16"
+						data-map-height="500px"
+						data-map-style="light">
+				</section>
+			{% endunless %} -->
+
+      <!-- Callout -->
+      <!-- <section class="parallax light bg-img-9" data-overlay-light="9">
+					<div class="background-image">
+							<img src="{{ 'bg-5.jpg' | asset_url }}" alt="#">
+					</div>
+					<div class="container pt100 pb100">
+							<div class="row pt20">
+
+									<div class="col-md-12 text-center">
+											<h2>Ready to <span class="bold">Kickstart</span> Your Project</h2>
+											<p class="lead">Use {{ site.name }} to help <span class="color">raise</span> funds!</p>
+											<a href="/projects/new" target="_blank" class="btn btn-md btn-primary btn-appear mt30"><span>Create a Campaign <i class="ion-checkmark"></i></span></a>
+									</div>
+
+							</div>
+					</div>
+			</section> -->
+    </div>
+  </div>
+</div>
+
+<script>
+     // ===== Pill Tabs: Active State Tracking =====
+     $(function () {
+         const $tabs = $('.project-tabs__wrap .project-tab');
+         const $allSections = $('.tab-content-section');
+
+         // Mapa de href -> clase de grupo
+         const tabGroups = {
+             '#image-section': '.group-gallery',
+             '#about': '.group-about',
+             '#documents': '.group-documents',
+             '#update_section': '.group-updates',
+             '#comment_section': '.group-comments'
+         };
+
+         function activateTab(hash) {
+             // Normalizar hash (default a #about)
+             let target = hash;
+             // Si el hash no está en nuestro mapa, default a #about
+             // (salvo que quieras que links externos naveguen normal, pero aquí es SPA-like)
+             if (!tabGroups[target]) {
+                 target = '#about';
+             }
+
+             // 1. Update Tabs Active State
+             $tabs.removeClass('is-active');
+             $tabs.filter(`[href="${target}"]`).addClass('is-active');
+
+             // 2. Show/Hide Sections
+             const groupClass = tabGroups[target];
+
+             // Ocultamos todas
+             $allSections.hide();
+
+             // Mostramos el grupo activo
+             if (groupClass) {
+                 $(groupClass).fadeIn(300, function() {
+                     // Check if we are switching to the gallery and refresh carousel
+                     if (target === '#image-section') {
+                         var $carousel = $('#gallery-carousel');
+                         if ($carousel.length && typeof $carousel.trigger === 'function') {
+                             // Slight delay to ensure layout is painted
+                             setTimeout(function() {
+                                 $carousel.trigger('refresh.owl.carousel');
+                                 // Force trigger resize event as backup
+                                 window.dispatchEvent(new Event('resize'));
+                             }, 100);
+                         }
+                     }
+                 });
+             }
+         }
+
+         // Click Handler
+         $tabs.on('click', function (e) {
+             e.preventDefault();
+             const href = $(this).attr('href');
+             if (href && href.startsWith('#')) {
+                 activateTab(href);
+                 // Actualizar URL
+                 history.replaceState(null, '', href);
+             }
+         });
+
+         // Init on Load
+         let currentHash = location.hash;
+         if (!currentHash) {
+             currentHash = '#image-section';
+         }
+         activateTab(currentHash);
+     });
+
+     $(function () {
+         $('.team-slider').owlCarousel({
+             dots: true,
+             margin: 10,
+             autoplayTimeout: 3000,
+             autoplayHoverPause: true,
+             responsiveRefreshRate: 200,
+             responsive: {
+  			{% if project.team_members.size > 1 %}
+  				// breakpoint from 0 up
+  				0 : {
+         items: 1,
+         autoplay: true,
+         loop: true,
+         mouseDrag: true,
+         touchDrag: true,
+     },
+         // breakpoint from 480 up
+         480 : {
+         items: {{ 2 | at_most: project.team_members.size }},
+         autoplay: true,
+         loop: true,
+         mouseDrag: true,
+         touchDrag: true,
+  				},
+         // breakpoint from 768 up
+         768 : {
+         items: {{ 3 | at_most: project.team_members.size }},
+         autoplay: true,
+         loop: true,
+         mouseDrag: true,
+         touchDrag: true,
+  				},
+         // breakpoint from 1500 up
+         1500 : {
+         items: {{ 4 | at_most: project.team_members.size }},
+         autoplay: true,
+         loop: true,
+         mouseDrag: true,
+         touchDrag: true,
+  				}
+         {% else %}
+         // breakpoint from 0 up
+         0 : {
+         items: 2,
+         autoplay: true,
+         loop: true,
+         mouseDrag: true,
+         touchDrag: true,
+     }
+  			{% endif %}
+  		}
+  	});
+  });
+</script>
+<!-- END /partials/_project_body.html -->

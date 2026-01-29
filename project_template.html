@@ -1,0 +1,64 @@
+<!-- START /layouts/project.html -->
+{% assign project_images = project.headline_image_urls | reverse %} {% assign
+project_image = project_images | reverse %} {% if project.is_test? %} {% include
+'test_project_notification' %} {% endif %}
+
+<style>
+  {
+          {
+          project.custom_css
+      }
+  }
+</style>
+
+{% if available.project_layout_templates contains template.name %} {{
+template.content }} {% else %} {% authorize view_manage project %}
+<span class="manage-btn">
+  {% if project.template.is_social_sharing_enabled %}
+  <a class="btn btn-default" id="EmbedBtn" data-popup-open="EmbedModal" href="#"
+    ><i class="fa fa-code" aria-hidden="true"></i> Embed</a
+  >
+  {% endif %}
+  <a href="{{  project.id }}/edit" class="btn edit-btn no-print"
+    >Edit Offering</a
+  >
+  <a href="{{ project.new_project_manage_project_url }}" class="btn no-print"
+    >{% t project.menu.manage %}</a
+  >
+  <a href="#" id="UpdateBtn" class="btn no-print">New Update</a>
+</span>
+{% else %}
+<div class="follow-button-container">
+  {% capture following %}{{ current_user | follows: project }}{% endcapture %}
+  <a
+    {%
+    if
+    user_signed_in
+    %}
+    href="{{ project.followers_path }}"
+    {%
+    else
+    %}
+    href="/users/sign_in?redirect_to={{ project.followers_path }}"
+    {%
+    endif
+    %}
+    {%
+    if
+    following=""
+    ="true"
+    %}
+    data-method="delete"
+    class="follow-me"
+  >
+    <i class="fa fa-star"></i>
+    {% else %} data-method='post' class='follow-me'>
+    <i class="fa fa-star-o"></i>
+    {% endif %}
+  </a>
+</div>
+{% endauthorize %} {% include 'project_body' %} {% endif %} {% unless
+user_signed_in %} {% include 'sign_in_project'%} {% endunless %} {% include
+'embed_project' %} {% include 'profile_selector_modal' %}
+
+<!-- END /layouts/project.html -->
