@@ -1,0 +1,496 @@
+<!-- START /partials/_signup_email.html -->
+
+<style>
+  .users-registrations-new .register-form label {
+    color: #172c50 !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .users-registrations-new .register-form input::placeholder,
+  .users-registrations-new .register-form select::placeholder {
+    color: #9ca3af !important;
+  }
+
+  .users-registrations-new .register-footer {
+    margin-top: 14px;
+    text-align: center;
+    color: #6b7280;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .users-registrations-new .register-footer a {
+    color: #2563eb;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .users-registrations-new .register-footer a:hover {
+    text-decoration: underline;
+  }
+
+  .users-registrations-new .register-checkbox label {
+    color: #6b7280 !important;
+    /* texto normal en gris */
+    font-weight: 500 !important;
+  }
+
+  .users-registrations-new .register-checkbox a {
+    color: #2563eb !important;
+    /* links en azul */
+    font-weight: 700 !important;
+    text-decoration: none;
+  }
+
+  .users-registrations-new .register-checkbox a:hover {
+    text-decoration: underline;
+  }
+
+  .users-registrations-new .login-regulation {
+    margin: 16px auto 10px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    max-width: 380px;
+    width: 100%;
+    background: #f5f7fb;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+  }
+
+  .users-registrations-new .regulation-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #e0ecff;
+    color: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+  }
+
+  .users-registrations-new .regulation-text {
+    font-size: 15px;
+    color: #374151;
+    text-align: left;
+    line-height: 1.2;
+  }
+
+  .users-registrations-new .regulation-text strong {
+    font-size: 17px;
+    font-weight: 800;
+    color: #2563eb;
+  }
+
+  /* Password Toggle Styles */
+  .password-input-wrapper {
+    position: relative;
+    width: 100%;
+  }
+  .password-toggle-icon {
+    position: absolute;
+    right: 15px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 21px;
+    cursor: pointer;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+  }
+  #user_password_signup,
+  #user_password_signup_confirm {
+    padding-right: 40px;
+  }
+</style>
+
+<div>
+  {% form_for new_user %} {% include 'form_errors' %}
+
+  <div class="form-grid">
+    <div class="form-group">
+      <label>Nombres <i class="fa fa-asterisk text-danger"></i></label>
+      <input
+        type="text"
+        class="form-control"
+        name="user[first_name]"
+        value="{{ user_first_name }}"
+        placeholder="Ej. Juan Carlos"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Apellidos <i class="fa fa-asterisk text-danger"></i></label>
+      <input
+        type="text"
+        class="form-control"
+        name="user[last_name]"
+        value="{{ user_last_name }}"
+        placeholder="Ej. Pérez López"
+      />
+    </div>
+
+    <div class="form-group">
+      <label
+        >Correo electrónico <i class="fa fa-asterisk text-danger"></i
+      ></label>
+      <input
+        type="email"
+        class="form-control"
+        name="user[email]"
+        value="{{ user_email }}"
+        placeholder="ejemplo@correo.com"
+      />
+    </div>
+
+    <div class="form-group">
+      <label
+        >Confirmar correo electrónico <i class="fa fa-asterisk text-danger"></i
+      ></label>
+      <input
+        type="email"
+        class="form-control"
+        name="user[email_confirmation]"
+        placeholder="ejemplo@correo.com"
+      />
+      <div id="ea-feedback" class="text-danger"></div>
+    </div>
+
+    <div class="form-group full">
+      <label>Contraseña <i class="fa fa-asterisk text-danger"></i></label>
+      <div class="password-input-wrapper">
+        <input
+          type="password"
+          class="form-control"
+          id="user_password_signup"
+          name="user[password]"
+          placeholder="••••••••"
+        />
+        <span id="toggleSignupPassword" class="password-toggle-icon">
+          <!-- Show Password Icon (Eye) -->
+          <span class="icon-eye">
+            <svg
+              width="21"
+              height="21"
+              viewBox="0 0 21 21"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <mask
+                id="mask0_1375_1707"
+                style="mask-type: alpha"
+                maskUnits="userSpaceOnUse"
+                x="0"
+                y="0"
+                width="21"
+                height="21"
+              >
+                <rect
+                  x="0.943359"
+                  y="0.216797"
+                  width="20"
+                  height="20"
+                  fill="#9CA3AF"
+                />
+              </mask>
+              <g mask="url(#mask0_1375_1707)">
+                <path
+                  d="M10.943 13.55C11.9847 13.55 12.8701 13.1855 13.5993 12.4563C14.3285 11.7271 14.693 10.8417 14.693 9.80005C14.693 8.75838 14.3285 7.87297 13.5993 7.1438C12.8701 6.41463 11.9847 6.05005 10.943 6.05005C9.90137 6.05005 9.01595 6.41463 8.28678 7.1438C7.55762 7.87297 7.19303 8.75838 7.19303 9.80005C7.19303 10.8417 7.55762 11.7271 8.28678 12.4563C9.01595 13.1855 9.90137 13.55 10.943 13.55ZM10.943 12.05C10.318 12.05 9.78678 11.8313 9.34928 11.3938C8.91178 10.9563 8.69303 10.425 8.69303 9.80005C8.69303 9.17505 8.91178 8.6438 9.34928 8.2063C9.78678 7.7688 10.318 7.55005 10.943 7.55005C11.568 7.55005 12.0993 7.7688 12.5368 8.2063C12.9743 8.6438 13.193 9.17505 13.193 9.80005C13.193 10.425 12.9743 10.9563 12.5368 11.3938C12.0993 11.8313 11.568 12.05 10.943 12.05ZM10.943 16.05C8.91526 16.05 7.06803 15.4841 5.40137 14.3521C3.7347 13.2202 2.52637 11.7028 1.77637 9.80005C2.52637 7.89727 3.7347 6.37991 5.40137 5.24797C7.06803 4.11602 8.91526 3.55005 10.943 3.55005C12.9708 3.55005 14.818 4.11602 16.4847 5.24797C18.1514 6.37991 19.3597 7.89727 20.1097 9.80005C19.3597 11.7028 18.1514 13.2202 16.4847 14.3521C14.818 15.4841 12.9708 16.05 10.943 16.05ZM10.943 14.3834C12.5125 14.3834 13.9535 13.9702 15.266 13.1438C16.5785 12.3174 17.5819 11.2028 18.2764 9.80005C17.5819 8.39727 16.5785 7.28269 15.266 6.4563C13.9535 5.62991 12.5125 5.21672 10.943 5.21672C9.37359 5.21672 7.93262 5.62991 6.62012 6.4563C5.30762 7.28269 4.30415 8.39727 3.6097 9.80005C4.30415 11.2028 5.30762 12.3174 6.62012 13.1438C7.93262 13.9702 9.37359 14.3834 10.943 14.3834Z"
+                  fill="#9CA3AF"
+                />
+              </g>
+            </svg>
+          </span>
+          <!-- Hide Password Icon (Visibility Off) -->
+          <span class="icon-eye-off" style="display: none">
+            <svg
+              width="20"
+              height="21"
+              viewBox="0 0 20 21"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <mask
+                id="mask0_1166_2224"
+                style="mask-type: alpha"
+                maskUnits="userSpaceOnUse"
+                x="0"
+                y="0"
+                width="20"
+                height="21"
+              >
+                <rect y="0.5" width="20" height="20" fill="#D9D9D9" />
+              </mask>
+              <g mask="url(#mask0_1166_2224)">
+                <path
+                  d="M13.4163 11.5833L12.208 10.3749C12.333 9.72214 12.1455 9.11103 11.6455 8.54159C11.1455 7.97214 10.4997 7.74992 9.70801 7.87492L8.49967 6.66659C8.73579 6.55547 8.97537 6.47214 9.21842 6.41659C9.46148 6.36103 9.7219 6.33325 9.99967 6.33325C11.0413 6.33325 11.9268 6.69784 12.6559 7.427C13.3851 8.15617 13.7497 9.04159 13.7497 10.0833C13.7497 10.361 13.7219 10.6214 13.6663 10.8645C13.6108 11.1076 13.5275 11.3471 13.4163 11.5833ZM16.083 14.2083L14.8747 13.0416C15.4025 12.6388 15.8712 12.1978 16.2809 11.7187C16.6906 11.2395 17.0413 10.6944 17.333 10.0833C16.6386 8.68047 15.642 7.56589 14.3434 6.7395C13.0448 5.91311 11.5969 5.49992 9.99967 5.49992C9.5969 5.49992 9.20106 5.5277 8.81217 5.58325C8.42329 5.63881 8.04134 5.72214 7.66634 5.83325L6.37467 4.54159C6.94412 4.30547 7.52745 4.12839 8.12467 4.01034C8.7219 3.89228 9.3469 3.83325 9.99967 3.83325C12.0969 3.83325 13.965 4.41311 15.6038 5.57284C17.2427 6.73256 18.4302 8.23603 19.1663 10.0833C18.8469 10.9027 18.4268 11.6631 17.9059 12.3645C17.3851 13.0659 16.7775 13.6805 16.083 14.2083ZM16.4997 19.3333L12.9997 15.8749C12.5136 16.0277 12.024 16.1423 11.5309 16.2187C11.0379 16.2951 10.5275 16.3333 9.99967 16.3333C7.90245 16.3333 6.0344 15.7534 4.39551 14.5937C2.75662 13.4339 1.56912 11.9305 0.833008 10.0833C1.12467 9.34714 1.49273 8.66311 1.93717 8.03117C2.38162 7.39922 2.88856 6.83325 3.45801 6.33325L1.16634 3.99992L2.33301 2.83325L17.6663 18.1666L16.4997 19.3333ZM4.62467 7.49992C4.2219 7.86103 3.85384 8.25686 3.52051 8.68742C3.18717 9.11797 2.90245 9.58325 2.66634 10.0833C3.36079 11.486 4.35731 12.6006 5.65592 13.427C6.95454 14.2534 8.40245 14.6666 9.99967 14.6666C10.2775 14.6666 10.5483 14.6492 10.8122 14.6145C11.0761 14.5798 11.3469 14.5416 11.6247 14.4999L10.8747 13.7083C10.7219 13.7499 10.5761 13.7812 10.4372 13.802C10.2983 13.8228 10.1525 13.8333 9.99967 13.8333C8.95801 13.8333 8.07259 13.4687 7.34342 12.7395C6.61426 12.0103 6.24967 11.1249 6.24967 10.0833C6.24967 9.93047 6.26009 9.78464 6.28092 9.64575C6.30176 9.50686 6.33301 9.36103 6.37467 9.20825L4.62467 7.49992Z"
+                  fill="#9CA3AF"
+                />
+              </g>
+            </svg>
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group full">
+      <label
+        >Confirmar contraseña <i class="fa fa-asterisk text-danger"></i
+      ></label>
+      <div class="password-input-wrapper">
+        <input
+          type="password"
+          class="form-control"
+          id="user_password_signup_confirm"
+          name="user[password_confirm]"
+          placeholder="••••••••"
+        />
+        <span id="toggleSignupPasswordConfirm" class="password-toggle-icon">
+          <!-- Show Password Icon (Eye) -->
+          <span class="icon-eye">
+            <svg
+              width="21"
+              height="21"
+              viewBox="0 0 21 21"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <mask
+                id="mask0_1375_1707"
+                style="mask-type: alpha"
+                maskUnits="userSpaceOnUse"
+                x="0"
+                y="0"
+                width="21"
+                height="21"
+              >
+                <rect
+                  x="0.943359"
+                  y="0.216797"
+                  width="20"
+                  height="20"
+                  fill="#9CA3AF"
+                />
+              </mask>
+              <g mask="url(#mask0_1375_1707)">
+                <path
+                  d="M10.943 13.55C11.9847 13.55 12.8701 13.1855 13.5993 12.4563C14.3285 11.7271 14.693 10.8417 14.693 9.80005C14.693 8.75838 14.3285 7.87297 13.5993 7.1438C12.8701 6.41463 11.9847 6.05005 10.943 6.05005C9.90137 6.05005 9.01595 6.41463 8.28678 7.1438C7.55762 7.87297 7.19303 8.75838 7.19303 9.80005C7.19303 10.8417 7.55762 11.7271 8.28678 12.4563C9.01595 13.1855 9.90137 13.55 10.943 13.55ZM10.943 12.05C10.318 12.05 9.78678 11.8313 9.34928 11.3938C8.91178 10.9563 8.69303 10.425 8.69303 9.80005C8.69303 9.17505 8.91178 8.6438 9.34928 8.2063C9.78678 7.7688 10.318 7.55005 10.943 7.55005C11.568 7.55005 12.0993 7.7688 12.5368 8.2063C12.9743 8.6438 13.193 9.17505 13.193 9.80005C13.193 10.425 12.9743 10.9563 12.5368 11.3938C12.0993 11.8313 11.568 12.05 10.943 12.05ZM10.943 16.05C8.91526 16.05 7.06803 15.4841 5.40137 14.3521C3.7347 13.2202 2.52637 11.7028 1.77637 9.80005C2.52637 7.89727 3.7347 6.37991 5.40137 5.24797C7.06803 4.11602 8.91526 3.55005 10.943 3.55005C12.9708 3.55005 14.818 4.11602 16.4847 5.24797C18.1514 6.37991 19.3597 7.89727 20.1097 9.80005C19.3597 11.7028 18.1514 13.2202 16.4847 14.3521C14.818 15.4841 12.9708 16.05 10.943 16.05ZM10.943 14.3834C12.5125 14.3834 13.9535 13.9702 15.266 13.1438C16.5785 12.3174 17.5819 11.2028 18.2764 9.80005C17.5819 8.39727 16.5785 7.28269 15.266 6.4563C13.9535 5.62991 12.5125 5.21672 10.943 5.21672C9.37359 5.21672 7.93262 5.62991 6.62012 6.4563C5.30762 7.28269 4.30415 8.39727 3.6097 9.80005C4.30415 11.2028 5.30762 12.3174 6.62012 13.1438C7.93262 13.9702 9.37359 14.3834 10.943 14.3834Z"
+                  fill="#9CA3AF"
+                />
+              </g>
+            </svg>
+          </span>
+          <!-- Hide Password Icon (Visibility Off) -->
+          <span class="icon-eye-off" style="display: none">
+            <svg
+              width="20"
+              height="21"
+              viewBox="0 0 20 21"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <mask
+                id="mask0_1166_2224"
+                style="mask-type: alpha"
+                maskUnits="userSpaceOnUse"
+                x="0"
+                y="0"
+                width="20"
+                height="21"
+              >
+                <rect y="0.5" width="20" height="20" fill="#D9D9D9" />
+              </mask>
+              <g mask="url(#mask0_1166_2224)">
+                <path
+                  d="M13.4163 11.5833L12.208 10.3749C12.333 9.72214 12.1455 9.11103 11.6455 8.54159C11.1455 7.97214 10.4997 7.74992 9.70801 7.87492L8.49967 6.66659C8.73579 6.55547 8.97537 6.47214 9.21842 6.41659C9.46148 6.36103 9.7219 6.33325 9.99967 6.33325C11.0413 6.33325 11.9268 6.69784 12.6559 7.427C13.3851 8.15617 13.7497 9.04159 13.7497 10.0833C13.7497 10.361 13.7219 10.6214 13.6663 10.8645C13.6108 11.1076 13.5275 11.3471 13.4163 11.5833ZM16.083 14.2083L14.8747 13.0416C15.4025 12.6388 15.8712 12.1978 16.2809 11.7187C16.6906 11.2395 17.0413 10.6944 17.333 10.0833C16.6386 8.68047 15.642 7.56589 14.3434 6.7395C13.0448 5.91311 11.5969 5.49992 9.99967 5.49992C9.5969 5.49992 9.20106 5.5277 8.81217 5.58325C8.42329 5.63881 8.04134 5.72214 7.66634 5.83325L6.37467 4.54159C6.94412 4.30547 7.52745 4.12839 8.12467 4.01034C8.7219 3.89228 9.3469 3.83325 9.99967 3.83325C12.0969 3.83325 13.965 4.41311 15.6038 5.57284C17.2427 6.73256 18.4302 8.23603 19.1663 10.0833C18.8469 10.9027 18.4268 11.6631 17.9059 12.3645C17.3851 13.0659 16.7775 13.6805 16.083 14.2083ZM16.4997 19.3333L12.9997 15.8749C12.5136 16.0277 12.024 16.1423 11.5309 16.2187C11.0379 16.2951 10.5275 16.3333 9.99967 16.3333C7.90245 16.3333 6.0344 15.7534 4.39551 14.5937C2.75662 13.4339 1.56912 11.9305 0.833008 10.0833C1.12467 9.34714 1.49273 8.66311 1.93717 8.03117C2.38162 7.39922 2.88856 6.83325 3.45801 6.33325L1.16634 3.99992L2.33301 2.83325L17.6663 18.1666L16.4997 19.3333ZM4.62467 7.49992C4.2219 7.86103 3.85384 8.25686 3.52051 8.68742C3.18717 9.11797 2.90245 9.58325 2.66634 10.0833C3.36079 11.486 4.35731 12.6006 5.65592 13.427C6.95454 14.2534 8.40245 14.6666 9.99967 14.6666C10.2775 14.6666 10.5483 14.6492 10.8122 14.6145C11.0761 14.5798 11.3469 14.5416 11.6247 14.4999L10.8747 13.7083C10.7219 13.7499 10.5761 13.7812 10.4372 13.802C10.2983 13.8228 10.1525 13.8333 9.99967 13.8333C8.95801 13.8333 8.07259 13.4687 7.34342 12.7395C6.61426 12.0103 6.24967 11.1249 6.24967 10.0833C6.24967 9.93047 6.26009 9.78464 6.28092 9.64575C6.30176 9.50686 6.33301 9.36103 6.37467 9.20825L4.62467 7.49992Z"
+                  fill="#9CA3AF"
+                />
+              </g>
+            </svg>
+          </span>
+        </span>
+      </div>
+      <span id="pw_confirmation" class="text-danger"></span>
+    </div>
+
+    {% if site.require_country_on_signup %}
+    <div class="form-group full">
+      <label>País <i class="fa fa-asterisk text-danger"></i></label>
+
+      <section data-widget="select-menu">
+        {% capture select_country %}Seleccione un país{% endcapture %} {% assign
+        element_id = 'user_country_signup' %} {% assign element_name =
+        'user[country]' %} {% assign element_options = available.countries %} {%
+        if user_country and user_country != '' %} {% assign selected_value =
+        user_country %} {% else %} {% assign selected_value = 'Mexico' %} {%
+        endif %} {% assign initial_value = select_country %} {% include
+        'dropdown' %}
+      </section>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="checkbox register-checkbox">
+    <label>
+      <input
+        type="checkbox"
+        id="terms_checkbox"
+        name="user[agreed_to_site_terms]"
+      />
+      Acepto recibir comunicaciones electrónicas relativas a mi actividad en
+      este portal y acepto las
+      <a href="https://m2crowd.com/aviso-de-privacidad/" target="_blank"
+        >Condiciones de uso</a
+      >
+      &amp;
+      <a href="https://m2crowd.com/aviso-de-privacidad/" target="_blank"
+        >Política de privacidad</a
+      >*
+    </label>
+  </div>
+
+  <div class="register-required">
+    <i class="fa fa-asterisk text-danger"></i> Campos requeridos
+  </div>
+
+  {% if site.has_recaptcha %} {{ recaptcha_tags }} {% endif %}
+
+  <button type="submit" id="signUp" class="btn btn-primary" disabled>
+    Continuar
+  </button>
+
+  <div class="register-footer">
+    ¿Ya tienes cuenta?
+    <a href="/users/sign_in">Inicia sesión</a>
+  </div>
+
+  <div
+    class="login-regulation"
+    style="background: transparent; box-shadow: none; padding: 0"
+  >
+    <svg
+      id="Capa_1"
+      xmlns="http://www.w3.org/2000/svg"
+      version="1.1"
+      viewBox="0 0 1366 768"
+      style="width: 100%; max-width: 300px"
+    >
+      <defs>
+        <style>
+          .st0 {
+            font-family: Montserrat-SemiBold, Montserrat;
+            font-size: 120.17px;
+            font-weight: 600;
+          }
+          .st0,
+          .st1 {
+            fill: #002d85;
+          }
+          .st2 {
+            fill: #fff;
+          }
+          .st3 {
+            font-family: Montserrat-Medium, Montserrat;
+            font-size: 65.63px;
+            font-weight: 500;
+          }
+        </style>
+      </defs>
+      <g>
+        <path
+          class="st1"
+          d="M252,563.41c-58.3-23.17-131.64-56.18-148.97-121.34-16.13-60.64-2.28-130.37-9.25-197.73,95.37-51.32,203.69-54.6,301.87-5.56,6.62,169.41,35.51,247.49-143.66,324.63ZM154.03,384.9l71.24,68.12,110.6-110.03c.98-11.06-19.56-34.12-26.64-27.69l-84.09,81.02-44.63-36.28-26.47,24.86Z"
+        />
+        <path
+          class="st2"
+          d="M154.03,384.9l26.47-24.86,44.63,36.28,84.09-81.02c7.09-6.43,27.63,16.62,26.64,27.69l-110.6,110.03-71.24-68.12Z"
+        />
+      </g>
+      <text class="st3" transform="translate(466.01 343.13)">
+        <tspan x="0" y="0">Plataforma regulada por</tspan>
+      </text>
+      <text class="st0" transform="translate(694.66 468.11)">
+        <tspan x="0" y="0">CNBV</tspan>
+      </text>
+    </svg>
+  </div>
+
+  {% endform_for %}
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const password = document.getElementById("user_password_signup");
+    const confirm = document.getElementById("user_password_signup_confirm");
+    const feedback = document.getElementById("pw_confirmation");
+    const submit = document.getElementById("signUp");
+    const terms = document.getElementById("terms_checkbox");
+
+    function validate() {
+      const passwordsFilled = password.value && confirm.value;
+      const passwordsMatch = password.value === confirm.value;
+      const termsAccepted = terms.checked;
+
+      if (!passwordsFilled) {
+        feedback.textContent = "";
+      } else if (!passwordsMatch) {
+        feedback.textContent = "Las contraseñas no coinciden";
+      } else {
+        feedback.textContent = "";
+      }
+
+      submit.disabled = !(passwordsFilled && passwordsMatch && termsAccepted);
+    }
+
+    password.addEventListener("input", validate);
+    confirm.addEventListener("input", validate);
+    terms.addEventListener("change", validate);
+
+    validate();
+
+    // Password Toggle Logic
+    const togglePassword = document.getElementById("toggleSignupPassword");
+    if (togglePassword) {
+      togglePassword.addEventListener("click", function () {
+        const iconEye = this.querySelector(".icon-eye");
+        const iconEyeOff = this.querySelector(".icon-eye-off");
+        if (password.type === "password") {
+          password.type = "text";
+          iconEye.style.display = "none";
+          iconEyeOff.style.display = "block";
+        } else {
+          password.type = "password";
+          iconEye.style.display = "block";
+          iconEyeOff.style.display = "none";
+        }
+      });
+    }
+
+    const togglePasswordConfirm = document.getElementById(
+      "toggleSignupPasswordConfirm",
+    );
+    if (togglePasswordConfirm) {
+      togglePasswordConfirm.addEventListener("click", function () {
+        const iconEye = this.querySelector(".icon-eye");
+        const iconEyeOff = this.querySelector(".icon-eye-off");
+        if (confirm.type === "password") {
+          confirm.type = "text";
+          iconEye.style.display = "none";
+          iconEyeOff.style.display = "block";
+        } else {
+          confirm.type = "password";
+          iconEye.style.display = "block";
+          iconEyeOff.style.display = "none";
+        }
+      });
+    }
+  });
+</script>
+
+<!-- END /partials/_signup_email.html -->

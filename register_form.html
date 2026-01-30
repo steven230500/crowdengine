@@ -1,0 +1,216 @@
+<!-- START /partials/_register_form.html -->
+<div class="container-fluid">
+  <div class="col-md-4 col-md-offset-4" id="splashCreate">
+    <div class="well">
+      <h3 class="text-center">{% t user.signup.headings.new %}</h3>
+      {% form_for new_user %} {% include 'form_errors' %}
+      <div class="form-group">
+        <label for="exampleInputEmail1">{% t global.form.first_name %}:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="user_first_name"
+          name="user[first_name]"
+          value="{{ user_first_name }}"
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1"
+          >{% t global.form.last_name %}:</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="user_last_name"
+          name="user[last_name]"
+          value="{{ user_last_name }}"
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">{% t global.form.email %}:</label>
+        <input
+          type="email"
+          class="form-control"
+          id="user_email_signup"
+          name="user[email]"
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1"
+          >{% t global.form.confirm_email %}:</label
+        >
+        <input
+          type="email"
+          class="form-control"
+          id="user_email_confirmation"
+          name="user[email_confirmation]"
+          value="{{ user_email }}"
+        />
+        <div id="ea-feedback" class="text-danger"></div>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">{% t global.form.password %}:</label>
+        <div class="password-input-wrapper">
+          <input
+            type="password"
+            class="form-control"
+            id="user_password_signup"
+            name="user[password]"
+          />
+          <span id="toggleRegisterPassword" class="password-toggle-icon">
+            <!-- Show Password Icon (Eye) -->
+            <span class="icon-eye">
+              <svg
+                width="21"
+                height="21"
+                viewBox="0 0 21 21"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <mask
+                  id="mask0_1375_1707"
+                  style="mask-type: alpha"
+                  maskUnits="userSpaceOnUse"
+                  x="0"
+                  y="0"
+                  width="21"
+                  height="21"
+                >
+                  <rect
+                    x="0.943359"
+                    y="0.216797"
+                    width="20"
+                    height="20"
+                    fill="#9CA3AF"
+                  />
+                </mask>
+                <g mask="url(#mask0_1375_1707)">
+                  <path
+                    d="M10.943 13.55C11.9847 13.55 12.8701 13.1855 13.5993 12.4563C14.3285 11.7271 14.693 10.8417 14.693 9.80005C14.693 8.75838 14.3285 7.87297 13.5993 7.1438C12.8701 6.41463 11.9847 6.05005 10.943 6.05005C9.90137 6.05005 9.01595 6.41463 8.28678 7.1438C7.55762 7.87297 7.19303 8.75838 7.19303 9.80005C7.19303 10.8417 7.55762 11.7271 8.28678 12.4563C9.01595 13.1855 9.90137 13.55 10.943 13.55ZM10.943 12.05C10.318 12.05 9.78678 11.8313 9.34928 11.3938C8.91178 10.9563 8.69303 10.425 8.69303 9.80005C8.69303 9.17505 8.91178 8.6438 9.34928 8.2063C9.78678 7.7688 10.318 7.55005 10.943 7.55005C11.568 7.55005 12.0993 7.7688 12.5368 8.2063C12.9743 8.6438 13.193 9.17505 13.193 9.80005C13.193 10.425 12.9743 10.9563 12.5368 11.3938C12.0993 11.8313 11.568 12.05 10.943 12.05ZM10.943 16.05C8.91526 16.05 7.06803 15.4841 5.40137 14.3521C3.7347 13.2202 2.52637 11.7028 1.77637 9.80005C2.52637 7.89727 3.7347 6.37991 5.40137 5.24797C7.06803 4.11602 8.91526 3.55005 10.943 3.55005C12.9708 3.55005 14.818 4.11602 16.4847 5.24797C18.1514 6.37991 19.3597 7.89727 20.1097 9.80005C19.3597 11.7028 18.1514 13.2202 16.4847 14.3521C14.818 15.4841 12.9708 16.05 10.943 16.05ZM10.943 14.3834C12.5125 14.3834 13.9535 13.9702 15.266 13.1438C16.5785 12.3174 17.5819 11.2028 18.2764 9.80005C17.5819 8.39727 16.5785 7.28269 15.266 6.4563C13.9535 5.62991 12.5125 5.21672 10.943 5.21672C9.37359 5.21672 7.93262 5.62991 6.62012 6.4563C5.30762 7.28269 4.30415 8.39727 3.6097 9.80005C4.30415 11.2028 5.30762 12.3174 6.62012 13.1438C7.93262 13.9702 9.37359 14.3834 10.943 14.3834Z"
+                    fill="#9CA3AF"
+                  />
+                </g>
+              </svg>
+            </span>
+            <!-- Hide Password Icon (Visibility Off) -->
+            <span class="icon-eye-off" style="display: none">
+              <svg
+                width="20"
+                height="21"
+                viewBox="0 0 20 21"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <mask
+                  id="mask0_1166_2224"
+                  style="mask-type: alpha"
+                  maskUnits="userSpaceOnUse"
+                  x="0"
+                  y="0"
+                  width="20"
+                  height="21"
+                >
+                  <rect y="0.5" width="20" height="20" fill="#D9D9D9" />
+                </mask>
+                <g mask="url(#mask0_1166_2224)">
+                  <path
+                    d="M13.4163 11.5833L12.208 10.3749C12.333 9.72214 12.1455 9.11103 11.6455 8.54159C11.1455 7.97214 10.4997 7.74992 9.70801 7.87492L8.49967 6.66659C8.73579 6.55547 8.97537 6.47214 9.21842 6.41659C9.46148 6.36103 9.7219 6.33325 9.99967 6.33325C11.0413 6.33325 11.9268 6.69784 12.6559 7.427C13.3851 8.15617 13.7497 9.04159 13.7497 10.0833C13.7497 10.361 13.7219 10.6214 13.6663 10.8645C13.6108 11.1076 13.5275 11.3471 13.4163 11.5833ZM16.083 14.2083L14.8747 13.0416C15.4025 12.6388 15.8712 12.1978 16.2809 11.7187C16.6906 11.2395 17.0413 10.6944 17.333 10.0833C16.6386 8.68047 15.642 7.56589 14.3434 6.7395C13.0448 5.91311 11.5969 5.49992 9.99967 5.49992C9.5969 5.49992 9.20106 5.5277 8.81217 5.58325C8.42329 5.63881 8.04134 5.72214 7.66634 5.83325L6.37467 4.54159C6.94412 4.30547 7.52745 4.12839 8.12467 4.01034C8.7219 3.89228 9.3469 3.83325 9.99967 3.83325C12.0969 3.83325 13.965 4.41311 15.6038 5.57284C17.2427 6.73256 18.4302 8.23603 19.1663 10.0833C18.8469 10.9027 18.4268 11.6631 17.9059 12.3645C17.3851 13.0659 16.7775 13.6805 16.083 14.2083ZM16.4997 19.3333L12.9997 15.8749C12.5136 16.0277 12.024 16.1423 11.5309 16.2187C11.0379 16.2951 10.5275 16.3333 9.99967 16.3333C7.90245 16.3333 6.0344 15.7534 4.39551 14.5937C2.75662 13.4339 1.56912 11.9305 0.833008 10.0833C1.12467 9.34714 1.49273 8.66311 1.93717 8.03117C2.38162 7.39922 2.88856 6.83325 3.45801 6.33325L1.16634 3.99992L2.33301 2.83325L17.6663 18.1666L16.4997 19.3333ZM4.62467 7.49992C4.2219 7.86103 3.85384 8.25686 3.52051 8.68742C3.18717 9.11797 2.90245 9.58325 2.66634 10.0833C3.36079 11.486 4.35731 12.6006 5.65592 13.427C6.95454 14.2534 8.40245 14.6666 9.99967 14.6666C10.2775 14.6666 10.5483 14.6492 10.8122 14.6145C11.0761 14.5798 11.3469 14.5416 11.6247 14.4999L10.8747 13.7083C10.7219 13.7499 10.5761 13.7812 10.4372 13.802C10.2983 13.8228 10.1525 13.8333 9.99967 13.8333C8.95801 13.8333 8.07259 13.4687 7.34342 12.7395C6.61426 12.0103 6.24967 11.1249 6.24967 10.0833C6.24967 9.93047 6.26009 9.78464 6.28092 9.64575C6.30176 9.50686 6.33301 9.36103 6.37467 9.20825L4.62467 7.49992Z"
+                    fill="#9CA3AF"
+                  />
+                </g>
+              </svg>
+            </span>
+          </span>
+        </div>
+        <div id="pw-feedback" class="text-danger"></div>
+      </div>
+      {% if site.require_country_on_signup %}
+      <div
+        class="form-group {% if form.errors contains &quot;country&quot; %}has-error{% endif %}"
+      >
+        <label class="control-label"
+          >{% t global.form.country %}<i class="fa fa-asterisk text-danger"></i
+        ></label>
+        <section
+          class="column column-10-10 is-widget"
+          data-widget="select-menu"
+        >
+          {% capture select_country %}{% t global.form.country_select %}{%
+          endcapture %} {% assign element_id = 'user_country_signup' %} {%
+          assign element_name = 'user[country]' %} {% assign element_options =
+          available.countries %} {% assign selected_value = user_country %} {%
+          assign initial_value = select_country %}
+          <input
+            type="hidden"
+            id="profile_country_selected"
+            value="{{ profile.country }}"
+          />
+          {% include 'dropdown' %}
+        </section>
+      </div>
+      {% endif %}
+      <div class="checkbox">
+        <label>
+          {% capture terms_path %}{% if site.custom_terms_url == '' %}{{
+          site.terms_path }}{% else %}{{ site.custom_terms_url }}{% endif %}{%
+          endcapture %} {% capture privacy_path %}{% if site.custom_privacy_url
+          == '' %}{{ site.privacy_path }}{% else %}{{ site.custom_privacy_url
+          }}{% endif %}{% endcapture %}
+          <input
+            type="checkbox"
+            id="user_agreed_to_site_terms"
+            name="user[agreed_to_site_terms]"
+          />{% t page.registration.agreement_equity_html with terms_path and
+          privacy_path %}<i class="fa fa-asterisk text-danger"></i>
+        </label>
+      </div>
+      <button type="submit" id="signUp" class="btn btn-primary btn-lg">
+        {% t global.links.sign_up %}
+      </button>
+      {% endform_for %}
+    </div>
+  </div>
+</div>
+<!-- END /partials/_register_form.html -->
+
+<style>
+  .password-input-wrapper {
+    position: relative;
+    width: 100%;
+  }
+  .password-toggle-icon {
+    position: absolute;
+    right: 15px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 21px;
+    cursor: pointer;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+  }
+  #user_password_signup {
+    padding-right: 40px;
+  }
+</style>
+
+<script>
+  $(document).ready(function () {
+    $("#toggleRegisterPassword").click(function () {
+      var input = $("#user_password_signup");
+      var iconEye = $(this).find(".icon-eye");
+      var iconEyeOff = $(this).find(".icon-eye-off");
+
+      if (input.attr("type") === "password") {
+        input.attr("type", "text");
+        iconEye.hide();
+        iconEyeOff.show();
+      } else {
+        input.attr("type", "password");
+        iconEye.show();
+        iconEyeOff.hide();
+      }
+    });
+  });
+</script>

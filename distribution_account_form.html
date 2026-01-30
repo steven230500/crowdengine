@@ -1,0 +1,150 @@
+<!-- START /partials/_distribution_account_form.html -->
+<div class="distribution-account-form">
+  <div
+    class="form-group top-spacing {% if form.errors contains &quot;account number&quot; %}has-error{% endif %}"
+  >
+    <label class="control-label"
+      >{% t user.profile.distribution_account.account_number %}</label
+    >
+    <input
+      type="number"
+      id="distribution_account_account_number"
+      name="distribution_account[account_number]"
+      value="{{ distribution_account.account_number }}"
+      class="form-control"
+      placeholder="{% t user.profile.distribution_account.placeholder.account_number %}"
+    />
+  </div>
+
+  <div
+    class="form-group top-spacing {% if form.errors contains &quot;confirm account number&quot; %}has-error{% endif %}"
+  >
+    <label class="control-label"
+      >{% t global.form.confirm_account_number %}</label
+    >
+    <input
+      type="number"
+      id="distribution_account_confirm_account_number"
+      name="distribution_account[confirm_account_number]"
+      class="form-control"
+      placeholder="{% t global.form.placeholder.confirm_account_number %}"
+    />
+    <p class="help-block">
+      {% t user.profile.distribution_account.help.confirm_account_number %}
+    </p>
+  </div>
+
+  <div
+    class="form-group top-spacing {% if form.errors contains &quot;routing number&quot; %}has-error{% endif %}"
+  >
+    <label class="control-label"
+      >{% t user.profile.distribution_account.routing_number %}</label
+    >
+    <input
+      type="text"
+      id="distribution_account_routing_number"
+      name="distribution_account[routing_number]"
+      value="{{ distribution_account.routing_number }}"
+      class="form-control"
+      placeholder="{% t user.profile.distribution_account.placeholder.routing_number %}"
+    />
+  </div>
+
+  <div
+    class="form-group top-spacing {% if form.errors contains &quot;owner name&quot; %}has-error{% endif %}"
+  >
+    <label class="control-label"
+      >{% t user.profile.distribution_account.owner_name %}</label
+    >
+    <input
+      type="text"
+      id="distribution_account_owner_name"
+      name="distribution_account[owner_name]"
+      value="{{ distribution_account.owner_name }}"
+      class="form-control"
+      placeholder="{% t user.profile.distribution_account.placeholder.owner_name %}"
+    />
+  </div>
+
+  <div class="form-group hidden">
+    <label class="control-label"
+      >{% t user.profile.distribution_account.account_type %}</label
+    >
+    <div class="radio">
+      <label>
+        <input
+          type="radio"
+          name="distribution_account[account_type]"
+          value="checking"
+        />
+        {% t user.profile.distribution_account.account_types.checking %}
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input
+          type="radio"
+          name="distribution_account[account_type]"
+          value="savings"
+          checked="checked"
+        />
+        {% t user.profile.distribution_account.account_types.savings %}
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group hidden">
+    <label class="control-label"
+      >{% t user.profile.distribution_account.owner_type %}</label
+    >
+
+    <div class="radio">
+      <label>
+        <input
+          type="radio"
+          name="distribution_account[owner_type]"
+          value="personal"
+          checked="checked"
+        />
+        {% t user.profile.distribution_account.owner_types.personal %}
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input
+          type="radio"
+          name="distribution_account[owner_type]"
+          value="business"
+        />
+        {% t user.profile.distribution_account.owner_types.business %}
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group hidden">
+    <div class="checkbox">
+      <label>
+        <input
+          type="checkbox"
+          name="distribution_account[use_for_payments]"
+          value="true"
+          checked
+        />
+        {% t user.profile.distribution_account.use_for_payments %}
+      </label>
+      <p class="help-block">
+        {% t user.profile.distribution_account.help.use_for_payments %}
+      </p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input
+      name="submit"
+      type="submit"
+      value="{% t global.button.submit %}"
+      class="btn btn-primary"
+    />
+  </div>
+</div>
+<!-- END /partials/_distribution_account_form.html -->
