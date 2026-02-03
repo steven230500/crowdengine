@@ -1,0 +1,20 @@
+<!-- START /distribution_accounts/edit.html -->
+
+<div class="container distribution-account-edit pt100">
+  <div class="row">
+    <!-- Header removed as requested -->
+  </div>
+  <div class="col-md-12">
+    <div>
+      {% form_for distribution_account in profile %} {% capture form_object
+      %}distribution_account{% endcapture %}
+
+      <!-- Redundant required field text removed -->
+
+      {% include 'form_errors' %} {% include 'distribution_account_form' %} {%
+      endform_for %}
+    </div>
+  </div>
+</div>
+
+<!-- END /distribution_accounts/edit.html -->

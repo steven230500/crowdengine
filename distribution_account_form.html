@@ -1,150 +1,450 @@
 <!-- START /partials/_distribution_account_form.html -->
-<div class="distribution-account-form">
-  <div
-    class="form-group top-spacing {% if form.errors contains &quot;account number&quot; %}has-error{% endif %}"
-  >
-    <label class="control-label"
-      >{% t user.profile.distribution_account.account_number %}</label
-    >
-    <input
-      type="number"
-      id="distribution_account_account_number"
-      name="distribution_account[account_number]"
-      value="{{ distribution_account.account_number }}"
-      class="form-control"
-      placeholder="{% t user.profile.distribution_account.placeholder.account_number %}"
-    />
-  </div>
+<style>
+  /* Global Resets & Fonts for this component */
+  .distribution-account-container * {
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+  }
 
-  <div
-    class="form-group top-spacing {% if form.errors contains &quot;confirm account number&quot; %}has-error{% endif %}"
-  >
-    <label class="control-label"
-      >{% t global.form.confirm_account_number %}</label
-    >
-    <input
-      type="number"
-      id="distribution_account_confirm_account_number"
-      name="distribution_account[confirm_account_number]"
-      class="form-control"
-      placeholder="{% t global.form.placeholder.confirm_account_number %}"
-    />
-    <p class="help-block">
-      {% t user.profile.distribution_account.help.confirm_account_number %}
-    </p>
-  </div>
+  body {
+    background-color: white; /* Page background */
+  }
 
-  <div
-    class="form-group top-spacing {% if form.errors contains &quot;routing number&quot; %}has-error{% endif %}"
-  >
-    <label class="control-label"
-      >{% t user.profile.distribution_account.routing_number %}</label
-    >
-    <input
-      type="text"
-      id="distribution_account_routing_number"
-      name="distribution_account[routing_number]"
-      value="{{ distribution_account.routing_number }}"
-      class="form-control"
-      placeholder="{% t user.profile.distribution_account.placeholder.routing_number %}"
-    />
-  </div>
+  .distribution-account-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+    text-align: center;
+  }
 
-  <div
-    class="form-group top-spacing {% if form.errors contains &quot;owner name&quot; %}has-error{% endif %}"
-  >
-    <label class="control-label"
-      >{% t user.profile.distribution_account.owner_name %}</label
-    >
-    <input
-      type="text"
-      id="distribution_account_owner_name"
-      name="distribution_account[owner_name]"
-      value="{{ distribution_account.owner_name }}"
-      class="form-control"
-      placeholder="{% t user.profile.distribution_account.placeholder.owner_name %}"
-    />
-  </div>
+  /* Outer Card styling */
+  .da-outer-card {
+    background-color: #fcf7ff; /* Outer card color */
+    border-radius: 30px;
+    padding: 40px 30px;
+    box-shadow: 0 20px 60px rgba(220, 220, 255, 0.2);
+  }
 
-  <div class="form-group hidden">
-    <label class="control-label"
-      >{% t user.profile.distribution_account.account_type %}</label
-    >
-    <div class="radio">
-      <label>
+  /* Headings */
+  .da-main-title {
+    color: #1a1b41;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  .da-subtitle {
+    color: #7a7a9d;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 30px;
+  }
+
+  /* Inner Card (The Form) */
+  .da-inner-card {
+    background-color: #fefaff; /* Inner card color */
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(220, 220, 255, 0.5);
+    border: 1px solid #f0f0f5;
+    text-align: left;
+  }
+
+  /* Required Text */
+  .da-required-note {
+    font-size: 14px;
+    color: #7a7a9d;
+    margin-bottom: 25px;
+  }
+  .da-text-blue {
+    color: #3b82f6;
+  }
+  .da-text-red {
+    color: #ef4444;
+  }
+
+  /* Section Title */
+  .da-section-title {
+    color: #1a1b41;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  /* Form Groups */
+  .da-form-group {
+    margin-bottom: 25px;
+  }
+
+  .da-label {
+    display: block;
+    color: #1a1b41;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  /* Input Wrapper - Contains Border now */
+  .da-input-wrapper {
+    display: flex;
+    align-items: stretch; /* Ensure children stretch to full height */
+    background-color: #fcfcfd;
+    border: 1px solid #dce2f0;
+    border-radius: 8px;
+    overflow: hidden; /* Clip children to radius */
+    transition:
+      box-shadow 0.2s,
+      border-color 0.2s;
+    height: 40px; /* Explicit height to fix "too tall" issue */
+  }
+
+  .da-input-wrapper:focus-within {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+
+  .da-input-icon {
+    width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eef2ff;
+    color: #6366f1;
+    border-right: 1px solid #dbeafe;
+    flex-shrink: 0;
+  }
+
+  .da-input-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: #7c8db5;
+  }
+
+  .da-form-control {
+    width: 100%;
+    padding: 0 16px; /* No vertical padding, height controlled by wrapper */
+    font-size: 15px;
+    color: #4b5563;
+    background-color: transparent; /* Transparent background */
+    border: none; /* No border on input */
+    outline: none;
+    height: 100%; /* Fill the wrapper height */
+    line-height: normal; /* Ensure text centers reasonably well */
+  }
+
+  .da-form-control:focus {
+    /* Focus styles handled by wrapper :focus-within */
+    box-shadow: none;
+  }
+
+  select.da-form-control {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 16px;
+  }
+
+  /* Error State needs to target wrapper now */
+  .has-error .da-input-wrapper {
+    border-color: #ef4444;
+  }
+
+  .has-error .da-form-control {
+    border-color: transparent; /* Reset input border */
+  }
+
+  /* Helper text */
+  .da-help-text {
+    display: block;
+    margin-top: 6px;
+    font-size: 13px;
+    color: #6b7280;
+  }
+
+  /* Button */
+  .da-submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(90deg, #1d4ed8 0%, #3b82f6 100%);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    transition: transform 0.1s;
+    margin-top: 20px;
+  }
+
+  .da-submit-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+  }
+
+  .da-submit-btn:active {
+    transform: translateY(1px);
+  }
+
+  /* Secure Footer */
+  .da-secure-footer {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    color: #6b7280;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .da-secure-icon {
+    width: 16px;
+    height: 16px;
+    fill: #9ca3af;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .has-error .da-form-control {
+    border-color: #ef4444;
+  }
+
+  .has-error .da-label {
+    color: #ef4444;
+  }
+</style>
+
+<div class="distribution-account-container">
+  <div class="da-outer-card">
+    <!-- Start Outer Card -->
+
+    <h1 class="da-main-title">Añadir cuenta de distribución</h1>
+    <p class="da-subtitle">Datos bancarios para recibir tus rendimientos</p>
+
+    <div class="da-inner-card distribution-account-form">
+      <!-- Start Inner Card -->
+
+      <div class="da-required-note">
+        <span class="da-text-blue">*</span> Campos obligatorios marcados con
+        <span class="da-text-red">*</span>
+      </div>
+
+      <div class="da-section-title">Información de la cuenta</div>
+
+      <!-- CLABE (Account Number) -->
+      <div
+        class="da-form-group {% if form.errors contains 'account number' %}has-error{% endif %}"
+      >
+        <label class="da-label">
+          CLABE interbancaria <span class="da-text-red">*</span>
+        </label>
+        <div class="da-input-wrapper">
+          <div class="da-input-icon">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm19-12l-9.5-5L2 10h19z"
+              />
+            </svg>
+          </div>
+          <input
+            type="number"
+            id="distribution_account_account_number"
+            name="distribution_account[account_number]"
+            value="{{ distribution_account.account_number }}"
+            class="da-form-control"
+            placeholder="Ingresa tu CLABE de 18 dígitos"
+          />
+        </div>
+        <span class="da-help-text">(Solo números, sin espacios)</span>
+      </div>
+
+      <!-- Confirm CLABE -->
+      <div
+        class="da-form-group {% if form.errors contains 'confirm account number' %}has-error{% endif %}"
+      >
+        <label class="da-label">
+          Confirmar CLABE interbancaria <span class="da-text-red">*</span>
+        </label>
+        <div class="da-input-wrapper">
+          <div class="da-input-icon">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm19-12l-9.5-5L2 10h19z"
+              />
+            </svg>
+          </div>
+          <input
+            type="number"
+            id="distribution_account_confirm_account_number"
+            name="distribution_account[confirm_account_number]"
+            class="da-form-control"
+            placeholder="Vuelve a ingresar tu CLABE"
+          />
+        </div>
+        <span class="da-help-text"
+          >Vuelve a introducir tu CLABE para confirmar.</span
+        >
+        {% if form.errors contains 'confirm account number' %}
+        <p class="help-block da-text-red">
+          {% t user.profile.distribution_account.help.confirm_account_number %}
+        </p>
+        {% endif %}
+      </div>
+
+      <!-- Owner Name -->
+      <div
+        class="da-form-group {% if form.errors contains 'owner name' %}has-error{% endif %}"
+      >
+        <label class="da-label">
+          Nombre completo del titular <span class="da-text-red">*</span>
+        </label>
+        <div class="da-input-wrapper">
+          <div class="da-input-icon">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+              />
+            </svg>
+          </div>
+          <input
+            type="text"
+            id="distribution_account_owner_name"
+            name="distribution_account[owner_name]"
+            value="{{ distribution_account.owner_name }}"
+            class="da-form-control"
+            placeholder="Nombre completo tal como aparece en el banco"
+          />
+        </div>
+      </div>
+
+      <!-- Bank / Routing Number -->
+      <div
+        class="da-form-group {% if form.errors contains 'routing number' %}has-error{% endif %}"
+      >
+        <label class="da-label">
+          Banco <span class="da-text-red">*</span>
+        </label>
+        <div class="da-input-wrapper">
+          <div class="da-input-icon">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm19-12l-9.5-5L2 10h19z"
+              />
+            </svg>
+          </div>
+          <input
+            type="text"
+            id="distribution_account_routing_number"
+            name="distribution_account[routing_number]"
+            value="{{ distribution_account.routing_number }}"
+            class="da-form-control"
+            placeholder="Selecciona tu banco (Ej. BBVA, Santander...)"
+          />
+        </div>
+        <span class="da-help-text"
+          >(Ej. BBVA, Santander, Banorte, Citibanamex, etc.)</span
+        >
+      </div>
+
+      <!-- Hidden Fields -->
+      <div class="form-group hidden">
+        <label class="control-label"
+          >{% t user.profile.distribution_account.account_type %}</label
+        >
+        <div class="radio">
+          <label>
+            <input
+              type="radio"
+              name="distribution_account[account_type]"
+              value="checking"
+            />
+            {% t user.profile.distribution_account.account_types.checking %}
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input
+              type="radio"
+              name="distribution_account[account_type]"
+              value="savings"
+              checked="checked"
+            />
+            {% t user.profile.distribution_account.account_types.savings %}
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group hidden">
+        <label class="control-label"
+          >{% t user.profile.distribution_account.owner_type %}</label
+        >
+        <div class="radio">
+          <label>
+            <input
+              type="radio"
+              name="distribution_account[owner_type]"
+              value="personal"
+              checked="checked"
+            />
+            {% t user.profile.distribution_account.owner_types.personal %}
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input
+              type="radio"
+              name="distribution_account[owner_type]"
+              value="business"
+            />
+            {% t user.profile.distribution_account.owner_types.business %}
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group hidden">
+        <div class="checkbox">
+          <label>
+            <input
+              type="checkbox"
+              name="distribution_account[use_for_payments]"
+              value="true"
+              checked
+            />
+            {% t user.profile.distribution_account.use_for_payments %}
+          </label>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="form-group">
         <input
-          type="radio"
-          name="distribution_account[account_type]"
-          value="checking"
+          name="submit"
+          type="submit"
+          value="CONTINUAR"
+          class="da-submit-btn"
         />
-        {% t user.profile.distribution_account.account_types.checking %}
-      </label>
-    </div>
-    <div class="radio">
-      <label>
-        <input
-          type="radio"
-          name="distribution_account[account_type]"
-          value="savings"
-          checked="checked"
-        />
-        {% t user.profile.distribution_account.account_types.savings %}
-      </label>
-    </div>
-  </div>
+      </div>
 
-  <div class="form-group hidden">
-    <label class="control-label"
-      >{% t user.profile.distribution_account.owner_type %}</label
-    >
-
-    <div class="radio">
-      <label>
-        <input
-          type="radio"
-          name="distribution_account[owner_type]"
-          value="personal"
-          checked="checked"
-        />
-        {% t user.profile.distribution_account.owner_types.personal %}
-      </label>
+      <!-- Footer Secure Note -->
+      <div class="da-secure-footer">
+        <svg class="da-secure-icon" viewBox="0 0 24 24">
+          <path
+            d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"
+          />
+        </svg>
+        <span>
+          Por tu seguridad, podremos utilizar datos de geolocalización para
+          proteger tu cuenta.
+        </span>
+      </div>
     </div>
-    <div class="radio">
-      <label>
-        <input
-          type="radio"
-          name="distribution_account[owner_type]"
-          value="business"
-        />
-        {% t user.profile.distribution_account.owner_types.business %}
-      </label>
-    </div>
+    <!-- End Inner Card -->
   </div>
-
-  <div class="form-group hidden">
-    <div class="checkbox">
-      <label>
-        <input
-          type="checkbox"
-          name="distribution_account[use_for_payments]"
-          value="true"
-          checked
-        />
-        {% t user.profile.distribution_account.use_for_payments %}
-      </label>
-      <p class="help-block">
-        {% t user.profile.distribution_account.help.use_for_payments %}
-      </p>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <input
-      name="submit"
-      type="submit"
-      value="{% t global.button.submit %}"
-      class="btn btn-primary"
-    />
-  </div>
+  <!-- End Outer Card -->
 </div>
 <!-- END /partials/_distribution_account_form.html -->
