@@ -1,0 +1,370 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Datos para solicitud de financiamiento</title>
+    <link href="css/form.css" rel="stylesheet" type="text/css" />
+    <script src="js/validation.js"></script>
+  </head>
+  <body class="zf-backgroundBg">
+    <!-- Change or deletion of the name attributes in the input tag will lead to empty values on record submission-->
+    <div class="zf-templateWidth">
+      <form
+        action="https://forms.zohopublic.com/m2crowdadmindeproyectos/form/FormProyectos/formperma/Y22I54pIm03vcWGqOEHKa7gIpyuaPMHW0J2AaNYFZYo/htmlRecords/submit"
+        name="form"
+        method="POST"
+        onSubmit='javascript:document.charset="UTF-8"; return zf_ValidateAndSubmit();'
+        accept-charset="UTF-8"
+        enctype="multipart/form-data"
+        id="form"
+      >
+        <input type="hidden" name="zf_referrer_name" value="" />
+        <input type="hidden" name="zf_redirect_url" value="" />
+        <input type="hidden" name="zc_gad" value="" />
+
+        <div class="zf-templateWrapper">
+          <!-- Header -->
+          <div class="zf-tempHeadContBdr">
+            <h2 class="zf-frmTitle">
+              BIENVENIDO A M2CROWD
+              <br />
+              <span class="zf-frmDesc">¿Buscas capital?</span>
+            </h2>
+          </div>
+
+          <!-- Form Fields Grid -->
+          <div class="zf-subContWrap">
+            <ul>
+              <!-- Row 1: Nombre | Apellido -->
+              <li class="zf-tempFrmWrapper">
+                <label class="zf-labelName">
+                  Nombre
+                  <em class="zf-important"> *</em>
+                </label>
+                <div class="zf-tempContDiv">
+                  <div class="da-input-wrapper">
+                    <div class="da-input-icon">
+                      <svg viewBox="0 0 24 24">
+                        <path
+                          d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                        />
+                      </svg>
+                    </div>
+                    <input
+                      type="text"
+                      name="SingleLine"
+                      checktype="c1"
+                      value=""
+                      maxlength="255"
+                      fieldType="1"
+                      placeholder=""
+                    />
+                  </div>
+                  <p id="SingleLine_error" class="zf-errorMessage">
+                    Invalid value
+                  </p>
+                </div>
+              </li>
+
+              <li class="zf-tempFrmWrapper">
+                <label class="zf-labelName">
+                  Apellido
+                  <em class="zf-important"> *</em>
+                </label>
+                <div class="zf-tempContDiv">
+                  <div class="da-input-wrapper">
+                    <div class="da-input-icon">
+                      <svg viewBox="0 0 24 24">
+                        <path
+                          d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                        />
+                      </svg>
+                    </div>
+                    <input
+                      type="text"
+                      name="SingleLine1"
+                      checktype="c1"
+                      value=""
+                      maxlength="255"
+                      fieldType="1"
+                      placeholder=""
+                    />
+                  </div>
+                  <p id="SingleLine1_error" class="zf-errorMessage">
+                    Invalid value
+                  </p>
+                </div>
+              </li>
+
+              <!-- Row 2: Email | Phone -->
+              <li class="zf-tempFrmWrapper">
+                <label class="zf-labelName">
+                  Correo electrónico
+                  <em class="zf-important"> *</em>
+                </label>
+                <div class="zf-tempContDiv">
+                  <div class="da-input-wrapper">
+                    <div class="da-input-icon">
+                      <svg viewBox="0 0 24 24">
+                        <path
+                          d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                        />
+                      </svg>
+                    </div>
+                    <input
+                      type="text"
+                      name="Email"
+                      checktype="c5"
+                      value=""
+                      maxlength="255"
+                      fieldType="9"
+                      placeholder=""
+                    />
+                  </div>
+                  <p id="Email_error" class="zf-errorMessage">Invalid value</p>
+                </div>
+              </li>
+
+              <li class="zf-tempFrmWrapper">
+                <label class="zf-labelName">
+                  Teléfono
+                  <em class="zf-important"> *</em>
+                </label>
+                <div class="zf-tempContDiv zf-phonefld">
+                  <div class="da-input-wrapper" style="display: flex">
+                    <!-- Country Code Select -->
+                    <div
+                      style="
+                        width: 140px;
+                        border-right: 1px solid #dce2f0;
+                        position: relative;
+                      "
+                    >
+                      <select
+                        compname="PhoneNumber_countrycodeval"
+                        name="PhoneNumber_countrycodeval"
+                        checktype="c7"
+                        phoneFormat="1"
+                        isCountryCodeEnabled="true"
+                        id="international_PhoneNumber_countrycodeval"
+                        valType="code"
+                        class="zf-form-sBox"
+                        style="
+                          width: 100%;
+                          height: 100%;
+                          border: none;
+                          background: transparent;
+                          padding-left: 10px;
+                          font-size: 14px;
+                          cursor: pointer;
+                        "
+                      >
+                        <option value="+52">🇲🇽 +52</option>
+                        <option value="+1">🇺🇸 +1</option>
+                        <option value="+34">🇪🇸 +34</option>
+                        <option value="+57">🇨🇴 +57</option>
+                        <option value="+54">🇦🇷 +54</option>
+                        <option value="+56">🇨🇱 +56</option>
+                        <option value="+51">🇵🇪 +51</option>
+                      </select>
+                    </div>
+
+                    <!-- Phone Number Input -->
+                    <div style="flex: 1">
+                      <input
+                        type="text"
+                        compname="PhoneNumber"
+                        name="PhoneNumber_countrycode"
+                        maxlength="20"
+                        checktype="c7"
+                        value=""
+                        phoneFormat="1"
+                        isCountryCodeEnabled="true"
+                        fieldType="11"
+                        id="international_PhoneNumber_countrycode"
+                        valType="number"
+                        phoneFormatType="1"
+                        placeholder="Número"
+                        style="
+                          width: 100%;
+                          height: 100%;
+                          border: none;
+                          background: transparent;
+                          padding: 0 16px;
+                          font-size: 15px;
+                        "
+                      />
+                    </div>
+                  </div>
+                  <p id="PhoneNumber_error" class="zf-errorMessage">
+                    Invalid value
+                  </p>
+                </div>
+              </li>
+
+              <!-- Row 3: Role | Stage -->
+              <li class="zf-tempFrmWrapper">
+                <label class="zf-labelName">
+                  ¿Qué te describe mejor?
+                  <em class="zf-important"> *</em>
+                </label>
+                <div class="zf-tempContDiv">
+                  <div class="da-input-wrapper">
+                    <select class="zf-form-sBox" name="Dropdown" checktype="c1">
+                      <option selected="true" value="-Select-"></option>
+                      <option value="Broker">Broker</option>
+                      <option value="Desarrollador experimentado">
+                        Desarrollador experimentado
+                      </option>
+                      <option value="Desarrollador sin experiencia">
+                        Desarrollador sin experiencia
+                      </option>
+                      <option value="Particular">Particular</option>
+                    </select>
+                  </div>
+                  <p id="Dropdown_error" class="zf-errorMessage">
+                    Invalid value
+                  </p>
+                </div>
+              </li>
+
+              <li class="zf-tempFrmWrapper">
+                <label class="zf-labelName">
+                  Etapa del proyecto
+                  <em class="zf-important"> *</em>
+                </label>
+                <div class="zf-tempContDiv">
+                  <div class="da-input-wrapper">
+                    <select
+                      class="zf-form-sBox"
+                      name="Dropdown1"
+                      checktype="c1"
+                    >
+                      <option selected="true" value="-Select-"></option>
+                      <option value="Acabados">Acabados</option>
+                      <option value="Cimentación">Cimentación</option>
+                      <option value="Compra Terreno">Compra Terreno</option>
+                      <option value="Construcción">Construcción</option>
+                      <option value="Demolición">Demolición</option>
+                      <option value="Inicio">Inicio</option>
+                      <option value="Licencias &amp; Permisos">
+                        Licencias &amp; Permisos
+                      </option>
+                      <option value="Rechazar">Rechazar</option>
+                    </select>
+                  </div>
+                  <p id="Dropdown1_error" class="zf-errorMessage">
+                    Invalid value
+                  </p>
+                </div>
+              </li>
+
+              <!-- Row 4: Amount (Full Width) -->
+              <li class="zf-tempFrmWrapper full-width">
+                <label class="zf-labelName">
+                  Monto de financiamiento
+                  <em class="zf-important"> *</em>
+                </label>
+                <div class="zf-tempContDiv zf-currency">
+                  <div class="da-input-wrapper">
+                    <div
+                      class="da-input-icon"
+                      style="font-weight: bold; font-size: 18px"
+                    >
+                      $
+                    </div>
+                    <input
+                      type="text"
+                      name="Currency"
+                      checktype="c3"
+                      value=""
+                      maxlength="50"
+                      placeholder=""
+                    />
+                  </div>
+                  <p id="Currency_error" class="zf-errorMessage">
+                    Invalid value
+                  </p>
+                </div>
+              </li>
+
+              <!-- Row 5: Website (Full Width) -->
+              <li class="zf-tempFrmWrapper full-width">
+                <label class="zf-labelName"> Página web del proyecto </label>
+                <div class="zf-tempContDiv">
+                  <div class="da-input-wrapper">
+                    <div class="da-input-icon">
+                      <svg viewBox="0 0 24 24">
+                        <path
+                          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
+                        />
+                      </svg>
+                    </div>
+                    <input
+                      type="text"
+                      name="Website"
+                      checktype="c6"
+                      value=""
+                      maxlength="2083"
+                      fieldType="10"
+                      placeholder=""
+                    />
+                  </div>
+                  <p id="Website_error" class="zf-errorMessage">
+                    Invalid value
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Submit Button -->
+          <ul class="zf-fmFooter">
+            <li style="list-style: none">
+              <button class="zf-submitColor">CONTINUAR</button>
+            </li>
+          </ul>
+
+          <!-- Footer Notes -->
+          <div class="footer-notes">
+            <div class="required-note" style="margin-bottom: 5px">
+              * Campos requeridos
+            </div>
+            <p>
+              Por tu seguridad, podremos utilizar datos de <br />
+              geolocalización para proteger tu cuenta.
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script type="text/javascript">
+      var dateAndMonthRegexFormateArray =
+        zf_SetDateAndMonthRegexBasedOnDateFormate("dd-MMM-yyyy");
+      var zf_DateRegex = new RegExp(dateAndMonthRegexFormateArray[0]);
+      var zf_MonthYearRegex = new RegExp(dateAndMonthRegexFormateArray[1]);
+      var zf_MandArray = [
+        "SingleLine",
+        "Email",
+        "Dropdown",
+        "Currency",
+        "SingleLine1",
+        "PhoneNumber_countrycode",
+        "PhoneNumber_countrycodeVal",
+        "Dropdown1",
+      ];
+      var zf_FieldArray = [
+        "SingleLine",
+        "Email",
+        "Dropdown",
+        "Currency",
+        "SingleLine1",
+        "PhoneNumber_countrycode",
+        "PhoneNumber_countrycodeVal",
+        "Dropdown1",
+        "Website",
+      ];
+      var isSalesIQIntegrationEnabled = false;
+      var salesIQFieldsArray = [];
+    </script>
+  </body>
+</html>
