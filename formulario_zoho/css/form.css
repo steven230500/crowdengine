@@ -6,7 +6,8 @@
 }
 
 body {
-  background-color: #fcf7ff; /* Outer background to match outer card feel or white if full page */
+  background-color: #fcf7ff;
+  /* Outer background to match outer card feel or white if full page */
   margin: 0;
   font-family: "Inter", "Arial", sans-serif;
   color: #444;
@@ -14,14 +15,16 @@ body {
 
 /* Container */
 .zf-templateWidth {
-  max-width: 800px; /* Match distribution form width */
+  max-width: 800px;
+  /* Match distribution form width */
   margin: 40px auto;
   padding: 0 20px;
 }
 
 /* Form Wrapper (The Card) */
 .zf-templateWrapper {
-  background-color: #fefaff; /* Inner card color */
+  background-color: #fefaff;
+  /* Inner card color */
   border-radius: 20px;
   padding: 40px;
   box-shadow: 0 10px 30px rgba(220, 220, 255, 0.5);
@@ -37,7 +40,7 @@ body {
 }
 
 .zf-frmTitle {
-  color: #1a1b41;
+  color: #111827;
   font-size: 24px;
   font-weight: 700;
   text-transform: uppercase;
@@ -51,7 +54,8 @@ body {
 }
 
 .zf-frmDesc {
-  color: #3b82f6; /* Blue subtitle color matching design roughly */
+  color: #0A3A8D;
+  /* New blue subtitle color */
   font-size: 24px;
   font-weight: 700;
   margin-top: 5px;
@@ -87,7 +91,8 @@ body {
 }
 
 .zf-important {
-  color: #ef4444 !important; /* Red asterisk */
+  color: #ef4444 !important;
+  /* Red asterisk */
   font-size: 14px !important;
   font-weight: normal !important;
 }
@@ -107,8 +112,29 @@ body {
 }
 
 .da-input-wrapper:focus-within {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  border-color: #0A3A8D;
+  box-shadow: 0 0 0 3px rgba(10, 58, 141, 0.1);
+}
+
+/* Input Styles */
+.da-input-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  /* Added for absolute positioning of manual arrows */
+  background-color: #fcfcfd;
+  border: 1px solid #dce2f0;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 45px;
+  transition:
+    box-shadow 0.2s,
+    border-color 0.2s;
+}
+
+.da-input-wrapper:focus-within {
+  border-color: #0A3A8D;
+  box-shadow: 0 0 0 3px rgba(10, 58, 141, 0.1);
 }
 
 .da-input-icon {
@@ -117,30 +143,46 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #eef2ff;
-  color: #6366f1;
-  border-right: 1px solid #dbeafe;
+  background-color: transparent;
+  /* Removed background per user request 'no sombras o oscuros' */
+  color: #0A3A8D;
+  border-right: 1px solid #E5E7EB;
+  /* Kept subtle border separation */
   flex-shrink: 0;
 }
 
 .da-input-icon svg {
   width: 20px;
   height: 20px;
-  fill: #7c8db5; /* Icon color */
+  fill: none;
+  /* Make icons outline style if possible, or just cleaner */
+  stroke: #0A3A8D;
+  /* Use stroke for clearer look if path supports it, otherwise fill */
+  stroke-width: 1.5;
 }
+
+/* If SVG paths are fill-based, revert to fill but keep background transparent */
+.da-input-icon svg path {
+  fill: #0A3A8D;
+  /* Ensure fill is correct color */
+  stroke: none;
+}
+
 
 /* Inputs */
 .zf-tempContDiv input[type="text"],
 .zf-tempContDiv select {
   width: 100%;
   height: 100%;
-  border: none !important; /* Remove custom borders */
+  border: none !important;
+  /* Remove custom borders */
   background: transparent !important;
   padding: 0 16px;
   font-size: 15px;
   color: #4b5563;
   outline: none;
-  box-shadow: none !important; /* Remove custom shadows */
+  box-shadow: none !important;
+  /* Remove custom shadows */
   border-radius: 0 !important;
 }
 
@@ -150,15 +192,16 @@ body {
   border: none !important;
   background: transparent !important;
   padding: 0 16px;
+  padding-right: 35px;
+  /* Added space for manual arrow icon */
   font-size: 15px;
   color: #4b5563;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E") !important;
-  background-repeat: no-repeat !important;
-  background-position: right 16px center !important;
-  background-size: 16px !important;
+  /* Background image removed in favor of manual SVG for better control */
+  background-image: none !important;
+  cursor: pointer;
 }
 
 /* Phone Field Special Handling */
@@ -172,7 +215,8 @@ body {
 }
 
 .zf-phonefld .zf-phwrapper span:first-child {
-  flex: 0 0 30%; /* Country code width */
+  flex: 0 0 30%;
+  /* Country code width */
 }
 
 .zf-phonefld .zf-phwrapper span:last-child {
@@ -185,8 +229,10 @@ body {
   align-items: center;
   width: 100%;
 }
+
 .zf-currency .zf-tempContDiv span {
-  display: none; /* Hide default currency span */
+  display: none;
+  /* Hide default currency span */
 }
 
 /* Error Messages */
@@ -194,55 +240,69 @@ body {
   font-size: 13px;
   color: #ef4444;
   margin-top: 5px;
-  display: none; /* JS toggles this */
+  display: none;
+  /* JS toggles this */
 }
 
 /* Button */
 .zf-fmFooter {
   text-align: center;
-  padding-top: 20px;
-  padding-bottom: 0px;
+  padding: 20px 0 0 0;
+  margin: 0;
+  width: 100%;
+}
+
+.zf-fmFooter li {
+  display: block;
+  width: 100%;
+  list-style: none;
 }
 
 .zf-submitColor {
-  width: 100%;
-  max-width: 400px;
+  width: 70%;
+  /* max-width removed to match Image 1 (full width) */
   padding: 16px;
-  background: linear-gradient(90deg, #1d4ed8 0%, #3b82f6 100%);
+  background: linear-gradient(90deg, #0A3A8D 0%, #2563EB 100%);
   color: white;
   border: none;
-  border-radius: 30px;
+  border-radius: 12px;
+  /* Reduced from 30px as requested "menos border radius" */
   font-size: 18px;
   font-weight: 700;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 4px 15px rgba(10, 58, 141, 0.3);
   transition: transform 0.1s;
 }
 
 .zf-submitColor:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+  box-shadow: 0 6px 20px rgba(10, 58, 141, 0.4);
 }
 
 /* Footer Notes */
 .footer-notes {
   text-align: left;
+  /* Aligned left as per user request */
   color: #6b7280;
   font-size: 14px;
-  margin-top: 20px;
+  margin-top: 15px;
   line-height: 1.5;
 }
 
 .footer-notes .required-note {
-  color: #1a3b96; /* Darker blue for text */
-  font-weight: 500;
+  color: #0A3A8D;
+  /* Matching blue theme */
+  font-weight: 600;
+  margin-bottom: 15px;
+  /* Spacing between required note and privacy text */
 }
 
 /* Remove default Zoho layout classes effects that interfere */
 .zf-clearBoth {
   clear: both;
 }
+
 .zftwoColumn .zfCol {
   float: none;
   width: 100%;
@@ -253,6 +313,7 @@ body {
   .zf-subContWrap ul {
     grid-template-columns: 1fr;
   }
+
   .zf-subContWrap ul .zf-tempFrmWrapper.full-width {
     grid-column: span 1;
   }
