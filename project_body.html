@@ -45,49 +45,39 @@
         <div class="invest-card">
           <!-- Data Grid (Stats + Goals) -->
           <div class="invest-data-grid">
-            <!-- Left Column: Percent + Min Goal -->
+            <!-- Left Column: Inversión mínima + Duración -->
             <div class="data-col left-col">
               <div class="stat-item">
                 <div class="stat-row">
                   <div class="stat-highlight">
-                    {{ project.percentage_raised | default: 0 | round }}%
+                    {{ project.pretty_minimum_investment }}
                   </div>
-                  <!-- Use stat-label class for consistency -->
-                  <div class="stat-label">financiado</div>
+                  <div class="stat-label">Inversión mínima</div>
                 </div>
               </div>
 
               <div class="goal-item">
-                <div class="goal-amount">
-                  {% if project.pretty_min_goal %} {{ project.pretty_min_goal }}
-                  {% elsif project.min_goal %} {{ project.min_goal | money }}
-                  MXN {% else %} $0 MXN {% endif %}
+                <div class="goal-amount" id="project-duration-val">
+                  {{ project.term_months_ }} meses
                 </div>
-                <div class="goal-label">Objetivo mínimo</div>
+                <div class="goal-label">Duración de Inversión</div>
               </div>
             </div>
 
-            <!-- Right Column: Days + Max Goal -->
+            <!-- Right Column: Interés Anual + Interés Total -->
             <div class="data-col">
               <div class="stat-item">
                 <div class="stat-row">
-                  <div class="stat-highlight">
-                    {% assign raw_days = project.actual_time_left | invoke:
-                    'to_s' %} {% assign downcased_days = raw_days | downcase %}
-                    {% if downcased_days contains 'cerrado' or raw_days == nil
-                    or raw_days == '' %} 0 {% else %} {{ raw_days | remove:
-                    "días" | remove: "restantes" | remove: "days" | strip }} {%
-                    endif %}
-                  </div>
-                  <div class="stat-label">días restantes</div>
+                  <div class="stat-highlight">{{ project.annual_yield }}%</div>
+                  <div class="stat-label">Interés Anual Estimado</div>
                 </div>
               </div>
 
               <div class="goal-item">
-                <div class="goal-amount">
-                  {{ project.pretty_max_raise | default: project.max_goal }} MXN
+                <div class="goal-amount" id="project-total-return-val">
+                  {{ project.total_estimated_return }}%
                 </div>
-                <div class="goal-label">Objetivo máximo</div>
+                <div class="goal-label">Interés Total Estimado</div>
               </div>
             </div>
           </div>
@@ -627,8 +617,10 @@
 <section class="project-tabs no-print">
   <div class="container">
     <nav class="project-tabs__wrap" aria-label="Navegación del proyecto">
-      <a class="project-tab is-active" href="#image-section">Galería</a>
-      <a class="project-tab" href="#about">Descripción general de la oferta</a>
+      <a class="project-tab is-active" href="#about"
+        >Descripción general de la oferta</a
+      >
+      <a class="project-tab" href="#image-section">Galería</a>
 
       {% if project.direct_uploads.size >= 1 %}
       <a class="project-tab" href="#documents">Documentos</a>
@@ -835,7 +827,7 @@
 
             <div class="col-md-7 col-sm-12">
               {% if project.headline_image_urls.size > 6 %}
-              <div style="max-width: 90%; margin: 0 auto; position: relative">
+              <div style="max-width: 80%; margin: 0 auto; position: relative">
                 <div
                   id="gallery-carousel-isolated"
                   class="gallery-slider-custom"
@@ -1012,12 +1004,12 @@
                 }
 
                 .custom-prev {
-                  left: -30px;
+                  left: -60px;
                   /* Overlap left edge */
                 }
 
                 .custom-next {
-                  right: -30px;
+                  right: -60px;
                   /* Overlap right edge */
                 }
 
@@ -1106,8 +1098,8 @@
         .gallery-img-bg {
           width: 100%;
           height: 0;
-          padding-bottom: 40%;
-          /* 2.5:1 Aspect Ratio (Further reduced height) */
+          padding-bottom: 30%;
+          /* Reduced height as requested */
           background-size: cover;
           background-position: center;
           background-repeat: no-repeat;
@@ -2050,7 +2042,9 @@
               setTimeout(function () {
                 $carousel.trigger('refresh.owl.carousel');
                 // Force trigger resize event as backup
-                window.dispatchEvent(new Event('resize'));
+                window.dispatchEvent(new Event(
+                  'resize'
+                ));
               }, 100);
             }
           }
@@ -2072,7 +2066,7 @@
     // Init on Load
     let currentHash = location.hash;
     if (!currentHash) {
-      currentHash = '#image-section';
+      currentHash = '#about';
     }
     activateTab(currentHash);
   });
@@ -2131,5 +2125,125 @@
   		}
   	});
   });
+</script>
+
+<script>
+  $(document).ready(function () {
+    $(".invest-input").on("input", function () {
+      var value = $(this).val();
+      var cleanValue = value.replace(/[^0-9.]/g, "");
+      $(this).val(cleanValue);
+    });
+
+    $(".btn-invest").click(function (e) {
+      e.preventDefault();
+      var amount = $(".invest-input").val();
+      var minAmount = parseFloat("{{ project.minimum_payment }}");
+
+      if (amount && parseFloat(amount) >= minAmount) {
+        var checkoutUrl = $(this).attr("href");
+        if (checkoutUrl.indexOf("?") !== -1) {
+          window.location.href = checkoutUrl + "&amount=" + amount;
+        } else {
+          window.location.href = checkoutUrl + "?amount=" + amount;
+        }
+      } else {
+        alert(
+          "Por favor ingresa un monto válido mayor a {{ project.pretty_minimum_payment }}",
+        );
+      }
+    });
+
+    // --- CÁLCULO DE VALORES FALTANTES (FECHAS) ---
+    const p = window.__PROJECT__ || {};
+
+    function parseDate(dateStr) {
+      if (!dateStr) return null;
+      // Intentar constructor directo primero (funciona para ISO y algunos formatos STD)
+      let d = new Date(dateStr);
+      if (!isNaN(d.getTime())) return d;
+
+      // Si falla, intentar parseo manual básico para '19 September 2025'
+      // Esto asume formato inglés que a veces falla en navegadores lokales
+      // O formato '2024-01-19 08:49:17 -0600'
+
+      // Limpiar timezone para facilitar parseo si es necesario
+      // Pero primero probemos un reemplazo simple para Safari/Firefox si es 'YYYY-MM-DD HH:MM:SS'
+      let isoLike = dateStr.replace(/-/g, "/");
+      d = new Date(isoLike);
+      if (!isNaN(d.getTime())) return d;
+
+      return null;
+    }
+
+    // 1. Calcular Duración
+    let duration = p.term_months_;
+
+    // Si no viene directo, intentamos calcular
+    if (!duration || duration.trim() === "") {
+      const startStr = p.start_date; // '2024-01-19 08:49:17 -0600'
+      const endStr = p.end_date; // '19 September 2025'
+
+      const start = parseDate(startStr);
+      const end = parseDate(endStr);
+
+      if (start && end) {
+        let months = (end.getFullYear() - start.getFullYear()) * 12;
+        months -= start.getMonth();
+        months += end.getMonth();
+
+        // Ajuste por días: si el día final es menor al inicial, no se ha cumplido el mes completo??
+        // Para inversiones solemos redondear o tomar la diferencia bruta.
+        // Vamos a tomar diff bruta en meses.
+
+        if (months > 0) {
+          duration = months.toString();
+          // Actualizar UI
+          $("#project-duration-val").text(duration + " meses");
+          console.log("✅ Duración calculada JS:", duration);
+        }
+      } else {
+        console.warn("⚠️ No se pudieron parsear las fechas:", {
+          startStr,
+          endStr,
+        });
+      }
+    }
+
+    // 2. Calcular Retorno Total
+    let totalReturn = p.total_estimated_return;
+    const annualYield = parseFloat(p.annual_yield);
+
+    // Si falta totalReturn pero tenemos duración y yield anual
+    if (
+      (!totalReturn || totalReturn.trim() === "") &&
+      duration &&
+      !isNaN(annualYield)
+    ) {
+      const durVal = parseFloat(duration);
+      // Formula: (YieldAnual / 12) * Meses
+      const val = ((annualYield / 12) * durVal).toFixed(2);
+
+      // Actualizar UI (Buscamos si termina en .00 para quitarlo si se quiere "clean")
+      let finalVal = val.replace(/\.00$/, "");
+      $("#project-total-return-val").text(finalVal + "%");
+      console.log("✅ Retorno Total calculado JS:", finalVal);
+    }
+  });
+</script>
+
+<script>
+  window.ProjectDrop = window.ProjectDrop || {};
+</script>
+
+<script>
+  // Payload Debug
+  window.__PROJECT__ = {
+    term_months_: "{{ project.term_months_ }}",
+    start_date: "{{ project.start_date }}",
+    end_date: "{{ project.end_date }}",
+    total_estimated_return: "{{ project.total_estimated_return }}",
+    annual_yield: "{{ project.annual_yield }}",
+  };
 </script>
 <!-- END /partials/_project_body.html -->
