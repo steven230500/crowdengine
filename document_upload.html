@@ -1,0 +1,725 @@
+<style>
+    /* Contenedor Principal estilo "Distribution Account" */
+    .da-outer-card {
+        background-color: #fcf7ff;
+        border-radius: 30px;
+        padding: 40px 30px;
+        box-shadow: 0 20px 60px rgba(220, 220, 255, 0.2);
+        max-width: 600px;
+        /* Ajustado para documentos */
+        margin: 20px auto;
+    }
+
+    .da-inner-card {
+        background-color: #fefaff;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(220, 220, 255, 0.5);
+        border: 1px solid #f0f0f5;
+        text-align: left;
+    }
+
+    /* Botones Ovalados de Carga */
+    .da-upload-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        background-color: #f3f4f6 !important;
+        border: 1px solid #dce2f0 !important;
+        border-radius: 25px !important;
+        /* Ovalados como la imagen */
+        padding: 14px 20px !important;
+        color: #1a1b41 !important;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 12px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        text-decoration: none !important;
+    }
+
+    .da-upload-btn:hover {
+        background-color: #eef2ff !important;
+        border-color: #6366f1 !important;
+    }
+
+    .doc_file_name::before {
+        content: "\f0c6";
+        /* Icono clip FontAwesome */
+        font-family: "FontAwesome";
+        margin-right: 10px;
+        color: #6366f1;
+    }
+
+    /* Estilo del Badge (Archivo seleccionado) */
+    .doc_file_name:not(:empty) {
+        display: inline-flex;
+        align-items: center;
+        background-color: #eef2ff !important;
+        color: #6366f1 !important;
+        padding: 8px 16px !important;
+        border-radius: 12px !important;
+        /* Estilo píldora */
+        font-size: 13px !important;
+        font-weight: 500;
+        border: 1px solid #dbeafe !important;
+        margin-top: 10px;
+        animation: fadeInBadge 0.4s ease-out;
+    }
+
+    /* Botón Enviar (Igual al de la imagen) */
+    .da-submit-btn {
+        width: 100%;
+        padding: 16px;
+        background: #00d37d;
+        /* Color verde de tu imagen de referencia */
+        color: white;
+        border: none;
+        border-radius: 30px;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.2s;
+        margin-top: 25px;
+    }
+
+    .da-submit-btn:disabled {
+        background: #d1d5db;
+        cursor: not-allowed;
+    }
+
+    /* Radio Buttons personalizados */
+    .da-radio-group {
+        display: flex;
+        gap: 30px;
+        margin: 15px 0 25px;
+    }
+
+    .da-radio-group {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 15px;
+        padding: 5px 0;
+    }
+
+    .da-radio-container {
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding-left: 28px;
+        cursor: pointer;
+        font-size: 14px;
+        color: #4b5563;
+        user-select: none;
+    }
+
+    /* Ocultar el radio nativo */
+    .da-radio-container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    /* El círculo personalizado */
+    .da-radio-checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background-color: #fff;
+        border: 2px solid #d1d5db;
+        border-radius: 50%;
+    }
+
+    /* Color cuando se selecciona */
+    .da-radio-container input:checked~.da-radio-checkmark {
+        border-color: #0e2c80;
+    }
+
+    /* El punto interior */
+    .da-radio-checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    .da-radio-container input:checked~.da-radio-checkmark:after {
+        display: block;
+    }
+
+    .da-radio-container .da-radio-checkmark:after {
+        top: 4px;
+        left: 4px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #0e2c80;
+    }
+
+    /* Estilo de los botones de carga (ovalados como tu imagen) */
+    .da-upload-btn {
+        display: block;
+        width: 100%;
+        background-color: #f3f4f6 !important;
+        border: 1px solid #d1d5db !important;
+        border-radius: 25px !important;
+        padding: 12px 20px !important;
+        color: #374151 !important;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 12px;
+        margin-top: 5px;
+        text-decoration: none !important;
+    }
+
+    /* Apartados visuales apra archivos cargados */
+    /* Ocultar si está vacío */
+    .doc_file_name:empty {
+        display: none !important;
+    }
+
+    /* 1. Definición de la Animación */
+    @keyframes fadeInBadge {
+        from {
+            opacity: 0;
+            transform: translateY(-8px);
+            /* Empieza un poco más arriba */
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* 2. Aplicación de la Animación al Badge */
+    /* Solo se activa cuando el span NO está vacío */
+    .doc_file_name:not(:empty) {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #eef2ff !important;
+        color: #0e2c80 !important;
+        padding: 6px 16px !important;
+        border-radius: 12px !important;
+        font-size: 13px !important;
+        font-weight: 500;
+        border: 1px solid #c7d2fe !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        max-width: fit-content;
+        white-space: nowrap;
+
+        /* Aquí llamamos a la animación */
+        animation: fadeInBadge 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    }
+
+    /* 3. Contenedor para asegurar el centrado */
+    .da-badge-container {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* Icono decorativo */
+    .doc_file_name::before {
+        content: "\f0c6";
+        font-family: "FontAwesome";
+        margin-right: 8px;
+        color: #4338ca;
+    }
+
+    /* Boton enviar */
+    .da-submit-btn {
+        width: 100%;
+        padding: 16px;
+        background-color: #00d37d !important;
+        /* El verde de tu imagen */
+        color: white !important;
+        border: none !important;
+        border-radius: 30px !important;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 211, 125, 0.2);
+        transition: all 0.2s;
+        display: block;
+    }
+
+    .da-submit-btn:disabled {
+        background-color: #d1d5db !important;
+        box-shadow: none;
+        cursor: not-allowed;
+    }
+</style>
+<p>{{ provision.message }}</p>
+{% if provision.status == 'incomplete' or provision.satus == 'rejected' %}
+<div class="da-outer-card">
+    <!-- <h1 class="da-main-title">Subir Documentos</h1> -->
+    <p class="da-subtitle">Para verificar su identidad, cargue la parte frontal y posterior de su INE o IFE. También
+        puede cargar la parte frontal de su pasaporte.</p>
+
+    <!-- UI VERIFICACION NUBARIUM -->
+    <div class="da-inner-card" style="margin-bottom: 25px; border: 1px solid #00d37d;">
+        <h4 style="color: #0e2c80; margin-top:0; margin-bottom: 15px;">
+            <i class="fa fa-check-circle" style="color: #00d37d;"></i> 1. Validación de Documento
+        </h4>
+        <p class="small text-muted">Seleccione su documento y haga clic en "Validar Documento" para verificar sus datos.
+        </p>
+
+        <div class="form-group">
+            <label class="da-label">Tipo de Documento para Validación</label>
+            <select class="form-control" id="verify_id_type" style="height: 45px;">
+                <option value="INE">INE / IFE</option>
+                <option value="PASAPORTE">Pasaporte</option>
+            </select>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="da-label">Frente del Documento</label>
+                    <input type="file" class="form-control" id="verify_id_front" accept="image/*"
+                        style="padding-top: 10px;">
+                </div>
+            </div>
+            <div class="col-md-6" id="verify_container_back">
+                <div class="form-group">
+                    <label class="da-label">Reverso del Documento</label>
+                    <input type="file" class="form-control" id="verify_id_back" accept="image/*"
+                        style="padding-top: 10px;">
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="da-submit-btn" id="btn_verify_doc"
+            style="background-color: #0e2c80 !important; margin-top: 10px;">
+            Validar Documento
+        </button>
+
+        <div id="verify_loading" style="display:none; text-align:center; margin-top:15px; color: #0e2c80;">
+            <i class="fa fa-spinner fa-spin fa-2x"></i><br>Procesando con Nubarium...
+        </div>
+
+        <div id="verify_result" class="alert alert-success" style="display:none; margin-top:20px; border-radius: 15px;">
+            <strong><i class="fa fa-check"></i> Validación Exitosa</strong>
+            <hr style="margin: 10px 0;">
+            <ul id="verify_data_list" style="padding-left: 20px; margin-bottom: 0;"></ul>
+            <input type="hidden" name="provision[ocr_validation_data]" id="ocr_validation_data">
+        </div>
+
+        <div id="verify_error" class="alert alert-danger" style="display:none; margin-top:20px; border-radius: 15px;">
+            <strong>Error:</strong> <span id="verify_error_msg"></span>
+        </div>
+    </div>
+    <!-- FIN UI VERIFICACION NUBARIUM -->
+
+    {% unless provision.direct_uploads.size > 0 %}
+    <!-- Inicio prueba -->
+    <div class="da-inner-card">
+        <div class="da-form-group">
+            <label class="da-label">Tipo de Identificación
+                <span class="da-text-red">*</span>
+            </label>
+            <input type="hidden" id="db_identification_type" name="user[custom_fields][identification_type]"
+                value="ine">
+            <div class="da-radio-group">
+                <label class="da-radio-container">
+                    <input type="radio" name="doc_type" value="ine" checked
+                        onclick="document.getElementById('db_identification_type').value = 'ine'; toggleDocType('ine')">
+                    <span class="da-radio-checkmark"></span>
+                    INE / IFE
+                </label>
+                <label class="da-radio-container">
+                    <input type="radio" name="doc_type" value="pasaporte"
+                        onclick="document.getElementById('db_identification_type').value = 'pasaporte'; toggleDocType('pasaporte')">
+                    <span class="da-radio-checkmark"></span>
+                    Pasaporte
+                </label>
+            </div>
+        </div>
+        <div id="container_upload_1">
+            <div class="form-group">
+                <input type="hidden" class="file_input" id="provision_direct_upload_0_file"
+                    name="provision[direct_uploads_attributes][0][file]"
+                    value="{{ provision.direct_uploads_attributes[0]['file'] }}">
+                <input type="hidden" class="stamp_input" id="provision_direct_upload_0_stamp"
+                    name="provision[direct_uploads_attributes][0][stamp]"
+                    value="{{ provision.direct_uploads_attributes[0]['stamp'] }}">
+                <a class='btn btn-default doc_upload_link da-upload-btn'>
+                    <i class="fa fa-upload"></i>
+                    <span id="text_upload_0">Subir INE / IFE Parte Frontal</span>
+                </a>
+                <div class="da-badge-container">
+                    <span class="doc_file_name">{{ provision.direct_uploads[0].file_name }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="container_upload_2">
+            <div class="form-group">
+                <input type="hidden" class="file_input" id="provision_direct_upload_1_file"
+                    name="provision[direct_uploads_attributes][1][file]"
+                    value="{{ provision.direct_uploads_attributes[1]['file'] }}">
+                <input type="hidden" class="stamp_input" id="provision_direct_upload_1_stamp"
+                    name="provision[direct_uploads_attributes][1][stamp]"
+                    value="{{ provision.direct_uploads_attributes[1]['stamp'] }}">
+                <a class='btn btn-default doc_upload_link da-upload-btn'>
+                    <i class="fa fa-upload"></i>
+                    Subir INE / IFE Parte Trasera
+                </a>
+                <div class="da-badge-container">
+                    <span class="doc_file_name">{{ provision.direct_uploads[1].file_name }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fin prueba -->
+
+    <!-- Original
+      <div class="form-group">
+  <input
+    type="hidden"
+    class="file_input"
+    id="provision_direct_upload_0_file"
+    name="provision[direct_uploads_attributes][0][file]"
+    value="{{ provision.direct_uploads_attributes[0]['file'] }}">
+      <input
+    type="hidden"
+    class="stamp_input"
+    id="provision_direct_upload_0_stamp"
+    name="provision[direct_uploads_attributes][0][stamp]"
+    value="{{ provision.direct_uploads_attributes[0]['stamp'] }}">
+      <a class='btn btn-default doc_upload_link'>
+    <i class="fa fa-upload"></i>
+    Subir INE/IFE parte frontal o Pasaporte parte frontal</a>
+      <span class="doc_file_name"></span>
+      </div>
+      <div class="form-group">
+      <input
+    type="hidden"
+    class="file_input"
+    id="provision_direct_upload_1_file"
+    name="provision[direct_uploads_attributes][1][file]"
+    value="{{ provision.direct_uploads_attributes[1]['file'] }}">
+      <input
+    type="hidden"
+    class="stamp_input"
+    id="provision_direct_upload_1_stamp"
+    name="provision[direct_uploads_attributes][1][stamp]"
+    value="{{ provision.direct_uploads_attributes[1]['stamp'] }}">
+      <a class='btn btn-default doc_upload_link'>
+    <i class="fa fa-upload"></i>
+    Subir INE/IFE parte trasera o Pasaporte parte frontal de nuevo</a>
+      <span class="doc_file_name"></span>
+      </div> -->
+    {% endunless %}
+
+
+    {% for direct_upload in provision.direct_uploads %}
+    <div class="fields">
+        <div class="form-group">
+            <input type="hidden" class="file_input" id="provision_direct_upload_{{ forloop.index0 }}_file"
+                name="provision[direct_uploads_attributes][{{ forloop.index0 }}][file]"
+                value="{{ direct_upload.file }}">
+            <input type="hidden" class="stamp_input" id="provision_direct_upload_{{ forloop.index0 }}_stamp"
+                name="provision[direct_uploads_attributes][{{ forloop.index0 }}][stamp]"
+                value="{{ direct_upload.stamp }}">
+            <input type="hidden" id="provision_direct_upload_{{ forloop.index0 }}_id" name="{{ direct_upload.id }}">
+            <input id="provision_direct_uploads_attributes_{{ forloop.index0 }}__destroy"
+                name="provision[direct_uploads_attributes][{{ forloop.index0 }}][_destroy]" type="hidden" value="false">
+            <a href="javascript:void(0)" class="btn btn-xs btn-danger remove_nested_fields"
+                data-association="direct_uploads">{% t document.remove_doc %}</a>
+            <input id="provision_direct_uploads_attributes_{{ forloop.index0 }}_id"
+                name="provision[direct_uploads_attributes][{{ forloop.index0 }}][id]" type="hidden"
+                value="{{ direct_upload.id }}">
+            <span class="doc_file_name">{{ direct_upload.file_name }}</span>
+        </div>
+    </div>
+    {% endfor %}
+
+
+    <div id="direct_uploads_fields_blueprint" style="display: none"
+        data-blueprint="{% include 'miscellaneous_document_direct_upload_blueprint' %}" class='panel panel-primary'>
+    </div>
+    <div class="form-group hidden">
+        <a href="javascript:void(0)" class="btn btn-primary add_nested_fields" data-association="direct_uploads"
+            data-blueprint-id="direct_uploads_fields_blueprint">
+            <i class='fa fa-plus'></i>
+            {% t document.add_doc %}</a>
+    </div>
+    <div class="form-group">
+        <!-- <input
+type="submit"
+      class="btn btn-primary"
+      id="submitBtn"
+      disabled
+      value="{% t global.button.submit %}">
+          {% include 'investment_action_buttons' %}
+          {% if compliance_action == 'invest' %}
+      <input
+      type="submit"
+      id='alt_submit'
+      value="{% t document.skip %}"
+      class="btn btn-success">
+          {% endif %} -->
+        <input type="submit" class="btn btn-primary" id="submitBtn" disabled value="Enviar">
+        {% include 'investment_action_buttons' %}
+        {% if compliance_action == 'invest' %}
+        <input type="submit" id='alt_submit' value="Omitir" class="btn btn-success">
+        {% endif %}
+    </div>
+</div>
+
+
+<script>
+    $(function () {
+        var skip_button = '<input type="hidden" class="skip_submit_input" id="provision_direct_uploads_skip_submit" name="provision[direct_uploads_attributes][skip_submit]" value="true" >';
+        $('#alt_submit').click(function () {
+            $('form').append(skip_button);
+        });
+    });
+
+    CE.DirectUpload.load({
+        direct_upload_link: '.doc_upload_link',
+        direct_upload_dialog_string: '{% include "direct_upload_dialog" %}',
+        message_finished: '{% t document.upload_finished %}',
+        message_error: '{% t global.ui.error %}'
+    });
+    $('.add_nested_fields').click(function () { setTimeout(function () { CE.DirectUpload.bind_direct_upload_link(); }, 300); });
+
+
+    var input1 = $('#provision_direct_upload_0_file');
+    var input2 = $('#provision_direct_upload_1_file');
+    var submitButton = $('#submitBtn');
+
+    // 1. Select the target element
+    const targetNode = document.getElementById('provision_direct_upload_0_file');
+    const targetNode2 = document.getElementById('provision_direct_upload_1_file');
+
+    // 2. Configure the observer options (watch for attribute changes)
+    const config = { attributes: true, attributeFilter: ['value'] };
+
+    // 3. Create a callback function to execute when a change is observed
+    const callback = function (mutationsList, observer) {
+        for (const mutation of mutationsList) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'value') {
+                checkInputs();
+            }
+        }
+    };
+
+    // 4. Create the observer instance and start observing the target node
+    const observer = new MutationObserver(callback);
+    observer.observe(targetNode, config);
+    observer.observe(targetNode2, config);
+
+    function checkInputs() {
+        // Check if both input fields have a value using .val()
+        if (input1.val().length > 0 && input2.val().length > 0) {
+            // If both are filled, enable the button
+            submitButton.prop('disabled', false);
+        } else {
+            // Otherwise, keep the button disabled
+            submitButton.prop('disabled', true);
+        }
+    }
+    // Seleccionamos todos los elementos con la clase .doc_file_name
+    const fileLabels = document.querySelectorAll('.doc_file_name');
+
+    fileLabels.forEach(label => {
+        // Usamos un MutationObserver para detectar cuando el texto cambia 
+        // (ya que CrowdEngine inyecta el nombre después de la subida)
+        const observer = new MutationObserver(() => {
+            let text = label.textContent.trim();
+
+            if (text.length > 25) {
+                // Recortamos el nombre: 15 caracteres ... últimos 4 caracteres
+                const shortened = text.substring(0, 15) + "..." + text.slice(-4);
+                // Desconectamos temporalmente para evitar un bucle infinito
+                observer.disconnect();
+                label.textContent = shortened;
+                // Volvemos a observar después del cambio
+                observer.observe(label, { childList: true });
+            }
+        });
+
+        observer.observe(label, { childList: true });
+    });
+
+    // --- Lógica de Alternancia INE / Pasaporte con Limpieza Total ---
+
+    function toggleDocType(type) {
+        const container2 = document.getElementById('container_upload_2');
+        const text0 = document.getElementById('text_upload_0');
+
+        // Inputs
+        const input1File = document.getElementById('provision_direct_upload_0_file');
+        const input1Stamp = document.getElementById('provision_direct_upload_0_stamp');
+        const input2File = document.getElementById('provision_direct_upload_1_file');
+        const input2Stamp = document.getElementById('provision_direct_upload_1_stamp');
+
+        // Badges (Nombres de archivo visibles)
+        const badge1 = document.querySelector('#container_upload_1 .doc_file_name');
+        const badge2 = document.querySelector('#container_upload_2 .doc_file_name');
+
+        // 1. LIMPIEZA TOTAL SIEMPRE (No importa el cambio)
+        input1File.value = '';
+        input1Stamp.value = '';
+        input2File.value = '';
+        input2Stamp.value = '';
+
+        if (badge1) badge1.innerText = '';
+        if (badge2) badge2.innerText = '';
+
+        // 2. LÓGICA ESPECÍFICA POR TIPO
+        if (type === 'pasaporte') {
+            container2.style.display = 'none';
+            text0.innerText = 'Subir Pasaporte';
+        } else {
+            container2.style.display = 'block';
+            text0.innerText = 'Subir INE / IFE Parte Frontal';
+        }
+
+        // 3. Resetear el botón de Submit (vuelve a estar deshabilitado porque todo se limpió)
+        checkInputs();
+    }
+
+    // --- Validación Inteligente ---
+
+
+    function checkInputs() {
+        const type = document.getElementById('db_identification_type').value;
+        const val1 = $('#provision_direct_upload_0_file').val().length > 0;
+        const val2 = $('#provision_direct_upload_1_file').val().length > 0;
+        const submitButton = $('#submitBtn');
+
+        if (type === 'pasaporte') {
+            // Solo requiere el primero
+            submitButton.prop('disabled', !val1);
+        } else {
+            // Requiere ambos
+            submitButton.prop('disabled', !(val1 && val2));
+        }
+    }
+
+    // --- LOGICA DE VERIFICACION NUBARIUM (NUEVA) ---
+    (function () {
+        const API_BASE_URL = 'https://m2crowd-back-dev.quo.services';
+
+        const btnVerify = document.getElementById('btn_verify_doc');
+        const idTypeSelect = document.getElementById('verify_id_type');
+        const backContainer = document.getElementById('verify_container_back');
+        const loadingDiv = document.getElementById('verify_loading');
+        const resultDiv = document.getElementById('verify_result');
+        const errorDiv = document.getElementById('verify_error');
+        const errorMsg = document.getElementById('verify_error_msg');
+        const dataList = document.getElementById('verify_data_list');
+        const hiddenData = document.getElementById('ocr_validation_data');
+
+        // Toggle Pasaporte/INE
+        if (idTypeSelect) {
+            idTypeSelect.addEventListener('change', function () {
+                if (this.value === 'PASAPORTE') {
+                    backContainer.style.display = 'none';
+                } else {
+                    backContainer.style.display = 'block';
+                }
+            });
+        }
+
+        // Handle Verify Click
+        if (btnVerify) {
+            btnVerify.addEventListener('click', async function () {
+                // Clear previous states
+                resultDiv.style.display = 'none';
+                errorDiv.style.display = 'none';
+                dataList.innerHTML = '';
+
+                const type = idTypeSelect.value;
+                const frontFile = document.getElementById('verify_id_front').files[0];
+                const backFile = document.getElementById('verify_id_back').files[0];
+
+                // Validation
+                if (!frontFile) {
+                    alert('Por favor seleccione la imagen frontal');
+                    return;
+                }
+                if (type !== 'PASAPORTE' && !backFile) {
+                    alert('Por favor seleccione la imagen del reverso');
+                    return;
+                }
+
+                // UI Loading
+                btnVerify.disabled = true;
+                btnVerify.style.opacity = '0.7';
+                loadingDiv.style.display = 'block';
+
+                const formData = new FormData();
+                formData.append('type', type);
+                formData.append('front', frontFile);
+                if (backFile) {
+                    formData.append('back', backFile);
+                }
+
+                try {
+                    const response = await fetch(`${API_BASE_URL}/identity/verify-document`, {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (!response.ok) {
+                        const errText = await response.text();
+                        throw new Error(errText || 'Error en la verificación');
+                    }
+
+                    const result = await response.json();
+                    console.log('Verification Result:', result);
+
+                    // Show Success
+                    resultDiv.style.display = 'block';
+
+                    // Populate List
+                    const data = result.data || result;
+                    const fields = {
+                        'Nombre': data.name || data.nombres,
+                        'Primer Apellido': data.firstSurname || data.apellidoPaterno,
+                        'Segundo Apellido': data.secondSurname || data.apellidoMaterno,
+                        'CURP': data.curp,
+                        'Clave Elector': data.claveElector,
+                        'OCR': data.ocrNumber
+                    };
+
+                    for (const [key, value] of Object.entries(fields)) {
+                        if (value) {
+                            const li = document.createElement('li');
+                            li.innerHTML = `<strong>${key}:</strong> ${value}`;
+                            dataList.appendChild(li);
+                        }
+                    }
+
+                    // Save data
+                    if (hiddenData) {
+                        hiddenData.value = JSON.stringify(result);
+                    }
+
+                } catch (error) {
+                    console.error('Verify Error:', error);
+                    errorDiv.style.display = 'block';
+                    errorMsg.textContent = 'No se pudo verificar el documento. Asegúrese que las imágenes sean claras y legibles.';
+                } finally {
+                    loadingDiv.style.display = 'none';
+                    btnVerify.disabled = false;
+                    btnVerify.style.opacity = '1';
+                }
+            });
+        }
+    })();
+</script>
+{% endif %}
