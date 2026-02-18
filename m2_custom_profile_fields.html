@@ -1,0 +1,978 @@
+<!-- START /partials/_editable_custom_profile_fields.html -->
+
+<h5 class="pt40">Requisitos para ser inversionista</h5>
+
+<hr class="pb20">
+
+<div class="form-group">
+    <label class="form-label" for="curp">CURP: <i class="fa fa-asterisk text-danger"></i></label>
+    <div class="input-group">
+        <input class="form-control" id="curp" name="provision[curp]" type="text" value="{{provision.curp}}"
+            placeholder="" minlength="18" maxlength="18" required>
+        <span class="input-group-btn">
+            <button class="btn btn-info" type="button" id="btn-validar-curp">Validar / Autocompletar</button>
+        </span>
+    </div>
+    <small id="curp-status" class="form-text text-muted"></small>
+</div>
+
+<hr />
+<h5 class="pt20">Validación de Identidad (OCR)</h5>
+<div class="form-group">
+    <label class="form-label" for="id_type">Tipo de Documento:</label>
+    <select class="form-control" id="id_type">
+        <option value="INE">INE / IFE</option>
+        <option value="PASAPORTE">Pasaporte</option>
+        <option value="FM">Forma Migratoria (FM)</option>
+        <option value="CEDULA">Cédula Profesional</option>
+    </select>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="form-label">Frente del Documento:</label>
+            <input type="file" class="form-control" id="id_front" accept="image/*">
+        </div>
+    </div>
+    <div class="col-md-6" id="container-id-back">
+        <div class="form-group">
+            <label class="form-label">Reverso del Documento:</label>
+            <input type="file" class="form-control" id="id_back" accept="image/*">
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <button type="button" class="btn btn-primary" id="btn-verificar-id">
+        <i class="fa fa-id-card"></i> Verificar Documento
+    </button>
+    <div id="ocr-loading" style="display:none; margin-top: 10px;">
+        <i class="fa fa-spinner fa-spin"></i> Procesando documento...
+    </div>
+</div>
+
+<div id="ocr-results" class="alert alert-success" style="display:none;">
+    <strong>Datos extraídos:</strong>
+    <ul id="ocr-data-list"></ul>
+    <input type="hidden" name="provision[ocr_data]" id="ocr_data_hidden">
+</div>
+<hr />
+
+<div class="form-group">
+    <label class="form-label" for="rfc">RFC (opcional):</label>
+    <input class="form-control" id="rfc" name="provision[rfc]" type="text" value="{{provision.rfc}}" placeholder="">
+</div>
+
+
+
+
+
+<div class="form-group">
+    <label class="form-label" for="occupation_category">Categoría profesional: <i
+            class="fa fa-asterisk text-danger"></i></label>
+    <select class="form-control" id="occupation_category" name="provision[occupation_category]" required>
+        {% if provision.occupation_category.size > 1 %}
+
+        <option value="{{ provision.occupation_category }}" selected>{{ provision.occupation_category }}</option>
+        <option value="Comercio">Comercio</option>
+        <option value="Construcción">Construcción</option>
+        <option value="Educación">Educación</option>
+        <option value="Empleado del Sector Privado">Empleado del Sector Privado</option>
+        <option value="Estudiante">Estudiante</option>
+        <option value="Hogar">Hogar</option>
+        <option value="Hospitalidad y salud">Hospitalidad y salud</option>
+        <option value="Inmuebles">Inmuebles</option>
+        <option value="Jubilado">Jubilado</option>
+        <option value="Manufactura">Manufactura</option>
+        <option value="Medios y Entretenimiento">Medios y Entretenimiento</option>
+        <option value="Mineria">Mineria</option>
+        <option value="Organización sin fines de lucro">Organización sin fines de lucro</option>
+        <option value="Préstamos y Créditos distintos a las Entidades Financieras">Préstamos y Créditos distintos a las
+            Entidades Financieras</option>
+        <option value="Química y farmacéutica">Química y farmacéutica</option>
+        <option value="Sector Público">Sector Público</option>
+        <option value="Servicios Financieros">Servicios Financieros</option>
+        <option value="Servicios Profesionales">Servicios Profesionales</option>
+        <option value="Sin ocupación">Sin ocupación</option>
+        <option value="Transporte">Transporte</option>
+
+        {% else %}
+        <option value="">Select an option</option>
+        <option value="Comercio" {% if provision.occupation_category=='Comercio' %}selected{% endif %}>Comercio</option>
+        <option value="Construcción" {% if provision.occupation_category=='Construcción' %}selected{% endif %}>
+            Construcción</option>
+        <option value="Educación" {% if provision.occupation_category=='Educación' %}selected{% endif %}>Educación
+        </option>
+        <option value="Empleado del Sector Privado" {% if provision.occupation_category=='Empleado del Sector Privado'
+            %}selected{% endif %}>Empleado del Sector Privado</option>
+        <option value="Estudiante" {% if provision.occupation_category=='Estudiante' %}selected{% endif %}>Estudiante
+        </option>
+        <option value="Hogar" {% if provision.occupation_category=='Hogar' %}selected{% endif %}>Hogar</option>
+        <option value="Hospitalidad y salud" {% if provision.occupation_category=='Hospitalidad y salud' %}selected{%
+            endif %}>Hospitalidad y salud</option>
+        <option value="Inmuebles" {% if provision.occupation_category=='Inmuebles' %}selected{% endif %}>Inmuebles
+        </option>
+        <option value="Jubilado" {% if provision.occupation_category=='Jubilado' %}selected{% endif %}>Jubilado</option>
+        <option value="Manufactura" {% if provision.occupation_category=='Manufactura' %}selected{% endif %}>Manufactura
+        </option>
+        <option value="Medios y Entretenimiento" {% if provision.occupation_category=='Medios y Entretenimiento'
+            %}selected{% endif %}>Medios y Entretenimiento</option>
+        <option value="Mineria" {% if provision.occupation_category=='Mineria' %}selected{% endif %}>Mineria</option>
+        <option value="Organización sin fines de lucro" {% if
+            provision.occupation_category=='Organización sin fines de lucro' %}selected{% endif %}>Organización sin
+            fines de lucro</option>
+        <option value="Préstamos y Créditos distintos a las Entidades Financieras" {% if
+            provision.occupation_category=='Préstamos y Créditos distintos a las Entidades Financieras' %}selected{%
+            endif %}>
+            Préstamos y Créditos distintos a las Entidades Financieras
+        </option>
+        <option value="Química y farmacéutica" {% if provision.occupation_category=='Química y farmacéutica'
+            %}selected{% endif %}>Química y farmacéutica</option>
+        <option value="Sector Público" {% if provision.occupation_category=='Sector Público' %}selected{% endif %}>
+            Sector Público</option>
+        <option value="Servicios Financieros" {% if provision.occupation_category=='Servicios Financieros' %}selected{%
+            endif %}>Servicios Financieros</option>
+        <option value="Servicios Profesionales" {% if provision.occupation_category=='Servicios Profesionales'
+            %}selected{% endif %}>Servicios Profesionales</option>
+        <option value="Sin ocupación" {% if provision.occupation_category=='Sin ocupación' %}selected{% endif %}>Sin
+            ocupación</option>
+        <option value="Transporte" {% if provision.occupation_category=='Transporte' %}selected{% endif %}>Transporte
+        </option>
+
+        {% endif %}
+    </select>
+</div>
+
+<div class="form-group">
+    <label class="form-label" for="occupation">¿Cuál es tu ocupación, profesión o actividad?: <i
+            class="fa fa-asterisk text-danger"></i></label>
+    <select class="form-control" id="occupation" name="provision[occupation]" required>
+
+        {% if provision.occupation.size > 1 %}
+
+        <option value="{{ provision.occupation }}" selected>{{ provision.occupation }}</option>
+
+        <option value="Compraventa de artículos de ferreteria y tlapalería">Compraventa de artículos de ferreteria y
+            tlapalería</option>
+        <option value="Compraventa de obras de arte">Compraventa de obras de arte</option>
+        <option value="Peluquería y barbería">Peluquería y barbería</option>
+        <option value="Tienda de Abarrotes y Miscelánea">Tienda de Abarrotes y Miscelánea</option>
+        <option value="Venta de activos virtuales">Venta de activos virtuales</option>
+        <option value="Venta de armas de fuego y sus accesorios">Venta de armas de fuego y sus accesorios</option>
+        <option value="Venta de cheques de viajero">Venta de cheques de viajero</option>
+        <option value="Venta de comida">Venta de comida</option>
+        <option value="Venta de diamantes">Venta de diamantes</option>
+        <option value="Venta de flores">Venta de flores</option>
+        <option value="Venta de frutas y verduras">Venta de frutas y verduras</option>
+        <option value="Venta de gasolina y diesel">Venta de gasolina y diesel</option>
+        <option value="Venta de joyas o relojes">Venta de joyas o relojes</option>
+        <option value="Venta de productos químicos">Venta de productos químicos</option>
+        <option value="Venta de ropa">Venta de ropa</option>
+        <option value="Venta de sustancias químicas">Venta de sustancias químicas</option>
+        <option value="Venta de tarjetas prepagadas">Venta de tarjetas prepagadas</option>
+        <option value="Venta de vinos y licores">Venta de vinos y licores</option>
+        <option value="Construcción de inmuebles">Construcción de inmuebles</option>
+        <option value="Maestro">Maestro</option>
+        <option value="Empleado del sector salud y hospitalario">Empleado del sector salud y hospitalario</option>
+        <option value="Empleado del sector agricultor y ganadero">Empleado del sector agricultor y ganadero</option>
+        <option value="Empleado del sector de la construcción">Empleado del sector de la construcción</option>
+        <option value="Empleado del sector educativo">Empleado del sector educativo</option>
+        <option value="Empleado del sector energético">Empleado del sector energético</option>
+        <option value="Empleado del sector farmacéutico">Empleado del sector farmacéutico</option>
+        <option value="Empleado del sector financiero">Empleado del sector financiero</option>
+        <option value="Empleado del sector manufacturero">Empleado del sector manufacturero</option>
+        <option value="Empleado del sector publicitario">Empleado del sector publicitario</option>
+        <option value="Empleado del sector restaurantero y hotelero">Empleado del sector restaurantero y hotelero
+        </option>
+        <option value="Estudiante">Estudiante</option>
+        <option value="Ama de casa">Ama de casa</option>
+        <option value="Servicios de limpieza">Servicios de limpieza</option>
+        <option value="Compraventa de equipo médico">Compraventa de equipo médico</option>
+        <option value="Servicios médicos">Servicios médicos</option>
+        <option value="Servicios nutricionales">Servicios nutricionales</option>
+        <option value="Servicios odontologicos">Servicios odontologicos</option>
+        <option value="Servicios psicológicos">Servicios psicológicos</option>
+        <option value="Servicios veterinarios">Servicios veterinarios</option>
+        <option value="Agente de bienes raíces">Agente de bienes raíces</option>
+        <option value="Arrendamiento de inmuebles">Arrendamiento de inmuebles</option>
+        <option value="Compraventa de inmuebles" {% if provision.occupation=='Compraventa de inmuebles' %}selected{%
+            endif %}>Compraventa de inmuebles</option>
+        <option value="Jubilado">Jubilado</option>
+        <option value="Empacadora de alimentos">Empacadora de alimentos</option>
+        <option value="Fabricación de alimentos">Fabricación de alimentos</option>
+        <option value="Fabricación de calzado">Fabricación de calzado</option>
+        <option value="Fabricación de explosivos">Fabricación de explosivos</option>
+        <option value="Fabricación de hilos y telas" }>Fabricación de hilos y telas</option>
+        <option value="Fabricación de papel">Fabricación de papel</option>
+        <option value="Tortillería">Tortillería</option>
+        <option value="Agencia de rifas y sorteos">Agencia de rifas y sorteos</option>
+        <option value="Influyente en redes sociales">Influyente en redes sociales</option>
+        <option value="Venta de boletos de apuestas, juegos y sorteos">Venta de boletos de apuestas, juegos y sorteos
+        </option>
+        <option value="Venta de paquetes vacacionales">Venta de paquetes vacacionales</option>
+        <option value="Explotación de cualquier mineral">Explotación de cualquier mineral</option>
+        <option value="Extracción de cualquier mineral">Extracción de cualquier mineral</option>
+        <option value="Organización sin fines de lucro">Organización sin fines de lucro</option>
+        <option value="Préstamos y Créditos distintos a las Entidades Financieras">Préstamos y Créditos distintos a las
+            Entidades Financieras</option>
+        <option value="Compraventa de equipos químicos y para laboratorio">Compraventa de equipos químicos y para
+            laboratorio</option>
+        <option value="Distribución de productos químicos y farmacéuticos">Distribución de productos químicos y
+            farmacéuticos</option>
+        <option value="Importación o exportación de productos químicos">Importación o exportación de productos químicos
+        </option>
+        <option value="Empleado del Sector Público Extranjero">Empleado del Sector Público Extranjero</option>
+        <option value="Empleado del Sector Público Nacional">Empleado del Sector Público Nacional</option>
+        <option value="Asesor en Inversiones">Asesor en Inversiones</option>
+        <option value="Centros Cambiarios">Centros Cambiarios</option>
+        <option value="SOFOM ER o ENR">SOFOM ER o ENR</option>
+        <option value="Transmisor de dinero">Transmisor de dinero</option>
+        <option value="Venta de polizas de seguros">Venta de polizas de seguros</option>
+        <option value="Abogado">Abogado</option>
+        <option value="Administrador">Administrador</option>
+        <option value="Agente Aduanal">Agente Aduanal</option>
+        <option value="Arquitecto">Arquitecto</option>
+        <option value="Contador">Contador</option>
+        <option value="Corredor Público">Corredor Público</option>
+        <option value="Ingeniero">Ingeniero</option>
+        <option value="Notario Público">Notario Público</option>
+        <option value="Publicitario y Mercadólogo">Publicitario y Mercadólogo</option>
+        <option value="Reclutador">Reclutador</option>
+        <option value="Servicios de traslado, custodia de dinero o valores">Servicios de traslado, custodia de dinero o
+            valores</option>
+        <option value="Desempleado">Desempleado</option>
+        <option value="Arrendamiento de Vehículos">Arrendamiento de Vehículos</option>
+        <option value="Servicios de Blindaje">Servicios de Blindaje</option>
+        <option value="Venta de Vehículos">Venta de Vehículos</option>
+        <option value="Venta de equipos de transporte, sus refacciones y accesorios">Venta de equipos de transporte, sus
+            refacciones y accesorios</option>
+
+        {% else %}
+
+        <option value="">Select an option</option>
+        <option value="Compraventa de artículos de ferreteria y tlapalería" {% if
+            provision.occupation=='Compraventa de artículos de ferreteria y tlapalería' %}selected{% endif %}>
+            Compraventa de artículos de ferreteria y tlapalería</option>
+        <option value="Compraventa de obras de arte" {% if provision.occupation=='Compraventa de obras de arte'
+            %}selected{% endif %}>Compraventa de obras de arte</option>
+        <option value="Peluquería y barbería" {% if provision.occupation=='Peluquería y barbería' %}selected{% endif %}>
+            Peluquería y barbería</option>
+        <option value="Tienda de Abarrotes y Miscelánea" {% if provision.occupation=='Tienda de Abarrotes y Miscelánea'
+            %}selected{% endif %}>Tienda de Abarrotes y Miscelánea</option>
+        <option value="Venta de activos virtuales" {% if provision.occupation=='Venta de activos virtuales' %}selected{%
+            endif %}>Venta de activos virtuales</option>
+        <option value="Venta de armas de fuego y sus accesorios" {% if
+            provision.occupation=='Venta de armas de fuego y sus accesorios' %}selected{% endif %}>Venta de armas de
+            fuego y sus accesorios</option>
+        <option value="Venta de cheques de viajero" {% if provision.occupation=='Venta de cheques de viajero'
+            %}selected{% endif %}>Venta de cheques de viajero</option>
+        <option value="Venta de comida" {% if provision.occupation=='Venta de comida' %}selected{% endif %}>Venta de
+            comida</option>
+        <option value="Venta de diamantes" {% if provision.occupation=='Venta de diamantes' %}selected{% endif %}>Venta
+            de diamantes</option>
+        <option value="Venta de flores" {% if provision.occupation=='Venta de flores' %}selected{% endif %}>Venta de
+            flores</option>
+        <option value="Venta de frutas y verduras" {% if provision.occupation=='Venta de frutas y verduras' %}selected{%
+            endif %}>Venta de frutas y verduras</option>
+        <option value="Venta de gasolina y diesel" {% if provision.occupation=='Venta de gasolina y diesel' %}selected{%
+            endif %}>Venta de gasolina y diesel</option>
+        <option value="Venta de joyas o relojes" {% if provision.occupation=='Venta de joyas o relojes' %}selected{%
+            endif %}>Venta de joyas o relojes</option>
+        <option value="Venta de productos químicos" {% if provision.occupation=='Venta de productos químicos'
+            %}selected{% endif %}>Venta de productos químicos</option>
+        <option value="Venta de ropa" {% if provision.occupation=='Venta de ropa' %}selected{% endif %}>Venta de ropa
+        </option>
+        <option value="Venta de sustancias químicas" {% if provision.occupation=='Venta de sustancias químicas'
+            %}selected{% endif %}>Venta de sustancias químicas</option>
+        <option value="Venta de tarjetas prepagadas" {% if provision.occupation=='Venta de tarjetas prepagadas'
+            %}selected{% endif %}>Venta de tarjetas prepagadas</option>
+        <option value="Venta de vinos y licores" {% if provision.occupation=='Venta de vinos y licores' %}selected{%
+            endif %}>Venta de vinos y licores</option>
+        <option value="Construcción de inmuebles" {% if provision.occupation=='Construcción de inmuebles' %}selected{%
+            endif %}>Construcción de inmuebles</option>
+        <option value="Maestro" {% if provision.occupation=='Maestro' %}selected{% endif %}>Maestro</option>
+        <option value="Empleado del sector salud y hospitalario" {% if
+            provision.occupation=='Empleado del sector salud y hospitalario' %}selected{% endif %}>Empleado del sector
+            salud y hospitalario</option>
+        <option value="Empleado del sector agricultor y ganadero" {% if
+            provision.occupation=='Empleado del sector agricultor y ganadero' %}selected{% endif %}>Empleado del sector
+            agricultor y ganadero</option>
+        <option value="Empleado del sector de la construcción" {% if
+            provision.occupation=='Empleado del sector de la construcción' %}selected{% endif %}>Empleado del sector de
+            la construcción</option>
+        <option value="Empleado del sector educativo" {% if provision.occupation=='Empleado del sector educativo'
+            %}selected{% endif %}>Empleado del sector educativo</option>
+        <option value="Empleado del sector energético" {% if provision.occupation=='Empleado del sector energético'
+            %}selected{% endif %}>Empleado del sector energético</option>
+        <option value="Empleado del sector farmacéutico" {% if provision.occupation=='Empleado del sector farmacéutico'
+            %}selected{% endif %}>Empleado del sector farmacéutico</option>
+        <option value="Empleado del sector financiero" {% if provision.occupation=='Empleado del sector financiero'
+            %}selected{% endif %}>Empleado del sector financiero</option>
+        <option value="Empleado del sector manufacturero" {% if
+            provision.occupation=='Empleado del sector manufacturero' %}selected{% endif %}>Empleado del sector
+            manufacturero</option>
+        <option value="Empleado del sector publicitario" {% if provision.occupation=='Empleado del sector publicitario'
+            %}selected{% endif %}>Empleado del sector publicitario</option>
+        <option value="Empleado del sector restaurantero y hotelero" {% if
+            provision.occupation=='Empleado del sector restaurantero y hotelero' %}selected{% endif %}>Empleado del
+            sector restaurantero y hotelero</option>
+        <option value="Estudiante" {% if provision.occupation=='Estudiante' %}selected{% endif %}>Estudiante</option>
+        <option value="Ama de casa" {% if provision.occupation=='Ama de casa' %}selected{% endif %}>Ama de casa</option>
+        <option value="Servicios de limpieza" {% if provision.occupation=='Servicios de limpieza' %}selected{% endif %}>
+            Servicios de limpieza</option>
+        <option value="Compraventa de equipo médico" {% if provision.occupation=='Compraventa de equipo médico'
+            %}selected{% endif %}>Compraventa de equipo médico</option>
+        <option value="Servicios médicos" {% if provision.occupation=='Servicios médicos' %}selected{% endif %}>
+            Servicios médicos</option>
+        <option value="Servicios nutricionales" {% if provision.occupation=='Servicios nutricionales' %}selected{% endif
+            %}>Servicios nutricionales</option>
+        <option value="Servicios odontologicos" {% if provision.occupation=='Servicios odontologicos' %}selected{% endif
+            %}>Servicios odontologicos</option>
+        <option value="Servicios psicológicos" {% if provision.occupation=='Servicios psicológicos' %}selected{% endif
+            %}>Servicios psicológicos</option>
+        <option value="Servicios veterinarios" {% if provision.occupation=='Servicios veterinarios' %}selected{% endif
+            %}>Servicios veterinarios</option>
+        <option value="Agente de bienes raíces" {% if provision.occupation=='Agente de bienes raíces' %}selected{% endif
+            %}>Agente de bienes raíces</option>
+        <option value="Arrendamiento de inmuebles" {% if provision.occupation=='Arrendamiento de inmuebles' %}selected{%
+            endif %}>Arrendamiento de inmuebles</option>
+        <option value="Compraventa de inmuebles" {% if provision.occupation=='Compraventa de inmuebles' %}selected{%
+            endif %}>Compraventa de inmuebles</option>
+        <option value="Jubilado" {% if provision.occupation=='Jubilado' %}selected{% endif %}>Jubilado</option>
+        <option value="Empacadora de alimentos" {% if provision.occupation=='Empacadora de alimentos' %}selected{% endif
+            %}>Empacadora de alimentos</option>
+        <option value="Fabricación de alimentos" {% if provision.occupation=='Fabricación de alimentos' %}selected{%
+            endif %}>Fabricación de alimentos</option>
+        <option value="Fabricación de calzado" {% if provision.occupation=='Fabricación de calzado' %}selected{% endif
+            %}>Fabricación de calzado</option>
+        <option value="Fabricación de explosivos" {% if provision.occupation=='Fabricación de explosivos' %}selected{%
+            endif %}>Fabricación de explosivos</option>
+        <option value="Fabricación de hilos y telas" {% if provision.occupation=='Fabricación de hilos y telas'
+            %}selected{% endif %}>Fabricación de hilos y telas</option>
+        <option value="Fabricación de papel" {% if provision.occupation=='Fabricación de papel' %}selected{% endif %}>
+            Fabricación de papel</option>
+        <option value="Tortillería" {% if provision.occupation=='Tortillería' %}selected{% endif %}>Tortillería</option>
+        <option value="Agencia de rifas y sorteos" {% if provision.occupation=='Agencia de rifas y sorteos' %}selected{%
+            endif %}>Agencia de rifas y sorteos</option>
+        <option value="Influyente en redes sociales" {% if provision.occupation=='Influyente en redes sociales'
+            %}selected{% endif %}>Influyente en redes sociales</option>
+        <option value="Venta de boletos de apuestas, juegos y sorteos" {% if
+            provision.occupation=='Venta de boletos de apuestas, juegos y sorteos' %}selected{% endif %}>Venta de
+            boletos de apuestas, juegos y sorteos</option>
+        <option value="Venta de paquetes vacacionales" {% if provision.occupation=='Venta de paquetes vacacionales'
+            %}selected{% endif %}>Venta de paquetes vacacionales</option>
+        <option value="Explotación de cualquier mineral" {% if provision.occupation=='Explotación de cualquier mineral'
+            %}selected{% endif %}>Explotación de cualquier mineral</option>
+        <option value="Extracción de cualquier mineral" {% if provision.occupation=='Extracción de cualquier mineral'
+            %}selected{% endif %}>Extracción de cualquier mineral</option>
+        <option value="Organización sin fines de lucro" {% if provision.occupation=='Organización sin fines de lucro'
+            %}selected{% endif %}>Organización sin fines de lucro</option>
+        <option value="Préstamos y Créditos distintos a las Entidades Financieras" {% if
+            provision.occupation=='Préstamos y Créditos distintos a las Entidades Financieras' %}selected{% endif %}>
+            Préstamos y Créditos distintos a las Entidades Financieras</option>
+        <option value="Compraventa de equipos químicos y para laboratorio" {% if
+            provision.occupation=='Compraventa de equipos químicos y para laboratorio' %}selected{% endif %}>Compraventa
+            de equipos químicos y para laboratorio</option>
+        <option value="Distribución de productos químicos y farmacéuticos" {% if
+            provision.occupation=='Distribución de productos químicos y farmacéuticos' %}selected{% endif %}>
+            Distribución de productos químicos y farmacéuticos</option>
+        <option value="Importación o exportación de productos químicos" {% if
+            provision.occupation=='Importación o exportación de productos químicos' %}selected{% endif %}>Importación o
+            exportación de productos químicos</option>
+        <option value="Empleado del Sector Público Extranjero" {% if
+            provision.occupation=='Empleado del Sector Público Extranjero' %}selected{% endif %}>Empleado del Sector
+            Público Extranjero</option>
+        <option value="Empleado del Sector Público Nacional" {% if
+            provision.occupation=='Empleado del Sector Público Nacional' %}selected{% endif %}>Empleado del Sector
+            Público Nacional</option>
+        <option value="Asesor en Inversiones" {% if provision.occupation=='Asesor en Inversiones' %}selected{% endif %}>
+            Asesor en Inversiones</option>
+        <option value="Centros Cambiarios" {% if provision.occupation=='Centros Cambiarios' %}selected{% endif %}>
+            Centros Cambiarios</option>
+        <option value="SOFOM ER o ENR" {% if provision.occupation=='SOFOM ER o ENR' %}selected{% endif %}>SOFOM ER o ENR
+        </option>
+        <option value="Transmisor de dinero" {% if provision.occupation=='Transmisor de dinero' %}selected{% endif %}>
+            Transmisor de dinero</option>
+        <option value="Venta de polizas de seguros" {% if provision.occupation=='Venta de polizas de seguros'
+            %}selected{% endif %}>Venta de polizas de seguros</option>
+        <option value="Abogado" {% if provision.occupation=='Abogado' %}selected{% endif %}>Abogado</option>
+        <option value="Administrador" {% if provision.occupation=='Administrador' %}selected{% endif %}>Administrador
+        </option>
+        <option value="Agente Aduanal" {% if provision.occupation=='Agente Aduanal' %}selected{% endif %}>Agente Aduanal
+        </option>
+        <option value="Arquitecto" {% if provision.occupation=='Arquitecto' %}selected{% endif %}>Arquitecto</option>
+        <option value="Contador" {% if provision.occupation=='Contador' %}selected{% endif %}>Contador</option>
+        <option value="Corredor Público" {% if provision.occupation=='Corredor Público' %}selected{% endif %}>Corredor
+            Público</option>
+        <option value="Ingeniero" {% if provision.occupation=='Ingeniero' %}selected{% endif %}>Ingeniero</option>
+        <option value="Notario Público" {% if provision.occupation=='Notario Público' %}selected{% endif %}>Notario
+            Público</option>
+        <option value="Publicitario y Mercadólogo" {% if provision.occupation=='Publicitario y Mercadólogo' %}selected{%
+            endif %}>Publicitario y Mercadólogo</option>
+        <option value="Reclutador" {% if provision.occupation=='Reclutador' %}selected{% endif %}>Reclutador</option>
+        <option value="Servicios de traslado, custodia de dinero o valores" {% if
+            provision.occupation=='Servicios de traslado, custodia de dinero o valores' %}selected{% endif %}>Servicios
+            de traslado, custodia de dinero o valores</option>
+        <option value="Desempleado" {% if provision.occupation=='Desempleado' %}selected{% endif %}>Desempleado</option>
+        <option value="Arrendamiento de Vehículos" {% if provision.occupation=='Arrendamiento de Vehículos' %}selected{%
+            endif %}>Arrendamiento de Vehículos</option>
+        <option value="Servicios de Blindaje" {% if provision.occupation=='Servicios de Blindaje' %}selected{% endif %}>
+            Servicios de Blindaje</option>
+        <option value="Venta de Vehículos" {% if provision.occupation=='Venta de Vehículos' %}selected{% endif %}>Venta
+            de Vehículos</option>
+        <option value="Venta de equipos de transporte, sus refacciones y accesorios" {% if
+            provision.occupation=='Venta de equipos de transporte, sus refacciones y accesorios' %}selected{% endif %}>
+            Venta de equipos de transporte, sus refacciones y accesorios
+        </option>
+
+        {% endif %}
+    </select>
+</div>
+
+<div class="form-group">
+    <label class="form-label" for="public_official">¿Es usted o tiene algún familiar que sea funcionario público?: <i
+            class="fa fa-asterisk text-danger"></i></label>
+    <select class="form-control" id="public_official" name="provision[public_official]" required>
+
+        {% if provision.public_official.size > 1 %}
+
+        <option value="{{ provision.public_official }}" selected>{{ provision.public_official }}</option>
+        <option value="No">No</option>
+        <option value="Sí, yo">Sí, yo</option>
+        <option value="Yo no, pero un familiar Sí">Yo no, pero un familiar Sí</option>
+
+
+        {% else %}
+
+        <option value="">Select an option</option>
+        <option {% if provision.public_official=='No' %}selected{% endif %} value="No">No</option>
+        <option {% if provision.public_official=='Sí, yo' %}selected{% endif %} value="Sí, yo">Sí, yo</option>
+        <option {% if provision.public_official=='Yo no, pero un familiar Sí' %}selected{% endif %}
+            value="Yo no, pero un familiar Sí">Yo no, pero un familiar Sí</option>
+
+        {% endif %}
+    </select>
+</div>
+
+<div class="form-group">
+    <label class="form-label" for="source_of_funds">¿Cuál es la fuente de los fondos que pretende invertir en M2CROWD?:
+        <i class="fa fa-asterisk text-danger"></i></label>
+    <select class="form-control" id="source_of_funds" name="provision[source_of_funds]" required>
+        {% if provision.source_of_funds.size > 1 %}
+
+        <option value="{{ provision.source_of_funds }}" selected>{{ provision.source_of_funds }}</option>
+        <option value="Mis ahorros">Mis ahorros</option>
+        <option value="Mis ingresos">Mis ingresos</option>
+        <option value="Una herencia">Una herencia</option>
+        <option value="Otro">Otro
+    </select>
+
+    {% else %}
+
+    <option value="">Select an option</option>
+    <option {% if provision.source_of_funds=='Mis ahorros' %}selected{% endif %} value="Mis ahorros">Mis ahorros
+    </option>
+    <option {% if provision.source_of_funds=='Mis ingresos' %}selected{% endif %} value="Mis ingresos">Mis ingresos
+    </option>
+    <option {% if provision.source_of_funds=='Una herencia' %}selected{% endif %} value="Una herencia">Una herencia
+    </option>
+    <option {% if provision.source_of_funds=='Otro' %}selected{% endif %} value="Otro">Otro</select>
+
+        {% endif %}
+
+        </select>
+</div>
+
+<div class="form-group">
+    <label class="form-label" for="allocation">¿A qué piensas destinar tus recursos de inversión?: <i
+            class="fa fa-asterisk text-danger"></i></label>
+    <select class="form-control" id="allocation" name="provision[allocation]" required>
+        {% if provision.allocation.size > 1 %}
+
+        <option value="{{ provision.allocation }}" selected>{{ provision.allocation }}</option>
+        <option value="Retiro">Retiro</option>
+        <option value="Ahorro">Ahorro</option>
+        <option value="Otro">Otro</option>
+
+        {% else %}
+
+        <option value="">Select an option</option>
+        <option {% if provision.allocation=='Retiro' %}selected{% endif %} value="Retiro">Retiro</option>
+        <option {% if provision.allocation=='Ahorro' %}selected{% endif %} value="Ahorro">Ahorro</option>
+        <option {% if provision.allocation=='Otro' %}selected{% endif %} value="Otro">Otro</option>
+
+        {% endif %}
+    </select>
+</div>
+
+<div class="form-group">
+    <label class="form-label" for="deposit_frequency">¿Con qué frecuencia planeas realizar depósitos? <i
+            class="fa fa-asterisk text-danger"></i></label>
+    <select class="form-control" id="deposit_frequency" name="provision[deposit_frequency]" required>
+
+        {% if provision.deposit_frequency.size > 1 %}
+
+
+        <option value="{{ provision.deposit_frequency }}" selected>{{ provision.deposit_frequency }}</option>
+        <option {% if provision.deposit_frequency=='Semanal' %}selected{% endif %} value="Semanal">Semanal</option>
+        <option {% if provision.deposit_frequency=='Quincenal' %}selected{% endif %} value="Quincenal">Quincenal
+        </option>
+        <option {% if provision.deposit_frequency=='Mensual' %}selected{% endif %} value="Mensual">Mensual</option>
+        <option {% if provision.deposit_frequency=='Trimestral' %}selected{% endif %} value="Trimestral">Trimestral
+        </option>
+        <option {% if provision.deposit_frequency=='Anual' %}selected{% endif %} value="Anual">Anual</option>
+
+
+        {% else %}
+
+        <option value="">Seleccione una opción</option>
+        <option {% if provision.deposit_frequency=='Semanal' %}selected{% endif %} value="Semanal">Semanal</option>
+        <option {% if provision.deposit_frequency=='Quincenal' %}selected{% endif %} value="Quincenal">Quincenal
+        </option>
+        <option {% if provision.deposit_frequency=='Mensual' %}selected{% endif %} value="Mensual">Mensual</option>
+        <option {% if provision.deposit_frequency=='Trimestral' %}selected{% endif %} value="Trimestral">Trimestral
+        </option>
+        <option {% if provision.deposit_frequency=='Anual' %}selected{% endif %} value="Anual">Anual</option>
+
+        {% endif %}
+    </select>
+</div>
+
+<div class="form-group">
+    <label class="form-label" for="cantidad_aproximada">Cantidad Aproximada: <i
+            class="fa fa-asterisk text-danger"></i></label>
+    <input class="form-control" id="cantidad_aproximada" name="provision[cantidad_aproximada]" type="text"
+        value="{{provision.cantidad_aproximada}}" placeholder="" required>
+</div>
+
+<div class="form-group">
+    <input type="checkbox" id="aviso_privacidad" name="aviso_privacidad" value="aviso_privacidad">
+    <label for="aviso_privacidad">
+        Aceptación de <a href="https://m2crowd.com/aviso-de-privacidad/" target="_blank"><u>Aviso de Privacidad</u></a>
+    </label>
+</div>
+
+<div id="submit_meesage">
+
+</div>
+
+<script>
+
+    function validarCURP(curp) {
+        if (!curp || typeof curp !== "string") return false;
+
+        curp = curp.toUpperCase().trim();
+
+        // 1. Regex oficial de estructura
+        const regex = /^[A-Z]{4}\d{6}[HM][A-Z]{2}[B-DF-HJ-NP-TV-Z]{3}[0-9A-Z]\d$/;
+
+        if (!regex.test(curp)) return false;
+
+        // 2. Validar dígito verificador
+        const diccionario = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+        let suma = 0;
+
+        for (let i = 0; i < 17; i++) {
+            const valor = diccionario.indexOf(curp.charAt(i));
+            suma += valor * (18 - i);
+        }
+
+        const digitoEsperado = (10 - (suma % 10)) % 10;
+        const digitoReal = parseInt(curp.charAt(17), 10);
+
+        return digitoEsperado === digitoReal;
+    }
+
+    function initializeValidation() {
+        const curpInput = document.getElementById('curp');
+        const birthYearSelect = document.getElementById('birth_year');
+        const occupationCategorySelect = document.getElementById('occupation_category');
+        const occupationSelect = document.getElementById('occupation');
+        const publicOfficialSelect = document.getElementById('public_official');
+        const sourceOfFundsSelect = document.getElementById('source_of_funds');
+        const allocationSelect = document.getElementById('allocation');
+        const depositFrequencySelect = document.getElementById('deposit_frequency');
+        const cantidadAproximadaInput = document.getElementById('cantidad_aproximada');
+        const avisoPrivacidadCheckbox = document.getElementById('aviso_privacidad');
+        const submitButton = document.querySelector('input[name="submit"]');
+        const messageDiv = document.getElementById('submit_meesage');
+
+        // Check if all elements exist
+        if (!curpInput || !birthYearSelect || !occupationCategorySelect ||
+            !occupationSelect || !publicOfficialSelect || !sourceOfFundsSelect ||
+            !allocationSelect || !depositFrequencySelect || !cantidadAproximadaInput ||
+            !avisoPrivacidadCheckbox || !submitButton || !messageDiv) {
+            return false;
+        }
+
+        // Function to validate all fields
+        function validateForm() {
+            const isCurpValid = validarCURP(curpInput.value);
+            const isBirthYearSelected = birthYearSelect.value !== '';
+            const isOccupationCategorySelected = occupationCategorySelect.value !== '';
+            const isOccupationSelected = occupationSelect.value !== '';
+            const isPublicOfficialSelected = publicOfficialSelect.value !== '';
+            const isSourceOfFundsSelected = sourceOfFundsSelect.value !== '';
+            const isAllocationSelected = allocationSelect.value !== '';
+            const isDepositFrequencySelected = depositFrequencySelect.value !== '';
+            const isCantidadAproximadaFilled = cantidadAproximadaInput.value.trim() !== '';
+            const isAvisoPrivacidadChecked = avisoPrivacidadCheckbox.checked;
+
+            let messages = [];
+
+            // Check CURP validity
+            if (!isCurpValid) {
+                messages.push('Favor de colocar en el campo CURP un CURP valido');
+            }
+
+            // Check birth year selection
+            if (!isBirthYearSelected) {
+                messages.push('Año no seleccionado');
+            }
+
+            // Check occupation category
+            if (!isOccupationCategorySelected) {
+                messages.push('Categoría profesional vacia');
+            }
+
+            // Check occupation
+            if (!isOccupationSelected) {
+                messages.push('Ocupacion o profecion vacia');
+            }
+
+            // Check public official
+            if (!isPublicOfficialSelected) {
+                messages.push('Oficial Publico vacio');
+            }
+
+            // Check source of funds
+            if (!isSourceOfFundsSelected) {
+                messages.push('Fuente de los fondos vacio');
+            }
+
+            // Check allocation
+            if (!isAllocationSelected) {
+                messages.push('Destinos de recursos vacio');
+            }
+
+            // Check deposit frequency
+            if (!isDepositFrequencySelected) {
+                messages.push('Frecuencia de depositos vacia');
+            }
+
+            // Check cantidad aproximada
+            if (!isCantidadAproximadaFilled) {
+                messages.push('Cantidad Aproximada Vacia');
+            }
+
+            // Check privacy notice checkbox
+            if (!isAvisoPrivacidadChecked) {
+                messages.push('Falta aceptar Aviso de Privacidad');
+            }
+
+            // Update button and message display
+            if (isCurpValid && isBirthYearSelected && isOccupationCategorySelected &&
+                isOccupationSelected && isPublicOfficialSelected && isSourceOfFundsSelected &&
+                isAllocationSelected && isDepositFrequencySelected && isCantidadAproximadaFilled &&
+                isAvisoPrivacidadChecked) {
+                submitButton.disabled = false;
+                messageDiv.innerHTML = '';
+                messageDiv.style.display = 'none';
+            } else {
+                submitButton.disabled = true;
+
+                // Create list of error messages
+                let messageHTML = '<h4><strong>Falta Completar:</strong></h4> <ul style="margin: 0; padding-left: 20px; list-style: disc;">';
+                messages.forEach(function (msg) {
+                    messageHTML += '<li style="font-weight: bold; color:#bd2d1;">' + msg + '</li>';
+                });
+                messageHTML += '</ul>';
+
+                messageDiv.innerHTML = messageHTML;
+                messageDiv.style.display = 'block';
+                messageDiv.style.color = '#dc3545';
+                messageDiv.style.marginTop = '10px';
+                messageDiv.style.fontSize = '16px';
+                messageDiv.style.fontWeight = 'bold';
+            }
+        }
+
+        // Initial validation
+        validateForm();
+
+        // Add event listeners for all inputs
+        curpInput.addEventListener('input', validateForm);
+        birthYearSelect.addEventListener('change', validateForm);
+        occupationCategorySelect.addEventListener('change', validateForm);
+        occupationSelect.addEventListener('change', validateForm);
+        publicOfficialSelect.addEventListener('change', validateForm);
+        sourceOfFundsSelect.addEventListener('change', validateForm);
+        allocationSelect.addEventListener('change', validateForm);
+        depositFrequencySelect.addEventListener('change', validateForm);
+        cantidadAproximadaInput.addEventListener('input', validateForm);
+        avisoPrivacidadCheckbox.addEventListener('change', validateForm);
+
+        return true;
+    }
+
+    // Try to initialize immediately
+    if (!initializeValidation()) {
+        // If elements not found, wait for DOM to be fully loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeValidation);
+        } else {
+            // DOM is already loaded, use MutationObserver to wait for the elements
+            const observer = new MutationObserver(function (mutations) {
+                if (initializeValidation()) {
+                    observer.disconnect();
+                }
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        }
+    }
+
+
+
+</script>
+
+
+<script>
+
+    const input = document.getElementById('provision_ssn');
+
+    if (input) {
+        input.value = 'default';
+        input.style.display = 'none';
+    }
+
+
+
+    const label_2 = document.querySelector('label[for="provision_ssn"]');
+
+    // Check if the element exists and hide it
+    if (label_2) {
+        label_2.style.display = 'none';
+    }
+
+
+    const label3 = document.querySelector('label[for="interior_number"]');
+
+    // Check if the element exists
+    if (label3) {
+        // Find the asterisk icon (i element) within the label
+        const asterisk = label3.querySelector('i.fa-asterisk');
+
+        label3.textContent = "Número interior (Opcional): "
+
+        // Remove it if found
+        if (asterisk) {
+            asterisk.remove();
+        }
+    }
+
+
+
+</script>
+
+<!--
+<!--Example output-->
+<!--<div class="form-group ">-->
+<!--  <label class="form-label" for="my_custom_field">My Custom Field: <i class="fa fa-asterisk text-danger"></i></label>-->
+<!--  <input class="form-control" id="my_custom_field" name="profile[my_custom_field]" type="text" value="" placeholder="">-->
+<!--</div>-->
+<!---->
+
+
+<!-- END /partials/_editable_custom_profile_fields.html -->
+
+<script>
+    (function () {
+        // --- CONFIGURATION ---
+        const API_BASE_URL = 'https://m2crowd-back-dev.quo.services'; // Adjust if needed
+
+        // --- DOM ELEMENTS ---
+        const btnValidarCurp = document.getElementById('btn-validar-curp');
+        const curpInput = document.getElementById('curp');
+        const curpStatus = document.getElementById('curp-status');
+
+        const btnVerificarId = document.getElementById('btn-verificar-id');
+        const idTypeSelect = document.getElementById('id_type');
+        const idFrontInput = document.getElementById('id_front');
+        const idBackInput = document.getElementById('id_back');
+        const containerIdBack = document.getElementById('container-id-back');
+        const ocrLoading = document.getElementById('ocr-loading');
+        const ocrResults = document.getElementById('ocr-results');
+        const ocrDataList = document.getElementById('ocr-data-list');
+        const ocrDataHidden = document.getElementById('ocr_data_hidden');
+
+        // --- EVENT LISTENERS ---
+
+        // 1. Validar CURP & Autofill
+        if (btnValidarCurp) {
+            btnValidarCurp.addEventListener('click', async function () {
+                const curp = curpInput.value.trim().toUpperCase();
+                if (!curp || curp.length < 18) {
+                    alert('Por favor ingrese una CURP válida de 18 caracteres.');
+                    return;
+                }
+
+                // UI Loading State
+                btnValidarCurp.disabled = true;
+                btnValidarCurp.textContent = 'Validando...';
+                curpStatus.textContent = '';
+
+                try {
+                    const response = await fetch(`${API_BASE_URL}/identity/curp`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ curp: curp })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Error al validar CURP');
+                    }
+
+                    const data = await response.json();
+
+                    // Success: Autofill fields
+                    console.log('CURP Data:', data);
+
+                    // Map fields (Adjust IDs based on your actual form structure)
+                    // Common IDs in CrowdEngine / Register forms
+                    const firstNameInput = document.getElementById('user_first_name') || document.querySelector('[name="user[first_name]"]');
+                    const lastNameInput = document.getElementById('user_last_name') || document.querySelector('[name="user[last_name]"]');
+
+                    if (firstNameInput && data.nombres) {
+                        firstNameInput.value = data.nombres;
+                    }
+
+                    if (lastNameInput) {
+                        // Combine paternal and maternal surnames
+                        const apellidos = [data.apellidoPaterno, data.apellidoMaterno].filter(Boolean).join(' ');
+                        lastNameInput.value = apellidos;
+                    }
+
+                    // Optional: Fill other fields if they exist (birthdate, gender, state)
+                    // console.log('Data to map:', data);
+
+                    curpStatus.textContent = 'CURP válida. Datos autocompletados.';
+                    curpStatus.className = 'form-text text-success';
+
+                } catch (error) {
+                    console.error('Error:', error);
+                    curpStatus.textContent = 'No se pudo validar la CURP. Verifique que sea correcta.';
+                    curpStatus.className = 'form-text text-danger';
+                } finally {
+                    btnValidarCurp.disabled = false;
+                    btnValidarCurp.textContent = 'Validar / Autocompletar';
+                }
+            });
+        }
+
+        // 2. ID Type Change (Show/Hide Back Image)
+        if (idTypeSelect) {
+            idTypeSelect.addEventListener('change', function () {
+                const type = this.value;
+                if (type === 'PASAPORTE') {
+                    containerIdBack.style.display = 'none';
+                } else {
+                    containerIdBack.style.display = 'block';
+                }
+            });
+        }
+
+        // 3. Verify ID (OCR)
+        if (btnVerificarId) {
+            btnVerificarId.addEventListener('click', async function () {
+                const type = idTypeSelect.value;
+                const frontFile = idFrontInput.files[0];
+                const backFile = idBackInput.files[0];
+
+                if (!frontFile) {
+                    alert('Por favor suba la imagen del frente del documento.');
+                    return;
+                }
+
+                if (type !== 'PASAPORTE' && !backFile) {
+                    alert('Por favor suba la imagen del reverso del documento.');
+                    return;
+                }
+
+                // UI Loading State
+                btnVerificarId.disabled = true;
+                ocrLoading.style.display = 'block';
+                ocrResults.style.display = 'none';
+                ocrDataList.innerHTML = '';
+
+                const formData = new FormData();
+                formData.append('type', type);
+                formData.append('front', frontFile);
+                if (backFile) {
+                    formData.append('back', backFile);
+                }
+
+                try {
+                    const response = await fetch(`${API_BASE_URL}/identity/verify-document`, {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Error al verificar documento');
+                    }
+
+                    const result = await response.json();
+                    console.log('OCR Result:', result);
+
+                    // Display Results
+                    ocrResults.style.display = 'block';
+
+                    // Helper to add list item
+                    const addStart = (label, value) => {
+                        if (value) {
+                            const li = document.createElement('li');
+                            li.innerHTML = `<strong>${label}:</strong> ${value}`;
+                            ocrDataList.appendChild(li);
+                        }
+                    };
+
+                    // Map common OCR fields (adjust based on actual Nubarium response structure)
+                    // Assuming response has `ocrData` or similar structure
+                    const data = result.data || result; // Fallback
+
+                    addStart('Nombre', data.name || data.nombres);
+                    addStart('Primer Apellido', data.firstSurname || data.apellidoPaterno);
+                    addStart('Segundo Apellido', data.secondSurname || data.apellidoMaterno);
+                    addStart('CURP', data.curp);
+                    addStart('Clave de Elector', data.claveElector);
+                    addStart('CIC', data.cic);
+                    addStart('OCR Code', data.ocrNumber);
+
+                    // Save result to hidden input
+                    if (ocrDataHidden) {
+                        ocrDataHidden.value = JSON.stringify(result);
+                    }
+
+                    // Autofill if matches found and empty
+                    if (curpInput && !curpInput.value && data.curp) {
+                        curpInput.value = data.curp;
+                    }
+
+                } catch (error) {
+                    console.error('OCR Error:', error);
+                    alert('Ocurrió un error al procesar el documento. Intente nuevamente.');
+                } finally {
+                    btnVerificarId.disabled = false;
+                    ocrLoading.style.display = 'none';
+                }
+            });
+        }
+    })();
+</script>

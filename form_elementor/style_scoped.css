@@ -1,0 +1,305 @@
+/* Global Resets & Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+/* Scoped Global Reset */
+.m2-zoho-form * {
+    box-sizing: border-box;
+}
+
+/* Scoped Body Style */
+.m2-zoho-form {
+    background-color: #fcf7ff;
+    /* Outer background to match outer card feel or white if full page */
+    margin: 0;
+    font-family: "Inter", "Arial", sans-serif;
+    color: #444;
+    padding: 20px;
+    /* Added some padding to the container */
+}
+
+/* Container */
+.m2-zoho-form .zf-templateWidth {
+    max-width: 800px;
+    /* Match distribution form width */
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Form Wrapper (The Card) */
+.m2-zoho-form .zf-templateWrapper {
+    background-color: #fefaff;
+    /* Inner card color */
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(220, 220, 255, 0.5);
+    border: 1px solid #f0f0f5;
+}
+
+/* Header */
+.m2-zoho-form .zf-tempHeadContBdr {
+    border-bottom: none;
+    padding: 0 0 30px 0;
+    text-align: center;
+    background: transparent;
+}
+
+.m2-zoho-form .zf-frmTitle {
+    color: #111827;
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.m2-zoho-form .zf-frmTitle em {
+    font-style: normal;
+    display: block;
+}
+
+.m2-zoho-form .zf-frmDesc {
+    color: #0A3A8D;
+    /* New blue subtitle color */
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+/* Grid Layout for Fields */
+.m2-zoho-form .zf-subContWrap ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+/* Full width items */
+.m2-zoho-form .zf-subContWrap ul .zf-tempFrmWrapper.full-width {
+    grid-column: span 2;
+}
+
+/* Field Wrapper */
+.m2-zoho-form .zf-tempFrmWrapper {
+    padding: 0;
+    margin: 0;
+}
+
+/* Labels */
+.m2-zoho-form .zf-labelName {
+    display: block;
+    color: #1a1b41;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.m2-zoho-form .zf-important {
+    color: #ef4444 !important;
+    /* Red asterisk */
+    font-size: 14px !important;
+    font-weight: normal !important;
+}
+
+/* Input Styles */
+.m2-zoho-form .da-input-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    /* Added for absolute positioning of manual arrows */
+    background-color: #fcfcfd;
+    border: 1px solid #dce2f0;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 45px;
+    transition:
+        box-shadow 0.2s,
+        border-color 0.2s;
+}
+
+.m2-zoho-form .da-input-wrapper:focus-within {
+    border-color: #0A3A8D;
+    box-shadow: 0 0 0 3px rgba(10, 58, 141, 0.1);
+}
+
+.m2-zoho-form .da-input-icon {
+    width: 48px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    /* Removed background per user request 'no sombras o oscuros' */
+    color: #0A3A8D;
+    border-right: 1px solid #E5E7EB;
+    /* Kept subtle border separation */
+    flex-shrink: 0;
+}
+
+.m2-zoho-form .da-input-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    /* Make icons outline style if possible, or just cleaner */
+    stroke: #0A3A8D;
+    /* Use stroke for clearer look if path supports it, otherwise fill */
+    stroke-width: 1.5;
+}
+
+/* If SVG paths are fill-based, revert to fill but keep background transparent */
+.m2-zoho-form .da-input-icon svg path {
+    fill: #0A3A8D;
+    /* Ensure fill is correct color */
+    stroke: none;
+}
+
+
+/* Inputs */
+.m2-zoho-form .zf-tempContDiv input[type="text"],
+.m2-zoho-form .zf-tempContDiv select {
+    width: 100%;
+    height: 100%;
+    border: none !important;
+    /* Remove custom borders */
+    background: transparent !important;
+    padding: 0 16px;
+    font-size: 15px;
+    color: #4b5563;
+    outline: none;
+    box-shadow: none !important;
+    /* Remove custom shadows */
+    border-radius: 0 !important;
+}
+
+.m2-zoho-form .zf-form-sBox {
+    width: 100%;
+    height: 100%;
+    border: none !important;
+    background: transparent !important;
+    padding: 0 16px;
+    padding-right: 35px;
+    /* Added space for manual arrow icon */
+    font-size: 15px;
+    color: #4b5563;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* Background image removed in favor of manual SVG for better control */
+    background-image: none !important;
+    cursor: pointer;
+}
+
+/* Phone Field Special Handling */
+.m2-zoho-form .zf-phonefld .zf-phwrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.m2-zoho-form .zf-phonefld .zf-phwrapper span {
+    display: block;
+}
+
+.m2-zoho-form .zf-phonefld .zf-phwrapper span:first-child {
+    flex: 0 0 30%;
+    /* Country code width */
+}
+
+.m2-zoho-form .zf-phonefld .zf-phwrapper span:last-child {
+    flex: 1;
+}
+
+/* Currency Field Special Handling */
+.m2-zoho-form .zf-currency .zf-tempContDiv div {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.m2-zoho-form .zf-currency .zf-tempContDiv span {
+    display: none;
+    /* Hide default currency span */
+}
+
+/* Error Messages */
+.m2-zoho-form .zf-errorMessage {
+    font-size: 13px;
+    color: #ef4444;
+    margin-top: 5px;
+    display: none;
+    /* JS toggles this */
+}
+
+/* Button */
+.m2-zoho-form .zf-fmFooter {
+    text-align: center;
+    padding: 20px 0 0 0;
+    margin: 0;
+    width: 100%;
+}
+
+.m2-zoho-form .zf-fmFooter li {
+    display: block;
+    width: 100%;
+    list-style: none;
+}
+
+.m2-zoho-form .zf-submitColor {
+    width: 70%;
+    /* max-width removed to match Image 1 (full width) */
+    padding: 16px;
+    background: linear-gradient(90deg, #0A3A8D 0%, #2563EB 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    /* Reduced from 30px as requested "menos border radius" */
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(10, 58, 141, 0.3);
+    transition: transform 0.1s;
+}
+
+.m2-zoho-form .zf-submitColor:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(10, 58, 141, 0.4);
+}
+
+/* Footer Notes */
+.m2-zoho-form .footer-notes {
+    text-align: left;
+    /* Aligned left as per user request */
+    color: #6b7280;
+    font-size: 14px;
+    margin-top: 15px;
+    line-height: 1.5;
+}
+
+.m2-zoho-form .footer-notes .required-note {
+    color: #0A3A8D;
+    /* Matching blue theme */
+    font-weight: 600;
+    margin-bottom: 15px;
+    /* Spacing between required note and privacy text */
+}
+
+/* Remove default Zoho layout classes effects that interfere */
+.m2-zoho-form .zf-clearBoth {
+    clear: both;
+}
+
+.m2-zoho-form .zftwoColumn .zfCol {
+    float: none;
+    width: 100%;
+}
+
+/* Mobile Repsonsive */
+@media (max-width: 600px) {
+    .m2-zoho-form .zf-subContWrap ul {
+        grid-template-columns: 1fr;
+    }
+
+    .m2-zoho-form .zf-subContWrap ul .zf-tempFrmWrapper.full-width {
+        grid-column: span 1;
+    }
+}
